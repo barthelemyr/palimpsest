@@ -25,6 +25,11 @@ Mike Bostock, *world-atlas* 2.0.2 (derived from Natural Earth). https://github.c
 ## Continents: countries-list
 *countries-list* by Annexare Studio. https://github.com/annexare/Countries — MIT licence. See the upstream LICENSE file for the full copyright notice.
 
+## Successions: Wikidata
+Wikidata, https://www.wikidata.org — Creative Commons CC0 1.0 (public domain dedication), https://www.wikidata.org/wiki/Wikidata:Licensing.
+Used: succession links between Cliopatria polities (P1365 replaces, P1366 replaced by, P155 follows, P156 followed by), query of 21 October 2026 (`tools/palimpsest-successions.rq`, raw result `tools/wikidata-successions-2026-10-21.json`).
+Changes: kept only links whose two ends are map states, matched through Cliopatria's Wikidata identifiers; filtered by date (`tools/build_successions.py`).
+
 ## Wikipedia
 Articles are linked, not copied.
 

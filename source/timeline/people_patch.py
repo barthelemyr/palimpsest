@@ -1,0 +1,252 @@
+"""People layer, part 1: peoples, cultures and prehistoric periods from the timeline get
+an exact Wikipedia article and an approximate map location (core area, lon/lat).
+Writes `wp` (all) and `ll` [lon, lat] (those drawn on the map) into proto/data.json (v4.3)
+and the same as `wikipedia` / `location` into the master JSON (v4.3).
+Entries marked DUP get a Wikipedia link but no map label (another label already covers the same people and place)."""
+import json, sys
+from pathlib import Path
+
+DUP = None
+P = {  # period id: (Wikipedia title, lon, lat)   lon/lat = rough core area, for a label only
+ "usa.paleo-indian-clovis": ("Clovis culture", -103.2, 34.4),
+ "usa.archaic-period": ("Archaic period (North America)", -89.0, 36.5),
+ "usa.woodland-period": ("Woodland period", -83.0, 39.3),
+ "usa.mississippian-culture": ("Mississippian culture", -90.06, 38.66),
+ "usa.ancestral-puebloans": ("Ancestral Puebloans", -108.5, 36.8),
+ "usa.indigenous-nations": ("Native Americans in the United States", -100.0, 41.0),
+ "canada.paleo-and-archaic-peoples": ("Paleo-Indians", -106.0, 53.0),
+ "canada.woodland-and-dorset": ("Dorset culture", -75.0, 63.5),
+ "canada.first-nations-and-thule": ("Indigenous peoples in Canada", -96.0, 56.0),
+ "canada.indigenous-nations": ("Indigenous peoples in Canada", -96.0, 56.0),
+ "mexico.archaic-period": ("Mesoamerican chronology", -98.5, 18.5),
+ "mexico.olmec-civilization": ("Olmecs", -94.6, 18.1),
+ "mexico.maya-civilization": ("Maya civilization", -89.6, 20.2),
+ "mexico.indigenous-peoples": ("Indigenous peoples of Mexico", -97.5, 18.0),
+ "argentina.early-hunter-gatherers": ("Cueva de las Manos", -70.7, -47.2),
+ "argentina.andean-northwest-cultures": ("Aguada culture", -66.6, -27.8),
+ "argentina.diaguita-and-regional-peoples": ("Diaguita", -66.8, -27.0),
+ "argentina.indigenous-peoples": ("Native Argentines", -64.0, -36.0),
+ "australia.pre-colonial-era": ("Prehistory of Australia", 134.0, -25.0),
+ "australia.aboriginal-and-torres-strait-islander-peoples": ("Aboriginal Australians", 134.0, -25.0),
+ "uk.neolithic-and-bronze-age-britain": ("Neolithic British Isles", -1.83, 51.18),
+ "uk.celtic-era": ("Celtic Britons", -2.5, 53.0),
+ "portugal.lusitanians-and-other-tribes": ("Lusitanians", -7.9, 40.0),
+ "spain.prehistoric-iberia": ("Prehistoric Iberia", -4.0, 40.0),
+ "spain.iberian-and-celtic-tribes": ("Pre-Roman peoples of the Iberian Peninsula", -3.5, 40.5),
+ "france.prehistoric-france": ("Prehistory of France", 1.0, 45.5),
+ "france.gaul": ("Gaul", 2.5, 46.8),
+ "italy.italic-tribes": ("Italic peoples", 13.0, 42.3),
+ "germany.celtic-and-germanic-tribes": ("Germanic peoples", 10.0, 52.0),
+ "germany.germanic-tribes": ("Migration Period", 10.0, 52.0),
+ "austria.hallstatt-culture": ("Hallstatt culture", 13.64, 47.56),
+ "greece.aegean-civilizations": ("Aegean civilization", 25.1, 35.3),
+ "greece.mycenaean-civilization": ("Mycenaean Greece", 22.76, 37.73),
+ "turkey.neolithic-and-early-bronze-age-anatolia": ("Prehistory of Anatolia", 32.8, 37.67),
+ "egypt.predynastic-egypt": ("Prehistoric Egypt", 32.7, 25.9),
+ "iraq.ubaid-period": ("Ubaid period", 46.0, 31.0),
+ "iraq.sumerian-civilization": ("Sumer", 45.6, 31.3),
+ "iran.early-iranian-plateau-cultures": ("Prehistory of Iran", 53.0, 33.5),
+ "iran.elamite-civilization": ("Elam", 48.25, 32.19),
+ "iran.iranian-tribes": ("Iranian peoples", 54.0, 34.5),
+ "pakistan.mehrgarh-neolithic": ("Mehrgarh", 67.6, 29.4),
+ "pakistan.indus-valley-civilization": ("Indus Valley Civilisation", 68.14, 27.33),
+ "india.indus-valley-civilization": ("Indus Valley Civilisation", DUP, DUP),
+ "china.yangshao-culture": ("Yangshao culture", 109.0, 34.6),
+ "china.liangzhu-culture": ("Liangzhu culture", 119.99, 30.39),
+ "china.longshan-culture": ("Longshan culture", 117.0, 36.2),
+ "japan.jomon-period": ("Jōmon period", 140.7, 40.8),
+ "japan.yayoi-period": ("Yayoi period", 130.4, 33.3),
+ "russia.scythians-and-sarmatians": ("Scythians", 42.0, 47.5),
+ "russia.slavic-tribes-and-khazar-khaganate": ("East Slavs", 36.0, 54.5),
+ "poland.lusatian-culture": ("Lusatian culture", 16.5, 51.8),
+ "poland.germanic-and-west-slavic-tribes": ("West Slavs", 19.0, 52.2),
+ "netherlands.germanic-tribes": ("Germanic peoples", 5.6, 52.6),
+ "sweden.nordic-bronze-age": ("Nordic Bronze Age", 13.5, 57.0),
+ "sweden.iron-age-scandinavia": ("Iron Age Scandinavia", 15.0, 59.0),
+ "vietnam.ong-son-culture-van-lang": ("Đông Sơn culture", 105.8, 19.8),
+ "mongolia.kyrgyz-khitan-and-mongol-tribes": ("Mongolic peoples", 105.0, 47.0),
+ "arabia.eastern-arabia-dilmun-magan-and-gerrha": ("Dilmun", 50.55, 26.1),
+ "sudan.kerma-culture": ("Kerma culture", 30.4, 19.6),
+ "sudan.nilotic-and-other-southern-peoples": ("Nilotic peoples", 31.0, 8.0),
+ "mali.djenne-djenno": ("Djenné-Djenno", -4.55, 13.9),
+ "nigeria.nok-culture": ("Nok culture", 8.0, 9.6),
+ "zimbabwe.early-iron-age-farmers": ("Gokomere", 30.8, -20.1),
+ "south_africa.khoisan-and-bantu-societies": ("Khoisan", 22.0, -30.5),
+ "south_africa.sotho-tswana-and-nguni-chiefdoms": ("Nguni people", 30.0, -28.5),
+ "peru.norte-chico-caral": ("Caral", -77.52, -10.89),
+ "peru.initial-period": ("Cupisnique", -79.0, -7.4),
+ "peru.chavin-culture": ("Chavín culture", -77.18, -9.59),
+ "peru.moche-and-nazca": ("Moche culture", -79.0, -8.1),
+ "brazil.paleo-indian-peoples": ("Serra da Capivara National Park", -42.6, -8.8),
+ "brazil.sambaqui-and-archaic": ("Sambaqui", -48.7, -27.5),
+ "brazil.amazonian-societies": ("Marajoara culture", -49.5, -0.9),
+ "brazil.tupi-guarani-peoples": ("Tupi people", -43.0, -17.0),
+ "brazil.indigenous-peoples": ("Indigenous peoples in Brazil", -56.0, -8.0),
+ "switzerland.helvetii-and-raetians": ("Helvetii", 7.5, 46.9),
+ "switzerland.burgundians-and-alamanni": ("Alemanni", 8.5, 47.6),
+ "denmark.nordic-bronze-age": ("Nordic Bronze Age", DUP, DUP),
+ "denmark.iron-age-denmark": ("Iron Age Scandinavia", DUP, DUP),
+ "norway.nordic-bronze-and-iron-age": ("Nordic Bronze Age", DUP, DUP),
+ "hungary.celtic-and-pannonian-peoples": ("Pannonians", 18.0, 46.4),
+ "hungary.huns-goths-gepids-and-lombards": ("Huns", 19.5, 47.2),
+ "czechia.celtic-boii": ("Boii", 15.0, 50.0),
+ "czechia.germanic-marcomanni": ("Marcomanni", 15.5, 49.6),
+ "serbia.vinca-and-later-prehistoric-cultures": ("Vinča culture", 20.62, 44.76),
+ "serbia.thracian-illyrian-and-celtic-peoples": ("Scordisci", 21.0, 44.0),
+ "central_asia.oxus-civilization": ("Bactria–Margiana Archaeological Complex", 62.2, 37.7),
+ "central_asia.andronovo-and-saka-steppe-cultures": ("Andronovo culture", 70.0, 48.0),
+ "thailand.ban-chiang-culture": ("Ban Chiang", 103.24, 17.4),
+ "laos.iron-age-cultures": ("Plain of Jars", 103.15, 19.43),
+ "philippines.pre-colonial-era": ("History of the Philippines (900–1565)", 121.0, 13.0),
+ "congo.bantu-farming-societies": ("Bantu peoples", 14.5, -5.5),
+ "swahili_coast.bantu-farmers-and-azanian-trade": ("Azania", 39.5, -6.0),
+ "madagascar.early-settlement": ("History of Madagascar", 47.0, -19.0),
+ "guatemala.preclassic-maya": ("Preclassic Maya", -89.9, 17.75),
+ "central_america.preclassic-maya": ("Preclassic Maya", DUP, DUP),
+ "haiti.archaic-and-taino-peoples": ("Taíno", -72.3, 19.0),
+ "dominican_republic.archaic-peoples": ("Ortoiroid people", DUP, DUP),
+ "dominican_republic.taino-chiefdoms": ("Taíno", DUP, DUP),
+ "cuba.archaic-peoples": ("Guanahatabey", -83.5, 22.4),
+ "cuba.taino-chiefdoms": ("Taíno", -77.0, 21.0),
+ "colombia.pre-columbian-chiefdoms": ("Muisca", -73.9, 5.3),
+ "new_zealand.pre-colonial-era": ("Māori history", 175.5, -38.5),
+ "new_zealand.maori-iwi-and-hapu": ("Iwi", 175.5, -38.5),
+ "polynesia.lapita-settlement-and-ancestral-polynesia": ("Lapita culture", -175.2, -21.1),
+ "melanesia.first-settlement": ("History of Papua New Guinea", 144.3, -5.8),
+ "melanesia.agricultural-societies": ("Kuk Swamp", 144.33, -5.78),
+ "chile.monte-verde-and-early-peoples": ("Monte Verde", -73.2, -41.5),
+ "chile.chinchorro-culture": ("Chinchorro culture", -70.3, -18.5),
+ "chile.andean-and-mapuche-societies": ("Mapuche", -71.0, -32.5),
+ "chile.mapuche-araucania": ("Mapuche", -72.6, -38.7),
+ "chile.indigenous-peoples": ("Indigenous peoples in Chile", -70.6, -30.0),
+ "bolivia.formative-andean-cultures": ("Chiripa", -68.6, -16.6),
+ "ecuador.valdivia-and-early-cultures": ("Valdivia culture", -80.7, -1.9),
+ "ecuador.regional-chiefdoms": ("Cañari", -78.9, -2.7),
+ "venezuela.paleo-indian-peoples": ("Paleo-Indians", -66.0, 8.5),
+ "venezuela.agricultural-chiefdoms": ("Timoto–Cuica people", -71.1, 8.6),
+ "paraguay.guarani-peoples": ("Guaraní people", -56.0, -25.5),
+ "uruguay.charrua-and-other-peoples": ("Charrúa", -56.0, -32.5),
+ "guianas.arawak-and-carib-peoples": ("Arawak peoples", -58.0, 5.5),
+ "guianas.indigenous-and-maroon-peoples": ("Surinamese Maroons", -55.5, 4.0),
+ "central_america.archaic-peoples": ("Isthmo-Colombian Area", -85.0, 12.0),
+ "central_america.postclassic-maya-and-lenca": ("Lenca", -88.2, 14.3),
+ "central_america.isthmo-colombian-chiefdoms": ("Isthmo-Colombian Area", -83.5, 9.5),
+ "caribbean.archaic-peoples": ("Ortoiroid people", -61.5, 14.0),
+ "caribbean.saladoid-peoples": ("Saladoid culture", -63.0, 16.5),
+ "caribbean.taino-and-kalinago": ("Kalinago", -61.3, 15.4),
+ "greenland.paleo-inuit-cultures": ("Paleo-Eskimo", -51.0, 69.0),
+ "greenland.norse-settlement": ("Norse colonization of North America", -45.5, 61.2),
+ "greenland.thule-inuit": ("Thule people", -66.0, 76.5),
+ "greenland.kalaallit-greenlandic-inuit": ("Greenlandic Inuit", -51.7, 66.0),
+ "ireland.prehistoric-ireland": ("Prehistoric Ireland", -6.48, 53.69),
+ "belgium.belgae": ("Belgae", 4.5, 50.5),
+ "finland.prehistoric-finland": ("History of Finland", 25.0, 62.0),
+ "lithuania.baltic-tribes": ("Balts", 24.0, 55.3),
+ "estonia_latvia.finnic-and-baltic-tribes": ("Finnic peoples", 25.5, 58.6),
+ "ukraine.cucutenitrypillia-culture": ("Cucuteni–Trypillia culture", 28.0, 48.5),
+ "ukraine.bronze-age-steppe-cultures": ("Yamnaya culture", 34.0, 47.5),
+ "ukraine.scythians-sarmatians-and-greek-colonies": ("Scythians", 34.0, 46.6),
+ "belarus.baltic-and-east-slavic-tribes": ("East Slavs", 28.0, 53.5),
+ "romania.neolithic-and-bronze-age-cultures": ("Hamangia culture", 28.5, 44.3),
+ "romania.dacians-and-getae": ("Dacians", 24.5, 45.8),
+ "bulgaria.neolithic-and-chalcolithic-cultures": ("Varna culture", 27.9, 43.2),
+ "bulgaria.thracian-kingdoms": ("Thracians", 25.0, 42.5),
+ "slovakia.celtic-and-germanic-peoples": ("Quadi", 18.0, 48.5),
+ "croatia.illyrians-and-greek-colonies": ("Illyrians", 16.0, 44.5),
+ "slovenia.hallstatt-and-celtic-cultures": ("Hallstatt culture", DUP, DUP),
+ "bosnia.illyrian-peoples": ("Illyrians", DUP, DUP),
+ "montenegro.illyrian-kingdoms": ("Illyrians", DUP, DUP),
+ "albania.illyrian-kingdoms-and-greek-colonies": ("Illyrians", 20.0, 41.2),
+ "north_macedonia.paeonians-and-early-peoples": ("Paeonians", 22.0, 41.6),
+ "cyprus.neolithic-and-bronze-age-cyprus": ("Prehistoric Cyprus", 33.2, 35.0),
+ "malta.neolithic-malta": ("Megalithic Temples of Malta", 14.45, 35.9),
+ "malta.bronze-age-malta": ("History of Malta", 14.45, 35.9),
+ "afghanistan.prehistoric-and-bronze-age-cultures": ("Mundigak", 65.5, 31.9),
+ "afghanistan.arachosia-bactria-and-gandhara-peoples": ("Bactria", 67.0, 36.7),
+ "sri_lanka.prehistoric-sri-lanka": ("Prehistory of Sri Lanka", 80.7, 7.5),
+ "sri_lanka.early-maldives": ("History of the Maldives", 73.5, 4.2),
+ "himalaya.early-bhutan": ("History of Bhutan", 90.4, 27.4),
+ "georgia.kuraaraxes-and-bronze-age-cultures": ("Kura–Araxes culture", 44.5, 41.4),
+ "armenia.kuraaraxes-and-early-cultures": ("Kura–Araxes culture", DUP, DUP),
+ "azerbaijan.prehistoric-azerbaijan": ("History of Azerbaijan", 48.0, 40.3),
+ "taiwan.pre-colonial-era": ("Taiwanese indigenous peoples", 121.0, 23.7),
+ "taiwan.indigenous-peoples": ("Taiwanese indigenous peoples", 121.0, 23.7),
+ "timor_leste.pre-colonial-era": ("History of East Timor", 125.7, -8.8),
+ "libya.prehistoric-sahara": ("Tadrart Acacus", 10.5, 24.8),
+ "senegambia.iron-age-peoples": ("Senegambian stone circles", -15.3, 13.7),
+ "west_sahara_mauritania.prehistoric-sahara-and-bafour-peoples": ("Dhar Tichitt", -9.5, 18.4),
+ "guinea_coast.kintampo-and-iron-age-peoples": ("Kintampo Complex", -1.7, 8.05),
+ "central_sahel.green-sahara-cultures": ("African humid period", 9.0, 18.0),
+ "central_sahel.pastoralists-and-early-towns": ("Sao civilisation", 14.5, 12.0),
+ "central_africa.forest-foragers-and-bantu-homeland": ("Bantu expansion", 11.0, 5.5),
+ "central_africa.bantu-farming-and-iron-working-societies": ("Bantu peoples", 20.0, 2.0),
+ "angola.foragers-and-bantu-farmers": ("History of Angola", 17.0, -12.0),
+ "great_lakes.iron-age-great-lakes-cultures": ("Urewe culture", 31.0, -1.5),
+ "horn_of_africa.prehistoric-horn": ("Laas Geel", 44.8, 9.8),
+ "zambia_malawi.foragers-and-bantu-farmers": ("History of Zambia", 28.5, -13.5),
+ "mozambique.foragers-and-bantu-farmers": ("History of Mozambique", 36.0, -17.0),
+ "namibia_botswana.khoisan-foragers-and-herders": ("San people", 21.0, -21.5),
+ "island_melanesia.first-settlement": ("Solomon Islands", 160.0, -9.4),
+ "island_melanesia.lapita-and-melanesian-societies": ("Lapita culture", 160.0, -9.4),
+ "micronesia.settlement-voyages": ("Micronesia", 150.0, 7.5),
+}
+
+# short names for the map label where the timeline's name only makes sense inside its country column
+ML = {
+ "usa.archaic-period": "Archaic North America", "usa.indigenous-nations": "Native American nations",
+ "canada.first-nations-and-thule": "First Nations and Thule Inuit", "canada.indigenous-nations": "First Nations, Inuit and Métis",
+ "mexico.archaic-period": "Archaic Mesoamerica", "mexico.indigenous-peoples": "Indigenous peoples of Mexico",
+ "argentina.early-hunter-gatherers": "Patagonian hunter-gatherers", "argentina.indigenous-peoples": "Indigenous Argentines",
+ "australia.pre-colonial-era": "Aboriginal Australians", "australia.aboriginal-and-torres-strait-islander-peoples": "Aboriginal and Torres Strait Islanders", "uk.celtic-era": "Celtic Britain",
+ "peru.initial-period": "Initial Period (Peru)", "brazil.paleo-indian-peoples": "Paleo-Indians of Brazil", "brazil.indigenous-peoples": "Indigenous peoples of Brazil",
+ "laos.iron-age-cultures": "Plain of Jars culture", "philippines.pre-colonial-era": "Pre-colonial Philippines",
+ "madagascar.early-settlement": "First Malagasy settlers", "colombia.pre-columbian-chiefdoms": "Muisca and other chiefdoms",
+ "new_zealand.pre-colonial-era": "Māori", "melanesia.first-settlement": "First New Guineans", "melanesia.agricultural-societies": "New Guinea farmers",
+ "chile.indigenous-peoples": "Indigenous Chileans", "ecuador.regional-chiefdoms": "Ecuadorian chiefdoms", "venezuela.paleo-indian-peoples": "Paleo-Indians",
+ "venezuela.agricultural-chiefdoms": "Venezuelan chiefdoms", "central_america.archaic-peoples": "Archaic Central America",
+ "cuba.archaic-peoples": "Archaic Cubans (Guanahatabey)", "caribbean.archaic-peoples": "Archaic Caribbean peoples",
+ "romania.neolithic-and-bronze-age-cultures": "Neolithic Romania", "bulgaria.neolithic-and-chalcolithic-cultures": "Neolithic Bulgaria (Varna)",
+ "afghanistan.prehistoric-and-bronze-age-cultures": "Bronze Age Afghanistan", "taiwan.pre-colonial-era": "Taiwanese Indigenous peoples",
+ "taiwan.indigenous-peoples": "Taiwanese Indigenous peoples", "timor_leste.pre-colonial-era": "Pre-colonial Timor",
+ "senegambia.iron-age-peoples": "Senegambian Iron Age", "central_sahel.pastoralists-and-early-towns": "Lake Chad herders and towns (Sao)",
+ "angola.foragers-and-bantu-farmers": "Angolan foragers and farmers", "zambia_malawi.foragers-and-bantu-farmers": "Zambezi foragers and farmers",
+ "mozambique.foragers-and-bantu-farmers": "Mozambican foragers and farmers", "zimbabwe.early-iron-age-farmers": "Early Iron Age Zimbabwe",
+ "island_melanesia.first-settlement": "First Solomon Islanders", "micronesia.settlement-voyages": "Micronesian voyagers",
+ "congo.bantu-farming-societies": "Bantu farmers of the Congo", "central_africa.bantu-farming-and-iron-working-societies": "Bantu farmers and iron-workers",
+ "sudan.nilotic-and-other-southern-peoples": "Nilotic peoples", "horn_of_africa.prehistoric-horn": "Prehistoric Horn of Africa",
+ "lithuania.baltic-tribes": "Baltic tribes", "guinea_coast.kintampo-and-iron-age-peoples": "Kintampo and Iron Age peoples",
+}
+
+if __name__ == "__main__":
+    if sys.argv[1:] == ["titles"]:
+        print("\n".join(sorted({v[0] for v in P.values()}))); sys.exit()
+    d = json.load(open("../blocks/data.json"))
+    n = m = 0; missing = []
+    for t in d["tracks"]:
+        for p in t["p"]:
+            if p["t"] not in ("peoples", "culture", "archaeological_period"): continue
+            v = P.get(p["i"])
+            if not v: missing.append(p["i"]); continue
+            p["wp"] = v[0]; n += 1
+            if v[1] is not None: p["ll"] = [v[1], v[2]]; m += 1
+            else: p.pop("ll", None)
+            if p["i"] in ML: p["ml"] = ML[p["i"]]
+            else: p.pop("ml", None)
+    d["meta"]["v"] = "4.3"
+    json.dump(d, open("../blocks/data.json", "w"), ensure_ascii=False, separators=(",", ":"))
+    src = Path("../../data/world_history_timeline_v4_2.json"); M = json.load(open(src))
+    k = 0
+    def walk(o):
+        global k
+        if isinstance(o, dict):
+            if o.get("id") in P and isinstance(o.get("name"), str):
+                v = P[o["id"]]; o["wikipedia"] = "https://en.wikipedia.org/wiki/" + v[0].replace(" ", "_")
+                if v[1] is not None: o["location"] = {"lon": v[1], "lat": v[2], "precision": "approximate core area"}
+                k += 1
+            for x in o.values(): walk(x)
+        elif isinstance(o, list):
+            for x in o: walk(x)
+    walk(M)
+    if isinstance(M, dict) and isinstance(M.get("meta"), dict): M["meta"]["version"] = "4.3"
+    json.dump(M, open("../../data/world_history_timeline_v4_3.json", "w"), ensure_ascii=False, indent=1)
+    print(f"wp {n}, on map {m}, master {k}, missing {missing}")

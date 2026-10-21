@@ -1,0 +1,135 @@
+# Palimpsest — project notes
+
+*World history, layer by layer.* (Working title until 18 October 2026: “Atlas of Time”, dropped because theatlasoftime.com is a similar site.)
+
+*As of 21 October 2026 · timeline data v4.5 · single file `index.html` (about 3.9 MB), built from `source/` · revised after methodology review · UX redesign under way*
+
+A website for exploring world history visually: who ruled where, who lived where, and how many people there were, from 3400 BCE to today, with sources for every layer. It was inspired by ChartOrigin's poster *Timeline of World History*.
+
+**Made with Claude.** Claude (Anthropic) wrote the code, the design, the data processing and the curated timeline content (periods, descriptions, capitals, people locations) in conversation with the site's author, and the About page says so. AI-generated content can contain mistakes; see *Limitations*.
+
+---
+
+## 1. What the site does
+
+One subject (a country, state, period, place or year) stays in focus while you switch between three views (Timeline, Map, Network). **What ruled here?** (formerly the Core tab) is an action on the Map:
+
+| View | Shows | Main data |
+|---|---|---|
+| **Timeline** | 122 country and region columns, time running downward; colour = empire; two zooms (time and geography); continent and era filters | Curated timeline (v4.3) |
+| **Map** | Borders year by year (Equal Earth projection), Top 5 largest states, continent filter | Cliopatria |
+| **Network** | Today's countries pulled towards the recorded states whose territory covered them (a computed overlap, not belonging); hubs on their capitals | Cliopatria × Natural Earth |
+| **What ruled here?** (action) | A spot (long press or right click on the map, the toolbar button, a panel, or a city in search): every recorded state whose borders contained it, stacked from oldest to today, plus peoples recorded nearby | Cliopatria, timeline |
+
+**Search** (since 20 October 2026): one box in the header for every view (press /; full screen behind the loupe on phones). It finds places (Core's 36 cities), countries and regions, states and empires (timeline empires and Cliopatria polities, merged when they are the same), periods and peoples, events and inventions, and years ("1492", "500 BCE", "44 av. J.-C."). Names match at the start of a word, and a short list of French names works too (Suisse, Empire ottoman), as do common short names and abbreviations of formal state names (USSR, USA, UK, GDR, PRC, Third Reich, Byzantium; added 21 October 2026). Each result shows the view it will open in: the current one when it can show the subject, otherwise another view, with a short message saying why. It replaced the three separate "Explore" panels.
+
+**Navigation** (since 20 October 2026). Every change of view or subject is a step in the browser's history, so Back and Forward work, and every link holds the view, year, layers and subject (`s-p.` period, `s-t.` timeline column, `s-e.` timeline empire, `s-s.` Cliopatria state, `s-c.` country of today, `s-l.` place, `s-y.` year, `s-a.` achievement); links made before still open. When a view cannot show the subject as it is (a country of today on the Map, a period in the Network), the panel says what it shows instead, with a button to make that the subject. Panels stop above the time bar, the year can be typed (1492, 500 BCE, 44 av. J.-C.), and eras are marked under the slider.
+
+**Toolbar and Settings** (since 20 October 2026). One toolbar sits under the header in every view and never covers the content: **Key** (a legend only), the number of countries (Timeline), **Settings**, **Top 5** on the Map and the Network (the five largest states of the year, by land or by people; on by default on laptops, off at first on phones) and, on the Map, **What ruled here?**. Settings holds every setting of the view: continent; colour mode and achievements on the Timeline; layers (today's borders, population density, people and unmapped states), and, in the Network, size by population, basemap, no polity recorded, lines home and the geography/connections balance. Settings in use show as chips in the toolbar, each with × to turn it off, and Reset. **Panels** fold to their title bar (the arrow next to ×) so the view and its zoom buttons stay free; a folded panel stays folded when the view changes and opens again when the reader picks something. **How to** (the last chip of the toolbar, or the key ?) lists the gestures and keys of the current view. On touch screens every control is about 44 px. A block is coloured by its empire only for the years the timeline links it to that empire (since 21 October 2026: Soviet Belarus, 1919–1991, is pale until the USSR was founded in 1922); other years take the colour of another empire it belonged to then, or stay pale. Such a block is drawn in pieces but stays one period, with one outline. A block that bears its empire's name is titled after its column ("Roman Empire in France"), and when the timeline and Cliopatria give different dates a panel shows both. With **Today's borders** on, a click anywhere inside a country (or on its name) on the Map opens the panel of today's country (the states on its land that year, its people, its story); a state's panel lists today's countries on its land. Charts carry a value scale (population on a log scale), round years, the value at the map's year and a reading under the pointer. **Map and Network share one camera** (same Equal Earth coordinates): switching keeps the zoom and the place, and only pans if the subject is out of sight. Panels link to Wikipedia. The address bar always holds a link to the current view.
+
+**Before and after** (since 21 October 2026). A state's panel on the Map lists the states recorded just before and just after it, from Wikidata, each a button to that state (sorted by start date; "one side only" when only one of the two Wikidata items states the link; "Show all" past 8). In **What ruled here?**, a small mark "↓ Wikidata: followed by" sits between two successive layers when Wikidata links them, in the column (when the later layer has its own label) and in the full list, and the opening sentence says how many changes Wikidata links. Nothing is said when there is no link: the absence of a link is not evidence of conquest or of a break. The same section appears in the Timeline's panels (an empire, or a block linked to a map state) and in the Network's state panel; there a row opens the other state in the same view when it can (its empire or block on the Timeline, or the block of that year in the column of today's country where it lay; its hub in the Network), and otherwise on the Map, saying so ("on the Map").
+
+**Provenance badges** on every panel: *Source* (taken directly from a published dataset), *Computed* (calculated by this atlas), *Editorial* (curated, AI-assisted, not individually referenced), *Approximate* (hand-placed location), *✓ Checked* (has specific references).
+
+## 2. Sources
+
+| Source | Version | Licence | Used for |
+|---|---|---|---|
+| [Cliopatria](https://github.com/Seshat-Global-History-Databank/cliopatria), Seshat Global History Databank (Bennett et al.) | v0.2.1 | CC BY 4.0 | Historical borders: 1,637 polities, 12,765 dated shapes, umbrella/member/relation hierarchy |
+| [Natural Earth](https://www.naturalearthdata.com) admin-0 countries, 1:50m | — | Public domain | Coastlines, today's borders, the network's countries |
+| world-atlas (topojson of Natural Earth) | 2.0.2 | ISC | ISO numeric codes of countries |
+| [HYDE 3.3](https://doi.org/10.24416/UU01-94FNH0), Klein Goldewijk et al., Utrecht University | March 2023 (base scenario) | CC BY (readme says 3.0; the portal lists 4.0, to confirm) | Population per country, 10,000 BCE – 2023 |
+| [flag-icons](https://github.com/lipis/flag-icons) | 7.2.3 | MIT | Flags (rasterised into one sprite) |
+| [countries-list](https://github.com/annexare/Countries) | — | MIT | Continent of each country |
+| [Wikidata](https://www.wikidata.org) | query of 21 October 2026 | CC0 | Succession links between map states (P1365 replaces, P1366 replaced by, P155 follows, P156 followed by) |
+| Wikipedia | live links | CC BY-SA (linked only, not copied) | "W" links on panels |
+| ChartOrigin, *Timeline of World History* | poster | — | Inspiration and the original 21-column selection; content re-made and corrected, no artwork reused |
+
+Received but not used yet: HYDE `general_files` (country grid, cell areas) and **ArchaeoGLOBE** (Stephens et al., *Science* 2019: expert ratings of foraging, pastoralism, farming and urban life for 146 regions; licence to check). Considered and rejected: D-PLACE (CC BY-NC).
+
+**Candidate sources for future layers** (20 October 2026): wars, conquests, land use, cities, trade routes, religions, languages, migrations, epidemics, voyages, slave trades, disasters and domestication. They are listed in `CANDIDATE-SOURCES.md` with their licence status, checked on the publishers' pages where possible. None is used yet. The same check found that **HYDE 3.4 (2024) and HYDE 3.5 (2025)** have been released since the 3.3 used here.
+
+## 3. How it was built
+
+1. **Timeline data.** The poster was transcribed and corrected, then extended to 122 columns and 1,157 periods (states, dynasties, foreign rule, colonies, cultures, peoples). It has 40 empires, 55 events, 44 achievements and 237 landmarks. Revisions:
+   - v4.1 added 50 pre-Columbian periods.
+   - v4.2 added exact Wikipedia titles to all 99 events and achievements.
+   - v4.3 added Wikipedia links and approximate locations to 181 peoples and cultures.
+   - v4.5 split 17 long early blocks in the Americas and Africa into documented phases (Archaic and Formative Mesoamerica, Olmec San Lorenzo and La Venta, Preclassic Maya, Valdivia to La Tolita, Green and Pastoral Sahara, Tichitt, Kintampo, the Bantu homeland and expansion, Khoisan foragers) and gave 11 columns that started late an earlier first period (Sahel millet farmers, forest foragers, Pastoral Neolithic herders, Ethiopian highland farmers, Amazigh ancestors and others): 52 periods in all.
+   - v4.4 added approximate locations (capital or core area) to 114 timeline polities that Cliopatria does not draw, such as the Kingdom of Kongo, Great Zimbabwe, Aksum and Saba.
+2. **Map.** Cliopatria was projected with Equal Earth and turned into a shared-arc topology, so neighbouring borders match exactly. The hierarchy was resolved, colours keep neighbours distinct, and labels sit at the pole of inaccessibility. It is packed as varint and gzip and unpacked in the browser.
+3. **Today's borders and continents.** Natural Earth borders are drawn as one mesh. Continents come from ISO codes (countries-list), with the usual Europe–Asia line drawn through the countries it crosses: the crest of the Urals, the Ural River and the Caspian (Russia and Kazakhstan), the Bosphorus and the Dardanelles (Turkey: Eastern Thrace is in Europe), and the Suez Canal (Egypt: Sinai is in Asia); the Caucasus follows today's borders (Russia's North Caucasus in Europe; Georgia, Armenia and Azerbaijan in Asia, as in the ISO list); both halves of Cyprus are in Europe. Remote islands follow the nearest mainland (the Canaries in Africa, Hawaii and western New Guinea in Oceania, French Guiana in South America), except Svalbard (Europe), Greenland's islands and the Aleutians (North America) and the Moluccas and Timor (Asia). Until 21 October 2026, Russia was cut along the 60°E meridian and Turkey, Svalbard and part of Indonesia were misplaced.
+4. **Network.** Every Cliopatria shape was overlaid on today's countries. A state counts for a country when it covers at least 20% of the country's land; failing that, the largest state covering at least 5% counts. Members count as their empire. Capitals (335, hand-curated) anchor the hubs.
+5. **People and unmapped states layer.** 170 peoples and cultures (●●●) and 114 polities missing from Cliopatria (□) are placed by hand at an approximate location. An entry appears only in years when Cliopatria records no state at its location, so the layer fills gaps and never doubles a mapped state; in modern times it is empty. Peoples have Wikipedia links (opened through Wikipedia's search, so a link never lands on a missing page). Core lists both kinds near the tapped spot.
+6. **Population.** HYDE country totals were matched to Natural Earth by ISO code. Between HYDE's dates, population grows at a steady rate, and panels say when a figure is interpolated. Countries use HYDE's national totals. **Historical states** use HYDE's population grid (`popc`, 5 arc-minutes, about 9 km): for each of the ~11,000 Cliopatria shapes, the people in grid cells whose centre lies inside are summed at 11 HYDE dates (3000 BCE, 1 CE, 500, 1000, 1300, 1500, 1700, 1800, 1900, 2000, 2023); in between, steady growth is assumed. Check: in 2000 the mapped states hold 6.08 of HYDE's 6.12 billion people. This replaced a first estimate (country population × share of land) withdrawn after review. Top 5 can rank by land or by people, and shows both.
+7. **Population density layer.** The same HYDE grids, aggregated to 0.5° cells (about 50 km) and divided by land area, are stored as one byte per cell and date on a log scale (`build_density.py` → `density.json`, about 0.5 MB). With the layer on, the land is shaded by people per km², blended between HYDE dates and reprojected row by row to Equal Earth; states become coloured outlines. A legend names the HYDE grid in use and flags long gaps (3000 BCE → 1 CE).
+8. **Search** (20 October 2026). The index is built in the browser from the data already in the page; it is rebuilt once the map data has loaded, so Cliopatria polities join the results.
+9. **Successions** (21 October 2026). `tools/palimpsest-successions.rq` asks Wikidata, for the 1,418 distinct Wikidata identifiers of Cliopatria's 1,637 polities, for the four succession properties (2,531 rows on 21 October 2026). `tools/build_successions.py` keeps a link A → B when A says "replaced by / followed by B" or B says "replaces / follows A", and both ends are map states. Where several polities share one identifier (171 cases), it keeps the pair whose dates join best. A link is shown when B starts between 150 years before and 200 years after A ends, and neither end carries a known wrong identifier (Cliopatria's "Roman Empire" points to the Byzantine Empire's item, Q12544; "Han Dynasty" to another item, Q1068371). Result: 554 links between map states, 400 stated by both sides; 469 shown (352 both sides), embedded as the `succdata` block (13 KB). The site never calls Wikidata.
+10. **Testing.** Every change was screenshotted with Playwright at desktop (1440×900) and phone (390×844) sizes and checked for script errors.
+
+## 4. Files
+
+Since 20 October 2026 the repository holds everything needed to rebuild the site, with the steps in `source/README.md`. To change the site, edit `source/site-template.html` and run `python3 build.py` in `source/`. If `index.html` was edited directly (as it was during the UX redesign), run `python3 build.py --extract` before committing, so the template and the data blocks stay in step with it; `python3 build.py --check` says whether they are.
+
+| File | Role |
+|---|---|
+| `index.html` | The whole site: HTML, CSS, JavaScript and data, built from `source/` |
+| `source/site-template.html` | All HTML, CSS and JavaScript, with a placeholder per data block (rebuilt from `index.html` on 20 October 2026) |
+| `source/build.py` | Template + blocks → `index.html`; `--check` compares, `--extract` goes the other way |
+| `source/blocks/*.json` | The nine data blocks embedded in `index.html` |
+| `data/world_history_timeline_v4_5.json` | Full timeline master, readable |
+| `source/mapdata/topo/prep_ne.js` | Natural Earth 1:50m (world-atlas) → GeoJSON, with continents |
+| `source/mapdata/project_all.py` | Projection to Equal Earth (rewritten on 20 October 2026; the original run was not saved) |
+| `source/mapdata/topo/topo2.js`, `today.js` | Shared-arc topology of the borders; today's borders as one mesh |
+| `source/mapdata/build_map2.py` → `map2.json` | Borders topology, colours, labels, search aliases (uses `build_map.py`'s helpers) |
+| `source/mapdata/build_today.py` → `today.json` | Today's borders and labels |
+| `source/mapdata/build_network.py`, `capitals.py` → `network.json` | Country membership over time, relations, capitals |
+| `source/mapdata/build_continents.py` → `continents.json` | Continent outlines |
+| `source/mapdata/build_hyde.py` → `hyde.json` | Population per country (61 dates) |
+| `source/mapdata/build_popgrid.py` → `popgrid.json` | Population per state, from the HYDE grid (input: `popc_<year>.asc`) |
+| `source/mapdata/build_density.py` → `density.json` | Population density layer (input: `popc_<year>.asc`, `maxln_cr.asc`) |
+| `source/flags/prep_flags.js`, `raster.py` → `flags.json` | Flag sprite |
+| `source/timeline/*_patch.py` | Timeline data revisions v4.1–v4.5 (a record; the earlier masters are not included) |
+| `tools/cliopatria_errata.py`, `tools/cshapes_check.py` | Cliopatria corrections after 1945 and the check against CShapes (made in another session) |
+| `tools/palimpsest-successions.rq` | The Wikidata query for successions, to run again on query.wikidata.org |
+| `tools/wikidata-successions-2026-10-21.json` | Its raw result, dated |
+| `tools/build_successions.py` → `tools/successions.json` | Succession links between map states (copied to `source/blocks/successions.json`) |
+| `CANDIDATE-SOURCES.md` | Shortlist of open datasets for future layers, with licence status (20 October 2026) |
+| `TECHNOLOGY.md`, `BACKLOG.md` | What the site is made of; what comes next |
+
+## 5. Limitations
+
+- **Timeline dates**: only 18 of 1,157 periods carry a specific reference. The rest follow standard chronology and are marked so in the panels.
+- **Cliopatria is thin before 1500 CE**. Large inhabited regions show no state. The People layer helps, but it is not a measure of how many people lived there.
+- **Capitals and people locations** are hand-placed approximations. The capitals still need checking against Wikidata (P36).
+- **Unmapped states** are timeline entries (editorial) at a single approximate point; a point shows neither extent nor borders.
+- **People coverage is uneven.** It follows the timeline's columns and is dense in Europe, with gaps in Siberia, the steppe, island Southeast Asia, South Asia after the Indus Valley, the Sahel and post-1600 North America. Peoples who migrated are shown at one fixed point.
+- **HYDE is modelled.** Figures are often uncertain by a factor of two before 1500 CE, and it gives a value only every 1,000 years before 1 CE. Its lower and upper scenarios are a *scenario range*, not a confidence interval. Some of today's countries are counted together: Israel and Palestine, Sudan and South Sudan, Serbia with Montenegro and Kosovo, Somalia with Somaliland, and Cyprus with Northern Cyprus.
+- **Network links are computed overlaps.** The 20% / 5% thresholds are display choices, and members of an empire are grouped under it. "No polity recorded" means a gap in the dataset or a society without a state, not necessarily an empty land.
+- **Present-day countries as the unit** in the Network and in population is a deliberate anachronism, labelled as such.
+- **Corrections to Cliopatria (20 October 2026).** Cliopatria v0.2.1 keeps some colonial powers over former colonies after independence: the French Fifth Republic over Algeria (1963–2023) and Djibouti (1979–2023), the Kingdom of Great Britain over Oman, Bahrain, Qatar and the UAE (1973–2023) and over Kuwait and Cyprus (1961–1968), the British colonial empire over Fiji, the Bahamas, Belize, Brunei and others until 1995, British East Africa over Kenya and Uganda (1963–1968), the Netherlands Antilles over Suriname, the USA over South Korea, West Germany and Japan until 1966 and over Iraq (2014–2023). After 1945, where two unrelated states are recorded at the same place, the map lets the smaller, more local one win: the larger record loses those parts on the Map, and its area, population, Top 5 rank and Network links leave them out. 48 corrections, computed by `tools/cliopatria_errata.py` from the raw file (output `tools/cliopatria_errata.json`). "Estado Novo" after 1975 is a record for Cabinda alone and is hidden. Not fixed: the Comoros have no state in Cliopatria after 1975 (France keeps them); naming errors such as "Mali Federation" for Mali after 1960, "Denmark-Norway" until 1921 and "Kingdom of Great Britain" until 2023. Before 1945, overlaps are mostly wartime occupations and are left as Cliopatria draws them. Worth reporting upstream as Cliopatria issues.
+- **Check against CShapes 2.0 (20 October 2026).** Palimpsest is and will remain non-commercial, so CShapes 2.0 (ETH Zurich, CC BY-NC-SA 4.0) can be used. For now it is used only to check Cliopatria, not displayed: `tools/cshapes_check.py` compares, every year 1886–2019 at 1 July, the capitals of the states CShapes codes as independent with Cliopatria's states. It confirms the 48 corrections and finds about ten more post-1945 errors: the Comoros inside "Republic of Cabo Verde" (1976–2019) and still under France; France holding part of Berlin after 1990; Djibouti French in 1977–1978; South Sudan inside Sudan 2012–2013; East Timor inside Indonesia 2002–2005; Bangladesh inside Pakistan in 1972; Rwanda and Burundi inside the Belgian Congo in 1962; the Maldives missing; the Bahamas' capital uncovered; El Salvador with no state 1979–1991; Luxembourg inside the Netherlands until 1916. Wartime occupations (Nazi Germany, the USSR in 1945–1946 and over Prague from 1969, the US over Cuba, Haiti and Iceland, Iraq over Kuwait in 1990) also disagree, but there Cliopatria draws the occupier and CShapes keeps the occupied state: both defensible, not corrected.
+- **Today's country under the pointer** comes from Cliopatria's states recorded for 2024, matched by name to Natural Earth; Samoa, Kiribati, French Polynesia, Western Sahara and Antarctica have no such record and cannot be picked by clicking (they can through search).
+- **Successions are partial and untyped.** Only 680 of the 1,637 map states (42%) have at least one link, more after 1800. Wikidata mixes succession, conquest, annexation and partition, so the site says only "followed by". Some links are doubtful (Fatimid Caliphate → Almohad Caliphate; at Rome, Western Roman Empire → Vandal Kingdom, the sack of 455); the date filter removes some, not all. Two Cliopatria identifiers are wrong ("Roman Empire", "Han Dynasty"), and 171 are shared by several polities; their links are hidden or matched by dates.
+- **Search places** are limited to Core's 36 cities; other places are found through their country or state.
+- **Rebuilding from the raw sources** gives near-identical borders, not identical ones: the projection step was rewritten, and 55 of 13,797 Cliopatria shapes differ by one repaired vertex (`source/README.md`). The committed data blocks are the reference.
+
+## 6. Credits shown on the site
+
+Borders: Cliopatria (Seshat), CC BY 4.0 · Coastlines and today's borders: Natural Earth, public domain · Population: HYDE 3.3, Utrecht University, CC BY · Successions: Wikidata, CC0 · Flags: flag-icons, MIT · Inspired by ChartOrigin's *Timeline of World History* · Made with Claude.
+
+## 7. Next steps
+
+Revised after an external methodology review (18 October 2026) and the UX review (20 October 2026).
+
+1. ~~Grid-based population per state~~ (done). The population density layer followed from the same grids (done).
+2. **UX redesign**, in the order of the backlog's section 2: ~~one search~~, ~~a stable subject~~, ~~a time bar never covered~~, ~~real browser history~~, ~~Core as an action~~ (all done 20 October 2026); ~~one settings drawer and active settings as chips~~ (done 20 October 2026). Next in the backlog: affordances (P2), 44 px touch targets (P2), clearer panels (P2), then the phone Timeline one region at a time (P1, section 3).
+3. **HYDE lower and upper scenarios**, shown as a scenario range (the code is ready).
+4. **Automated checks** on the build outputs: dates (BCE, end years), spatial edge cases, population totals and joint countries, and a small set of reviewed regression cases; plus a **build manifest** (source versions, checksums, parameters).
+5. **Threshold as a view setting**: store continuous overlap shares and let the reader change the 20% rule.
+6. **Audit sample**: about 30 timeline periods, the capitals (Wikidata P36) and the people locations; verified Wikipedia titles instead of search links.
+7. A data pass on the peoples (regional gaps, wording, migration paths), and ArchaeoGLOBE land use as a separate layer if its licence allows.
+8. Confirm HYDE's licence before any public release, and check what changed in HYDE 3.4 and 3.5 before the next population rebuild.
+9. **New layers**, from `CANDIDATE-SOURCES.md` (backlog, section 5): first conquests computed from Cliopatria, land use from HYDE, wars and battles (Wikidata, then UCDP from 1989), and the largest cities once their licence is cleared. Before the first one: one drawing, picking and badge design for each kind of layer (areas, lines, points), and one record format for events.
+
+Dropped: a curve of the "share of humanity living inside a recorded state". With Cliopatria's gaps it would mostly measure dataset coverage; at most it may appear as a coverage diagnostic.

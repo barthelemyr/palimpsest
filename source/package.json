@@ -1,0 +1,15 @@
+{
+  "name": "palimpsest-build",
+  "private": true,
+  "description": "Node tools used to build Palimpsest's data blocks (not needed to view the site)",
+  "license": "MIT",
+  "dependencies": {
+    "countries-list": "3.1.1",
+    "flag-icons": "7.2.3",
+    "i18n-iso-countries": "7.12.0",
+    "topojson-client": "3.1.0",
+    "topojson-server": "3.0.1",
+    "topojson-simplify": "3.0.3",
+    "world-atlas": "2.0.2"
+  }
+}
