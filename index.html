@@ -109,6 +109,7 @@ button.kitem:hover { background: #f3f1ea; } .kitem.on, button.kitem.on:hover { b
 .kitem i.kout { background: #f3c9c2; box-shadow: inset 0 0 0 2.5px #7a2318; }
 .kitem i.kdash { background: none; border: 1.5px dashed #444; }
 .heretoday { margin: 6px 0 2px; font-size: 13px; color: #4a4843; }
+.bridge { margin: 6px 0 2px; font-size: 13px; color: #4a4843; line-height: 1.45; }
 .kitem i.ktoday { background: none; border-top: 2px dashed #1d1d1b; border-radius: 0; height: 2px; margin: 7px 0; }
 .kt { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair); cursor: pointer; }
 @media (max-width: 760px) {
@@ -580,7 +581,7 @@ const D = JSON.parse(document.getElementById("data").textContent);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-let FOCUS = null, applying = false, lensSwitch = false;
+let FOCUS = null, applying = false, lensSwitch = false, lensFrom = null;   // lensFrom: the view we just came from
 const JUMP_YEARS = [[-2000, "2000 BCE"], [-500, "500 BCE"], [117, "117 CE"], [750, "750"], [1250, "1250"], [1492, "1492"], [1600, "1600"], [1800, "1800"], [1914, "1914"], [1938, "1938"], [2000, "2000"]];   // the subject carried across views
 
 // ---------------------------------------------------------------- column order (west to east)
@@ -1319,7 +1320,7 @@ function showPeriod(p) { yearSel = null; selTrack = null; setFocus({ k: "period"
   if (mode === "map" && !coreOn && !p.ll && !p.ul && entForPeriod(top) == null) { const c = trackNC(t), g = c && typeof memAt === "function" ? memAt(c, mYear)[0] : null;
     h += `<p class="dim">This period is not drawn on the borders map.${g != null ? ` Highlighted instead: ${entBtn(g)}, the state recorded on most of today's ${esc(c.n)} in ${esc(fmt(mYear))}.` : ""}</p>`; }
   if (p.ul) h += `<p class="dim">The borders dataset (Cliopatria) does not draw this polity. With <b>People</b> on in Layers, the map marks its approximate capital or core area with an open square, in years when no other state is recorded there.</p>`;
-  h += acts([act(`data-year="${p.s}"`, "The world then", "year"), ei != null ? act(`data-tomap="${ei}:${y0}"`, "Map", "map", true) : p.s >= -3400 ? act(`data-gomap="${y0}"`, "Map", "map", true) : "",
+  h += acts([act(`data-year="${p.s}"`, "The world then", "year"), ei != null ? act(`data-tomap="${ei}:${periodYear(p, true)}"`, "Map", "map", true) : p.s >= -3400 ? act(`data-gomap="${y0}"`, "Map", "map", true) : "",
     nc && p.s >= -3400 ? act(`data-tonet="c:${nc.i}:${y0}"`, "Network", "net") : ""]);
   openSheet(h, "period");
 }
@@ -1374,7 +1375,7 @@ function showEmpire(eid) { yearSel = null; selTrack = null; setFocus({ k: "empir
   if (e.d) h += `<p class="lead">${esc(e.d)}</p>`;
   h += sect("Where it reached", e.tr.length, `<div class="chipl">${e.tr.map((tid) => `<button class="cbtn" data-track="${tid}">${flagHTML(trackById[tid], 1, 11)}${esc(trackById[tid].n.split(",")[0])}</button>`).join("")}</div>`);
   if (empToEnt[eid] != null) h += succSect(empToEnt[eid], "poster");
-  h += acts([act(`data-act="clearemp"`, "Clear highlight"), empToEnt[eid] != null ? act(`data-tomap="${empToEnt[eid]}:${Math.max(-3400, e.s)}"`, "Map", "map", true) : ""]);
+  h += acts([act(`data-act="clearemp"`, "Clear highlight"), empToEnt[eid] != null ? act(`data-tomap="${empToEnt[eid]}:${Math.max(-3400, ENTS[empToEnt[eid]].py)}"`, "Map", "map", true) : ""]);
   openSheet(h, "empire");
   const ts = e.tr.map((tid) => trackById[tid]).filter((t) => SHOWN.includes(t) && t._wt > 0.02); if (!ts.length) return;
   const viewW = W > 760 ? W - 420 : W, fit = viewW - AX() - 16, so = [...ts].sort((a, b) => a._x - b._x); let x1 = so[0]._x, x2 = so[0]._x + so[0]._w, bestN = 0;
@@ -1488,7 +1489,7 @@ const mapLoad = (async () => {
       TODAY = p; }
     ENTS = meta.ents; COLORS = meta.colors; GCOL = meta.gcol || {}; GBOX = meta.gbox.map((b) => b.map((v) => v * inv));
     RECS = meta.recs.map((q, i) => ({ i, e: q[0], f: q[1], t: q[2], g: q[3], c: q[4], lx: q[5], ly: q[6], lr: q[7], area: q[8], top: q[9], mem: q[10], comp: q[11], triv: q[12] }));
-    applyErrata();
+    applyErrata(); empColours();
     const maxA = new Float64Array(ENTS.length); RECS.forEach((q) => { maxA[q.e] = Math.max(maxA[q.e], q.area); });
     ENTS.forEach((e, i) => { e.maxA = maxA[i]; e.key = normQ(e.n); e.akeys = (e.al || []).map(normQ);
       (e.pp || []).forEach((pid) => { periodToEnt[pid] = i; }); if (e.emp && empToEnt[e.emp] == null) empToEnt[e.emp] = i; });
@@ -1810,15 +1811,16 @@ function showPolity(ei, keepCam) { setFocus({ k: "state", e: ei });
   mSelE = ei; mDraw(); saveHash();
   const e = ENTS[ei], r = recOf(ei);
   const kind = e.k === 1 ? "Empire, realm or union" : r && r.top >= 0 ? `Member of the <button class="lk" data-ent="${r.top}">${esc(ENTS[r.top].n)}</button>` : "State or polity";
-  let h = head({ kick: kind, title: e.n, color: r ? COLORS[r.c] : null, wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), r ? badge(`on the map in ${fmt(mYear)}`, "dark") : badge(`not on the map in ${fmt(mYear)}`)] });
+  let h = head({ kick: kind, title: e.n, color: r ? r.gc || COLORS[r.c] : null, wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), r ? badge(`on the map in ${fmt(mYear)}`, "dark") : badge(`not on the map in ${fmt(mYear)}`)] });
+  const br = bridgeHTML(ei); h += br;
   if (lastPolityTap && lastPolityTap.e === ei) h += todayHere(lastPolityTap.pt);   // opened by a click on the map
   const cp = typeof capOf === "function" && ND.cap[ei] ? capOf(ei, mYear) : null;
   const ups = r ? r.mem.filter((m) => ENTS[m].k === 1 && ENTS[m].n !== e.n) : [];
-  h += facts([["Dates", esc(span(e.f, e.t)) + otherDates("state", ENTS.indexOf(e))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))],
+  h += facts([["Dates", esc(span(e.f, e.t)) + (br ? "" : otherDates("state", ENTS.indexOf(e)))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))],
     r ? [`Territory in ${fmt(mYear)}`, `${Math.round(r.area).toLocaleString("en")} km²`] : null, cp ? ["Capital", `${esc(cp.city)} <span class="dim">★ curated</span>`] : null,
     ups.length ? ["Part of", ups.map(entBtn).join("<br>"), true] : null, e.al && e.al.length ? ["Today", e.al.slice(0, 5).map(todayLink).join(", "), true] : null, r ? statePopFact(ei) : null]);
   const rs = RECS.filter((q) => q.e === ei).sort((a, b) => a.f - b.f);
-  h += sparkHTML(rs.map((q) => [q.f, q.area]).concat([[e.t, rs.length ? rs[rs.length - 1].area : 0]]), { y0: e.f, y1: e.t, now: mYear, color: r ? COLORS[r.c] : "#9a958a", label: "Territory over time · tap to jump", unit: "km²" });
+  h += sparkHTML(rs.map((q) => [q.f, q.area]).concat([[e.t, rs.length ? rs[rs.length - 1].area : 0]]), { y0: e.f, y1: e.t, now: mYear, color: r ? r.gc || COLORS[r.c] : "#9a958a", label: "Territory over time · tap to jump", unit: "km²" });
   h += statePopSpark(ei);
   if (r) {
     const comps = r.comp.filter((c) => ENTS[c].n !== e.n && ENTS[c].k !== 2);
@@ -1910,8 +1912,8 @@ function computeCore(pt) {
     let sc = inGeom(r.g, wx, wy) ? 1 : R.filter(([x, y]) => inGeom(r.g, x, y)).length / R.length;
     if (sc >= 0.25) { r._sc = sc; hits.push(r); } }
   const leaves = layersFrom(hits.filter((r) => ENTS[r.e].k === 0), true), umb = layersFrom(hits.filter((r) => ENTS[r.e].k === 1), false);
-  leaves.forEach((L) => { L.c = GCOL[L.r.top >= 0 ? L.e : L.e] && L.r.top < 0 ? GCOL[L.e] : COLORS[L.r.c]; L.u = umb.find((u) => u.s <= (L.s + L.t) / 2 && (L.s + L.t) / 2 <= u.t) || null; });
-  umb.forEach((u) => { u.c = GCOL[u.e] || COLORS[u.r.c]; });
+  leaves.forEach((L) => { L.c = L.r.top < 0 && (L.r.gc || GCOL[L.e]) ? L.r.gc || GCOL[L.e] : COLORS[L.r.c]; L.u = umb.find((u) => u.s <= (L.s + L.t) / 2 && (L.s + L.t) / 2 <= u.t) || null; });
+  umb.forEach((u) => { u.c = u.r.gc || GCOL[u.e] || COLORS[u.r.c]; });
   return { leaves, umb, land: hctx.isPointInPath(LANDP, wx, wy) };
 }
 function coreAt(pt, name) { setFocus({ k: "place", pt, name: name || "" });
@@ -2004,7 +2006,7 @@ function updateRace() {
   if (!raceOn || mode === "poster" || !mapReady) return;
   const best = new Map();
   active.forEach((r) => { const en = ENTS[r.e]; if (en.k === 2 || (en.k === 1 && r.triv)) return; if (en.k === 0 && r.top >= 0 && recOf(r.top)) return;
-    if (mCont && !inCont(r.lx, r.ly)) return; const p = best.get(r.e); if (!p || r.area > p.area) best.set(r.e, { e: r.e, area: r.area, pop: recPop(r, mYear) || 0, c: GCOL[r.e] || COLORS[r.c] }); });
+    if (mCont && !inCont(r.lx, r.ly)) return; const p = best.get(r.e); if (!p || r.area > p.area) best.set(r.e, { e: r.e, area: r.area, pop: recPop(r, mYear) || 0, c: r.gc || GCOL[r.e] || COLORS[r.c] }); });
   const key = raceBy === "pop" ? "pop" : "area", top = [...best.values()].sort((a, b) => b[key] - a[key]).slice(0, 5), mx = top.length ? top[0][key] || 1 : 1;
   $("raceh").innerHTML = `<b>${raceBy === "pop" ? "Most populous" : "Largest"} states${mCont ? ` in ${esc(mCont)}` : ""}</b><span>${esc(fmt(mYear))}</span>`;
   $("raceseg").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.by === raceBy)));
@@ -2118,6 +2120,10 @@ addEventListener("resize", () => { if (mode === "map") mResize(); if (mode === "
 // and pulls its members in. Data: Cliopatria overlaid on Natural Earth countries (see build_network.py).
 const ND = JSON.parse(document.getElementById("netdata").textContent);
 const ERRATA = [[1113,894,1987,1995],[1113,1471,1948,1957],[1113,1538,1967,1968],[1113,1542,1967,1968],[1113,1547,1967,1968],[1113,1548,1967,1968],[1113,1556,1973,1995],[1113,1561,1973,1995],[1113,1575,1976,1995],[1113,1581,1979,1995],[1113,1583,1979,1995],[1113,1585,1979,1995],[1113,1590,1983,1995],[1117,1143,1973,2023],[1117,1462,1946,1946],[1117,1512,1961,1968],[1117,1519,1961,1968],[1117,1544,1967,1968],[1117,1559,1973,2023],[1117,1564,1973,2023],[1117,1565,1973,2023],[1165,1474,1948,1966],[1165,1481,1950,1966],[1165,1484,1953,1966],[1165,1487,1973,1975],[1165,1591,1987,2005],[1165,1627,1996,2005],[1165,1636,2014,2023],[1266,1576,1976,2023],[1354,1345,1945,1945],[1362,1493,1958,1959],[1387,1437,1945,1945],[1427,1557,1973,1975],[1437,1454,1945,1945],[1443,1555,1969,1972],[1494,1510,1961,1962],[1494,1530,1963,1966],[1497,1529,1963,2023],[1497,1587,1979,2023],[1514,1525,1963,1968],[1514,1532,1963,1968],[1514,1534,1963,1966],[1514,1535,1967,1968],[1514,1537,1967,1968],[1514,1540,1967,1968],[1514,1541,1967,1968],[1514,1543,1967,1968],[1514,1549,1967,1968]], ERRATA_HIDE = [[1427, 1976]];   // [loser state, winner state, from, to]: see Sources
+// [states, from, to, year]: in those years these states take the shapes (and shares in the Network) they have in that year.
+// Cliopatria v0.2.1 gives Aquitaine most of Gaul in 661–673 and leaves the Franks 137 km² (661–665) or 133,000 km² (666–673);
+// in 674 it splits the same outer edge into the Franks (445,000 km²) and Aquitaine (205,000 km², the south-west).
+const GEOFIX = [[[297, 299, 300, 374], 661, 673, 674]];
 { // the Network: in those years, a country on the winner's land no longer counts as the loser's
   const fix = (segs) => { let out = segs;
     ERRATA.forEach(([L, Wn, y0, y1]) => { const nx = [];
@@ -2129,6 +2135,10 @@ const ERRATA = [[1113,894,1987,1995],[1113,1471,1948,1957],[1113,1538,1967,1968]
     ERRATA_HIDE.forEach(([H, y0]) => { out = out.flatMap((s) => { const g = s[2]; let f = false; for (let k = 0; k < g.length; k += 2) if (g[k] === H) f = true;
       if (!f || s[1] < y0) return [s]; const keep = []; for (let k = 0; k < g.length; k += 2) if (g[k] !== H) keep.push(g[k], g[k + 1]);
       return s[0] < y0 ? [[s[0], y0 - 1, g], [y0, s[1], keep]] : [[s[0], s[1], keep]]; }); });
+    GEOFIX.forEach(([es, y0, y1, yk]) => { const src = out.find((s) => s[0] <= yk && yk <= s[1]); if (!src) return;
+      out = out.flatMap((s) => { const g = s[2]; let f = false; for (let k = 0; k < g.length; k += 2) if (es.includes(g[k])) f = true;
+        if (!f || s[1] < y0 || s[0] > y1) return [s]; const o = [];
+        if (s[0] < y0) o.push([s[0], y0 - 1, g]); o.push([Math.max(s[0], y0), Math.min(s[1], y1), src[2]]); if (s[1] > y1) o.push([y1 + 1, s[1], g]); return o; }); });
     return out; };
   ND.countries.forEach((c) => { c[4] = fix(c[4]); }); }
 const ncv = $("netcv"), nctx = ncv.getContext("2d");
@@ -2205,7 +2215,8 @@ function statePopSpark(e) {   // people inside its borders over its lifetime, at
 const pgSrc = () => `<p>People in a state: the HYDE 3.3 population grid (5 arc-minutes, about 9 km) summed over the state's recorded borders in Cliopatria, at each HYDE date (${PG.y.map((y) => fmt(y || 1)).join(", ")}); in between, steady growth is assumed. It inherits the uncertainty of both: modelled population and approximate borders.</p>`;
 const hydeSrc = () => `<p>People: <a href="${esc(HY.doi)}" target="_blank" rel="noopener">HYDE 3.3</a> (History Database of the Global Environment, Klein Goldewijk et al., Utrecht University), ${esc(HY.lic)}. Modelled estimates: very uncertain before 1500 CE (often by a factor of two), and between HYDE's dates (every 1,000 years before 1 CE, every 100 years until 1700) the figure grows at a steady rate. Country figures come from HYDE's national totals; figures for historical states come from HYDE's population grid inside each state's recorded borders.</p>`;
 
-const gcolN = (g) => ND.gcol[g] || "#9a958a";
+const gcolN = (g) => { if (mapReady && typeof RECS !== "undefined") { if (gcolN.y !== mYear) { gcolN.y = mYear; gcolN.m = new Map(); RECS.forEach((r) => { if (r.gc && r.f <= mYear && mYear <= r.t && r.top < 0) gcolN.m.set(r.e, r.gc); }); }
+    const c = gcolN.m.get(g); if (c) return c; } return ND.gcol[g] || "#9a958a"; };
 let nms = 0.2, ntx = 0, nty = 0, nSel = null, nHubs = new Map(), nLinks = [], nRels = [], nAlpha = 0, nRaf = 0, nGeo = 0.7, nTether = true;
 const nAnchorK = () => 0.004 * Math.pow(60, nGeo);   // slider: 0 = connections win (countries travel to their empire), 1 = geography wins
 // membership of every country in a given year
@@ -2458,7 +2469,8 @@ function showGroup(g, keep) { setFocus({ k: "state", e: g });
   nSel = { g }; nDraw();
   const e = ENTS[g], hb = nHubs.get(g), peak = UNION.filter((u) => u[2] === g).sort((a, b) => b[1] - a[1])[0], cp = capOf(g, mYear);
   let h = head({ kick: e.k === 1 ? "Empire, realm or union" : "State", title: e.n, color: gcolN(g), wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), prov("computed", "Links computed")] });
-  h += facts([["Dates", esc(span(e.f, e.t)) + otherDates("state", ENTS.indexOf(e))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))], cp ? ["Capital", `${esc(cp.city)} <span class="dim">★ curated</span>`] : null,
+  const br = bridgeHTML(g); h += br;
+  h += facts([["Dates", esc(span(e.f, e.t)) + (br ? "" : otherDates("state", ENTS.indexOf(e)))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))], cp ? ["Capital", `${esc(cp.city)} <span class="dim">★ curated</span>`] : null,
     hb ? [`Today's countries it covered in ${fmt(mYear)}`, String(hb.n)] : null, peak ? ["Widest reach", `${peak[1]} of today's countries, ${esc(fmt(peak[0]))}`] : null, statePopFact(g)]);
   const step = Math.max(5, Math.round((e.t - e.f) / 70)), pts = []; for (let y = e.f; y <= e.t; y += step) pts.push([y, countAt(g, y)]);
   h += sparkHTML(pts, { y0: e.f, y1: e.t, now: mYear, color: gcolN(g), label: "Today's countries it covered · tap to jump", unit: "countries" });
@@ -2639,7 +2651,8 @@ setMode = function (m) {
   if (m === "map" && mode === "map" && coreOn) { closeSheet(); return; }
   if (coreOn && m !== "map") coreStop();
   const from = mode; if (m === from) return;
-  if (m !== "poster" && from === "poster" && !hashLoading && s > minS * 1.8) { const py = Math.max(MIN_Y, Math.min(MAX_Y, posterYear())), fr = focusRange(); if (!fr || (py >= fr[0] && py <= fr[1])) { if (!FOCUS && py !== mYear) yearNote = py; mYear = py; } }
+  // a zoomed Timeline hands its middle year to the Map and the Network; a subject with dates goes to its own year instead (applyFocus)
+  if (m !== "poster" && from === "poster" && !hashLoading && s > minS * 1.8) { const py = Math.max(MIN_Y, Math.min(MAX_Y, posterYear())); if (!focusRange()) { if (!FOCUS && py !== mYear) yearNote = py; mYear = py; } }
   _setMode(m); keyLabel(); renderKey(); coreUI();
   if (yearNote != null) { toast(`${fmt(yearNote)}: the year in the middle of the Timeline.`); yearNote = null; }
   if (typeof densLegend === "function") setTimeout(densLegend, 0);
@@ -2711,12 +2724,18 @@ function focusRange() {   // the time span of the subject in focus, if it has on
   if (F.k === "state") { const en = ENTS[F.e]; return en ? [en.f, en.t] : null; }
   return null;
 }
-function periodYear(p) {   // the year a period is shown at: the current one if it falls inside, else its widest extent (mapped states) or its middle
-  const s0 = Math.max(MIN_Y, p.s), e0 = Math.min(MAX_Y, endOf(p) - 1); if (mYear >= s0 && mYear <= e0) return mYear;
+function periodYear(p, fresh = freshYear()) {   // the year a period is shown at: the current one if it falls inside, else its widest extent (mapped states) or its middle
+  const s0 = Math.max(MIN_Y, p.s), e0 = Math.min(MAX_Y, endOf(p) - 1); if (!fresh && mYear >= s0 && mYear <= e0) return mYear;
   const ei = entForPeriod(p._parent || p), py = ei != null ? ENTS[ei].py : null;
   return py != null && py >= s0 && py <= e0 ? py : Math.round((s0 + e0) / 2) || 1;
 }
 const peopleOf = (p) => PEOPLE.find((q) => q.p === p) || null;
+// Coming from the Timeline, which has no year of its own, the Map and the Network show the subject at its widest extent,
+// unless it was already seen there at another year (FOCUS._y): a year left over from earlier browsing means nothing for it
+const freshYear = () => lensFrom === "poster" && !(FOCUS && FOCUS._y != null);
+function subjYear(ei, fresh) {   // the year to show a mapped state at (fresh: see freshYear, captured before any wait for the map)
+  const en = ENTS[ei]; if (!fresh && mYear >= en.f && mYear <= en.t) return mYear;
+  return Math.max(en.f, Math.min(en.t, en.py)); }
 function frameAt(x, y) { const ns = Math.max(ms, mBase() * 3.5), phone = W < 760, cx = phone ? W / 2 : (W - 420) / 2, cy = phone ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2; mSetCam(ns, cx - x * ns, cy - y * ns, true); }
 function showPeopleOnMap(q) { if (!peopleOn) setPeople(true); frameAt(q.x, q.y); showPeople(q); mDraw(); }
 function withApply(fn) { const was = applying; if (!was) PANEL_F = null; applying = true; try { fn(); } finally { applying = was; if (!was) substNote(); } }
@@ -2734,10 +2753,13 @@ function focusLabel(F = FOCUS) { if (!F) return "";
   switch (F.k) { case "period": return periodTitle(byId[F.p]); case "track": return trackById[F.t].n.split(",")[0]; case "empire": return empById[F.emp].n;
     case "state": return ENTS[F.e] ? ENTS[F.e].n : "…"; case "country": return NC[F.c].n; case "place": return F.name || llTxt(invEE(F.pt[0], F.pt[1]));
     case "year": return F.ach ? (D.ach.find((a) => a.i === F.ach) || { n: "" }).n : `The world in ${fmt(F.y)}`; } return ""; }
+function chipLabel(F) {   // the chip uses the name of the panel below it: an empire is named as the Map and the Network name it
+  if (F.k === "empire" && curLens() !== "poster" && mapReady && empToEnt[F.emp] != null) { const ei = empToEnt[F.emp], g = curLens() === "net" && typeof groupOf === "function" ? groupOf(ei) : ei; return (ENTS[g] || ENTS[ei]).n; }
+  return focusLabel(F); }
 function focusMark(F) { const dot = (c) => `<i class="dot" style="background:${c}"></i>`;
   switch (F.k) { case "period": { const p = byId[F.p], top = p._parent || p, b = blocks.find((q) => q._src === top && q._emp) || blocks.find((q) => q._src === top); return dot((b && b._fill) || top._fill || "#ddd5c3"); } case "track": return flagHTML(trackById[F.t], 1, 11);
     case "empire": return dot(EMP_COLOR[F.emp] || "#9a958a");
-    case "state": { const r = mapReady ? recOf(F.e) : null, en = ENTS[F.e] || {}; return dot(ND.gcol[F.e] || (en.emp && EMP_COLOR[en.emp]) || (r ? COLORS[r.c] : "#9a958a")); }
+    case "state": { const r = mapReady ? recOf(F.e) : null, en = ENTS[F.e] || {}; return dot((r && r.gc) || ND.gcol[F.e] || (en.emp && EMP_COLOR[en.emp]) || (r ? COLORS[r.c] : "#9a958a")); }
     case "country": { const t = trackOfNC(NC[F.c]); return t ? flagHTML(t, 1, 11) : dot(NC[F.c].prim >= 0 ? gcolN(NC[F.c].prim) : "#ddd5c3"); }
     case "place": return '<svg viewBox="0 0 24 24" fill="#1d1d1b"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.6" fill="#fff"/></svg>';
     case "year": return ICON.year; } return ""; }
@@ -2757,7 +2779,7 @@ function lensRow() { const cur = curLens();
     return `<button class="lb${on ? " on" : ""}" data-lens="${v}"${on ? ' aria-pressed="true"' : ""}${ok ? "" : " disabled"} title="${esc(lensTitle(v))}">${ICON[v]}<span>${n}</span></button>`; }).join("")}</div>`; }
 function updateChip() {
   saveHash(); const F = FOCUS; document.body.classList.toggle("has-focus", !!F);
-  const html = F ? `<button class="fl" title="Show it again">${focusMark(F)}<span>${esc(focusLabel(F))}</span>${curLens() !== "poster" && F.k !== "year" && F.k !== "place" ? `<em>· ${esc(fmt(mYear))}</em>` : ""}</button><button class="fx" aria-label="Clear the focus" title="Clear the focus">×</button>` : "";
+  const html = F ? `<button class="fl" title="Show it again">${focusMark(F)}<span>${esc(chipLabel(F))}</span>${curLens() !== "poster" && F.k !== "year" && F.k !== "place" ? `<em>· ${esc(fmt(mYear))}</em>` : ""}</button><button class="fx" aria-label="Clear the focus" title="Clear the focus">×</button>` : "";
   ["fchip", "fchip2"].forEach((id) => { const el = $(id); el.hidden = !F; if (el._h !== html) { el.innerHTML = html; el._h = html; } });
   document.querySelectorAll(".seg button").forEach((b) => { b.title = lensTitle(b.dataset.mode); });
 }
@@ -2779,7 +2801,7 @@ const inRange = (s, e) => mYear >= s && mYear <= e;
 // show the focus in a given view
 function applyFocus(v) {
   const F = FOCUS; if (!F || !lensOK(v)) return;
-  const later = (fn) => mapLoad.then(() => withApply(fn));
+  const later = (fn) => mapLoad.then(() => withApply(fn)), fresh = freshYear();
   withApply(() => {
     if (v === "poster") {
       if (F.k === "period") { const p = byId[F.p]; showPeriod(p); focusBlock(p._parent || p); }
@@ -2793,9 +2815,9 @@ function applyFocus(v) {
       else if (F.k === "place") later(() => { const tr = trackOfNC(placeCountry(F.pt)); if (tr) showTrack(tr); });
       else if (F.k === "year") { if (F.ach) showAch(D.ach.find((a) => a.i === F.ach)); else showYear(F.y); setCam(s, tx, HDR + FLAGS() + 80 - Yw(F.y) * s, true); }
     } else if (v === "map") {
-      if (F.k === "state") focusEnt(F.e, mYear);
-      else if (F.k === "empire") { const em = empById[F.emp]; focusEnt(empToEnt[F.emp], inRange(em.s, em.e ?? 2024) ? mYear : null); }
-      else if (F.k === "period") { const p = byId[F.p], top = p._parent || p, y = periodYear(p); if (y !== mYear) setYear(y); const ei = entForPeriod(top), q = peopleOf(p);
+      if (F.k === "state") later(() => focusEnt(F.e, subjYear(F.e, fresh)));
+      else if (F.k === "empire") later(() => { const ei = empToEnt[F.emp]; if (ei != null) focusEnt(ei, subjYear(ei, fresh)); });
+      else if (F.k === "period") { const p = byId[F.p], top = p._parent || p, y = periodYear(p, fresh); if (y !== mYear) setYear(y); const ei = entForPeriod(top), q = peopleOf(p);
         later(() => { if (ei != null) focusEnt(ei, mYear);
           else if (q) showPeopleOnMap(q);
           else { const c = trackNC(p._t), g = c ? memAt(c, mYear)[0] : null; if (c) frameAt(c.ax, c.ay); if (g != null) { mSelE = g; mDraw(); } showPeriod(p); } }); }
@@ -2811,9 +2833,9 @@ function applyFocus(v) {
       later(() => {
         if (F.k === "state" || F.k === "empire" || F.k === "period") {
           let e = null;
-          if (F.k === "state") { e = F.e; const en = ENTS[e]; if (!inRange(en.f, en.t)) setYear(Math.max(-3400, en.py)); }
-          else if (F.k === "empire") { const em = empById[F.emp]; e = empToEnt[F.emp]; if (!inRange(em.s, em.e ?? 2024)) setYear(Math.max(-3400, e != null ? ENTS[e].py : em.s)); }
-          else { const p = byId[F.p], top = p._parent || p, y = periodYear(p); if (y !== mYear) setYear(y);
+          if (F.k === "state") { e = F.e; const y = subjYear(e, fresh); if (y !== mYear) setYear(Math.max(-3400, y)); }
+          else if (F.k === "empire") { const em = empById[F.emp]; e = empToEnt[F.emp]; const y = e != null ? subjYear(e, fresh) : inRange(em.s, em.e ?? 2024) ? mYear : em.s; if (y !== mYear) setYear(Math.max(-3400, y)); }
+          else { const p = byId[F.p], top = p._parent || p, y = periodYear(p, fresh); if (y !== mYear) setYear(y);
             e = entForPeriod(top); if (e == null) { const c = trackNC(p._t); if (c) { showCountry(c.i); return; } } }
           if (e != null) netShowState(e);
         }
@@ -2827,7 +2849,7 @@ function applyFocus(v) {
         if (F.k === "place") { if (corePt && corePt[0] === F.pt[0] && corePt[1] === F.pt[1] && coreD) showCore(); else coreAt(F.pt, F.name); }
         else if (F.k === "state") coreForEnt(F.e);
         else if (F.k === "empire") coreForEnt(empToEnt[F.emp]);
-        else if (F.k === "period") { const p = byId[F.p], e = entForPeriod(p._parent || p), q = peopleOf(p), y = periodYear(p); if (y !== mYear) setYear(y);
+        else if (F.k === "period") { const p = byId[F.p], e = entForPeriod(p._parent || p), q = peopleOf(p), y = periodYear(p, fresh); if (y !== mYear) setYear(y);
           if (e != null) coreForEnt(e); else if (q) coreAt([q.x, q.y], p.ml || p.n); else { const c = trackNC(p._t); if (c) coreAt([c.ax, c.ay], c.n); } }
         else if (F.k === "track" || F.k === "country") { const c = F.k === "track" ? trackNC(trackById[F.t]) : NC[F.c]; if (c) coreAt([c.ax, c.ay], c.n); }
         else if (F.k === "year") setYear(F.y);
@@ -2841,7 +2863,9 @@ function lensFade() { const v = curLens(), el = v === "poster" ? cv : v === "net
     if (lensSwitch) return _sm(m);
     const was = curLens(); lensSwitch = true;
     try { _sm(m); } finally { lensSwitch = false; }
-    if (curLens() !== was) { lensFade(); if (FOCUS && !hashLoading) applyFocus(curLens()); }
+    if (curLens() !== was) { lensFade();
+      if (FOCUS && was !== "poster" && curLens() === "poster") FOCUS._y = mYear;   // the year it was last seen at, on the Map or the Network
+      lensFrom = was; try { if (FOCUS && !hashLoading) applyFocus(curLens()); } finally { lensFrom = null; } }
     updateChip();
   }; }
 body.addEventListener("click", (e) => { const b = e.target.closest("button[data-lens]"); if (b && !b.disabled && b.dataset.lens !== curLens()) setMode(b.dataset.lens); });
@@ -3369,6 +3393,16 @@ function todayCountryAt(wx, wy) {   // {n: Natural Earth name, c: the country in
   while (lo < hi) { const m = (lo + hi) >> 1; if (TG_END[m] > k) hi = m; else lo = m + 1; }
   const v = TG_VAL[lo]; if (!v) return null; const n = TG.names[v - 1], key = normQ(n);
   return { n, c: NC.find((q, i) => NKEY[i] === key) || null }; }
+function timelineTwin(ei) {   // the Timeline entry a mapped state stands for: an empire, or a single period with another name
+  const e = ENTS[ei]; if (!e) return null;
+  let emp = e.emp && empById[e.emp] ? e.emp : null;
+  if (!emp && e.k === 1 && mapReady) { const r = recOf(ei); const m = r && r.comp.find((c) => ENTS[c] && ENTS[c].k === 1 && ENTS[c].emp && empById[ENTS[c].emp]); if (m != null) emp = ENTS[m].emp; }
+  if (emp) { const em = empById[emp]; return { n: em.n, s: em.s, e: em.e, btn: `data-pemp="${emp}"`, same: em.n === e.n }; }
+  if (e.pp && e.pp.length === 1 && byId[e.pp[0]]) { const p = byId[e.pp[0]]; return { n: p.n, s: p.s, e: p.e, col: p._t.n.split(",")[0], btn: `data-poster="${p.i}"`, same: p.n === e.n }; }
+  return null; }
+function bridgeHTML(ei) {   // "On the Timeline: Frankish Realm (481–843)", when the two views name or date it differently
+  const t = timelineTwin(ei); if (!t || t.same) return "";
+  return `<p class="bridge">On the Timeline: <button class="lk" ${t.btn}>${esc(t.n)}</button> (${esc(span(t.s, t.e))}${t.col ? `, ${esc(t.col)}` : ""}). The borders map follows Cliopatria, which names and dates it its own way.</p>`; }
 function todayHere(pt) {   // "Here today: France", for a point the reader clicked
   const t = pt ? todayCountryAt(pt[0], pt[1]) : null; if (!t) return "";
   return `<p class="heretoday">Here today: ${t.c ? `<button class="lk" data-ncountry="${t.c.i}">${esc(t.n)}</button>` : `<b>${esc(t.n)}</b>`}</p>`; }
@@ -3393,6 +3427,9 @@ body.addEventListener("pointerout", (e) => { if (e.target.closest && e.target.cl
 
 // ---------------------------------------------------------------- corrections to Cliopatria (after 1945): the smaller, more local state wins where two unrelated states are recorded
 function applyErrata() {
+  GEOFIX.forEach(([es, y0, y1, yk]) => es.forEach((e) => { const src = RECS.find((r) => r.e === e && r.f <= yk && yk <= r.t); if (!src) return;
+    RECS.forEach((r) => { if (r.e !== e || r.f < y0 || r.t > y1) return;
+      Object.assign(r, { g: src.g, area: src.area, lx: src.lx, ly: src.ly, lr: src.lr, popBase: src, popSub: [], geoFix: yk }); }); }));
   ERRATA_HIDE.forEach(([H, y0]) => RECS.forEach((r) => { if (r.e === H && r.t >= y0) { if (r.f >= y0) r.t = r.f - 1; else r.t = y0 - 1; } }));
   const byL = new Map(); ERRATA.forEach((x) => { if (!byL.has(x[0])) byL.set(x[0], []); byL.get(x[0]).push(x); });
   const recsOf = new Map(); RECS.forEach((r) => { if (!recsOf.has(r.e)) recsOf.set(r.e, []); recsOf.get(r.e).push(r); });
@@ -3423,8 +3460,29 @@ function applyErrata() {
   }));
   added.forEach((r) => RECS.push(r));
 }
+function empColours() {
+  const hx = (h) => [1, 3, 5].map((k) => parseInt(h.slice(k, k + 2), 16) / 255);
+  const hsl = ([r, g, b]) => { const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn; if (!d) return [0, 0, l];
+    const s = d / (1 - Math.abs(2 * l - 1)), h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; return [(h * 60 + 360) % 360, s, l]; };
+  const rgb = ([h, s, l]) => { const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs(((h / 60) % 2) - 1)), m = l - c / 2, k = Math.floor(h / 60) % 6;
+    const [r, g, b] = [[c, x, 0], [x, c, 0], [0, c, x], [0, x, c], [x, 0, c], [c, 0, x]][k]; return "#" + [r, g, b].map((v) => Math.round(Math.max(0, Math.min(1, v + m)) * 255).toString(16).padStart(2, "0")).join(""); };
+  const soft = (h) => { const P = [0.984, 0.98, 0.965]; return "#" + hx(h).map((v, k) => Math.round((v + (P[k] - v) * 0.1) * 255).toString(16).padStart(2, "0")).join(""); };
+  const byE = new Map(); RECS.forEach((r) => { if (r.t < r.f) return; if (!byE.has(r.e)) byE.set(r.e, []); byE.get(r.e).push(r); });
+  const idx = new Map(COLORS.map((c, i) => [c, i])), cid = (h) => { if (!idx.has(h)) { idx.set(h, COLORS.length); COLORS.push(h); } return idx.get(h); };
+  RECS.forEach((r) => { if (r.t < r.f) return; const T = r.top >= 0 ? r.top : r.e;
+    if (ENTS[T].emp && EMP_COLOR[ENTS[T].emp]) return;   // already drawn in its empire's colour
+    const mid = (r.f + r.t) / 2, u = (byE.get(T) || []).find((q) => q.f <= mid && mid <= q.t); if (!u) return;
+    const m = [T, ...u.comp].find((x) => ENTS[x] && ENTS[x].k === 1 && ENTS[x].emp && EMP_COLOR[ENTS[x].emp]); if (m == null) return;
+    const E = EMP_COLOR[ENTS[m].emp], [hE, sE, lE] = hsl(hx(E)), nm = ENTS[m].n;
+    // the realm itself (the union and its namesake) takes the full colour, as Rome or the Ottomans do; other members keep their shade difference to it
+    const main = (byE.get(T) || []).concat(...u.comp.map((c) => byE.get(c) || [])).find((q) => ENTS[q.e].n === nm && ENTS[q.e].k === 0 && q.f <= mid && mid <= q.t);
+    const own = ENTS[r.e].k === 0 && ENTS[r.e].n === nm, lB = hsl(hx(COLORS[(main || u).c]))[2], lR = hsl(hx(COLORS[r.c]))[2];
+    r.c = cid(soft(own ? E : rgb([hE, sE, Math.max(0.18, Math.min(0.9, lE + (lR - lB)))]))); r.gc = soft(E); });
+}
 function errataNote(ei) { const w = new Set(); ERRATA.forEach(([L, Wn]) => { if (L === ei) w.add(Wn); }); const hid = ERRATA_HIDE.some(([H]) => H === ei);
-  if (!w.size && !hid) return "";
+  const gf = GEOFIX.find(([es]) => es.includes(ei));
+  const gfNote = gf ? `<p class="dim"><b>Corrected here:</b> in ${gf[1]}–${gf[2]} Cliopatria gives Aquitaine most of Gaul and leaves the Franks a sliver, while the outer edge of the two stays the same. This map draws those years with Cliopatria's own split of ${gf[3]}: the Franks in the north and east, Aquitaine in the south-west (then a duchy of growing autonomy under its dukes).</p>` : "";
+  if (!w.size && !hid) return gfNote;
   return `<p class="dim"><b>Corrected here:</b> ${w.size ? `Cliopatria still draws this state over ${[...w].map((x) => esc(ENTS[x].n)).join(", ")} after independence; on this map each of those wins on its own land, and this state's territory, people and links leave out that land in those years.` : ""}${hid ? " Cliopatria keeps a record of this name after 1975 for Cabinda alone; it is not drawn after 1975." : ""} The rule, applied after 1945: where two unrelated states are recorded at the same place, the smaller, more local one wins.</p>`; }
 
 // remember panels so Back works

@@ -10,7 +10,7 @@ What the Palimpsest prototype (v0.1, October 2026) is made of: the building bloc
 
 | Building block | How it is done | Library? |
 |---|---|---|
-| Page structure | One `index.html` (about 3.9 MB, 2.3 MB gzipped): HTML, one `<style>` block (~480 lines), one `<script>` block (~2,700 lines), twelve embedded JSON data blocks | None |
+| Page structure | One `index.html` (about 4.2 MB, 2.5 MB gzipped): HTML, one `<style>` block (~480 lines), one `<script>` block (~2,700 lines), twelve embedded JSON data blocks | None |
 | Language | Plain JavaScript (ES2020+: arrow functions, `async`/`await`, `Map`, `Set`, template strings), no modules, no TypeScript, no framework | None |
 | Drawing | **Canvas 2D** for the Timeline, Map and Network (`Path2D`, `isPointInPath` for hit testing, `ImageData` for the density layer); inline SVG for icons | None |
 | Map projection | **Equal Earth**, implemented directly from its published formula (Šavrič, Patterson and Jenny, 2018); the borders are pre-projected at build time, so the browser only scales and pans | None (no d3-geo) |

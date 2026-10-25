@@ -43,7 +43,7 @@ Inspired by ChartOrigin's poster *Timeline of World History*; the content was re
 
 ## How it is built
 
-- `index.html` is the whole site: one file (about 3.9 MB) with all data embedded; only its two fonts come from Google Fonts. No server, no tracking, no build step needed to view it.
+- `index.html` is the whole site: one file (about 4.2 MB) with all data embedded; only its two fonts come from Google Fonts. No server, no tracking, no build step needed to view it.
 - `source/` holds everything needed to rebuild it: `site-template.html` (all HTML, CSS and JavaScript), the twelve data blocks in `source/blocks/`, and `build.py`, which puts them together (`python3 build.py --check` confirms that `index.html` matches). The Python and Node scripts that made the data blocks from the raw sources (Cliopatria, Natural Earth, HYDE) are there too, with pinned versions and step-by-step instructions: [source/README.md](source/README.md).
 - `data/world_history_timeline_v4_5.json` is the curated timeline dataset (122 columns, about 1,200 periods, events, achievements, landmarks), readable on its own.
 - `docs/notes.md` documents the process, the methods and the open questions in detail; [TECHNOLOGY.md](TECHNOLOGY.md) lists what the site is made of; [BACKLOG.md](BACKLOG.md) lists what comes next; [CANDIDATE-SOURCES.md](CANDIDATE-SOURCES.md) lists open datasets for future layers.
