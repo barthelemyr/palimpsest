@@ -836,13 +836,13 @@ function resize() {
   geoLabel();
 }
 // time fit: the whole time range fills the height
-function fit(anim) {
-  if (eraSel) setEra(null, true);
-  const ns = timeFit(), availW = W - AX() - 8;
+function fit(anim) {   // a chosen period stays chosen: a new continent or level of detail is framed on it (the chip's × or Settings clears it)
+  const era = eraSel && ERAS.find((x) => x[0] === eraSel);
+  const ns = era ? Math.max(minS, Math.min(maxS, (H - HDR - FLAGS() - 22) / (Yw(era[2]) - Yw(era[1])))) : timeFit(), availW = W - AX() - 8;
   let ntx = AX() + 4;
   if (WORLD_W > availW + 1) { const focus = SHOWN.find((t) => t.id === "italy" && t._wt > 0.5) || SHOWN[Math.floor(SHOWN.length / 2)];
     ntx = AX() + availW / 2 - (focus._x + focus._w / 2); }
-  setCam(ns, ntx, HDR + FLAGS() + 6 - TOP * 0.35 * ns, anim); fitS = ns;
+  setCam(ns, ntx, era ? HDR + FLAGS() + 10 - Yw(era[1]) * ns : HDR + FLAGS() + 6 - TOP * 0.35 * ns, anim); fitS = ns;
 }
 function clampCam() {
   s = Math.max(minS, Math.min(maxS, s));
