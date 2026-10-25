@@ -15,13 +15,14 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 BLOCKS = [("__DATA__", "data.json"), ("__MAP__", "map2.json"), ("__TODAY__", "today.json"), ("__NET__", "network.json"),
           ("__FLAGS__", "flags.json"), ("__CONT__", "continents.json"), ("__HYDE__", "hyde.json"),
-          ("__POPGRID__", "popgrid.json"), ("__DENS__", "density.json"), ("__SUCC__", "successions.json")]
+          ("__POPGRID__", "popgrid.json"), ("__DENS__", "density.json"), ("__SUCC__", "successions.json"), ("__PLACES__", "places.json"),
+          ("__TODAYGRID__", "todaygrid.json")]
 
 out = HERE.parent / "index.html"
 if "--extract" in sys.argv:   # the other way round, for when index.html was edited directly
     import re
     s = out.read_text(encoding="utf-8")
-    ids = ["data", "mapdata", "todaydata", "netdata", "flagdata", "contdata", "hydedata", "popgriddata", "densdata", "succdata"]
+    ids = ["data", "mapdata", "todaydata", "netdata", "flagdata", "contdata", "hydedata", "popgriddata", "densdata", "succdata", "placedata", "todaygriddata"]
     for (ph, name), bid in zip(BLOCKS, ids):
         m = re.search(r'(<script type="application/json" id="%s">)(.*?)(</script>)' % bid, s, re.S)
         assert m, f"no data block {bid} in index.html"

@@ -52,6 +52,7 @@ Decisions taken on 20 October 2026:
 - [x] **P2** (changed 20 October 2026) Top 5: on by default on laptops, off at first on phones, with its own toolbar button on the Map and the Network (it was briefly off by default and only in Settings, which hid an important view)
 - [x] **P2** (done 20 October 2026; a block named after its empire is titled "Roman Empire in France") Clearer panels: a block's title is its own name ("Roman Gaul", then "part of the Roman Empire"); provenance badges set apart from links; both sources' dates side by side when they differ
 - [x] **P3** (done 20 October 2026) Keyboard shortcuts listed (key "?", in the How to card)
+- [x] (done 21 October 2026) Periods: one chosen period for every view (Settings › Period, the Timeline's left edge, or under the slider), kept in links; the Map's and the Network's slider then cover only that period; periods renamed by their dates instead of European ages ("Middle Ages" → 500–1500)
 - [ ] **P3** A position mini-map across the 122 columns; reset with undo ("View reset · Undo")
 
 ## 3. Phone experience
@@ -75,7 +76,7 @@ The Map works well, especially in landscape. The Timeline is the weak point upri
 ## 4. Data quality
 
 - [ ] **P1** Audit sample: about 30 timeline periods checked against references, with their badge raised to ✓ Checked
-- [ ] **P1** Check the capitals against Wikidata (P36)
+- [ ] **P1** Check the capitals against Wikidata (P36): in progress (21 October 2026), done with the Capitals layer below (`tools/capitals_report.csv`)
 - [x] (done 20 October 2026) Cliopatria: colonial powers kept over former colonies after independence; 48 corrections after 1945 (`tools/cliopatria_errata.py`)
 - [ ] **P1** Cliopatria naming errors after 1945: "Mali Federation" for Mali after 1960, "Kingdom of Great Britain" until 2023, "Denmark-Norway" until 1921; decide on a display-name correction table, and report upstream with the overlaps
 - [x] (done 20 October 2026) Check Cliopatria against CShapes 2.0, 1886–2019 (`tools/cshapes_check.py`, report `tools/cshapes_report.csv`); Palimpsest stays non-commercial, so CShapes (CC BY-NC-SA 4.0) may be used
@@ -95,17 +96,25 @@ The Map works well, especially in landscape. The Timeline is the weak point upri
 ## 5. Features
 
 - [x] (done 20 October 2026) Pick today's countries on the Map when Today's borders is on; charts with a value scale, round years and the value at the map's year
+- [x] (changed 21 October 2026) **A layer no longer changes what a click does.** Until now, with Today's borders on, a click anywhere in a country opened today's country instead of the historical state, through Cliopatria's 2024 states matched by name (it failed where Cliopatria has gaps, and it took over People markers). Now: a click on an area always opens the historical state, and its panel says **"Here today: France"** for the exact point clicked, with or without the layer; with the layer on, a click on a country's **name** opens that country; hovering an area shows "today France"; "What ruled here?" adds "Country today". Today's country comes from Natural Earth itself, through a lookup grid of about 10 km (`source/mapdata/build_todaygrid.py`, 89 KB), so it matches the dashed borders everywhere, small states included
 - [x] (done 21 October 2026) Continent outlines: the Europe–Asia line follows the Urals, the Ural River and the Caspian instead of 60°E (Russia, Kazakhstan); Eastern Thrace in Europe; Sinai in Asia; both halves of Cyprus in Europe; Svalbard in Europe; the Moluccas and Timor in Asia
 - [x] (done 21 October 2026) Timeline colours follow the years of each empire link: a block is coloured by its empire only for the years it belonged to it (Soviet Belarus is pale from 1919 until the USSR's founding in 1922), and other years take the colour of another empire it belonged to then, or stay pale; 85 blocks are now drawn in pieces, each opening the same period
 - [x] (done 21 October 2026) **Before and after**: succession links from Wikidata (`tools/build_successions.py`, 469 links shown) in a state's panel, and marks between successive layers in "What ruled here?"
 - [ ] **P2** Type the succession links (succession, conquest, partition) for the most visited states
 - [x] (done 21 October 2026) "Before and after" also in the Timeline's empire and block panels and in the Network's state panel; a row stays in the current view when it can, otherwise opens the Map and says so
+- [x] (done 22 October 2026) Timeline text legibility: a block's name is never cut halfway (it shrinks to 9 px, otherwise it is left out, and the name comes before the dates); the big today label (for example "United Kingdom") appears only when there is room, so it no longer covers the last period; empire labels ("Ottoman Empire") sit on a tag of the empire colour and the block text they would cover is left out (it stays in the panel and tooltip); a wider year axis with shorter labels ("10k BCE", "−2500" on phones), so the period names no longer touch the years
 - [ ] **P3** Succession lines on the Timeline for the selected block (265 of the 1,192 blocks match a map state today)
 - [ ] **P2** HYDE lower and upper scenarios shown as a scenario range (the code is ready; the files are still needed)
 - [ ] **P2** Overlap threshold as a view setting: store the continuous shares and let readers change the 20% rule in the Network
 - [ ] **P3** ArchaeoGLOBE land use as a separate layer, if its licence allows
 - [ ] **P3** Coverage diagnostic: how much of each region and period Cliopatria actually records (not a "share of humanity in states" curve, which was dropped)
 - [ ] **P3** French interface (the texts are in English today), after the redesign
+- [ ] **P2** Timeline colour mode "Regime" (idea of 21 October 2026, next phase), next to "Empires", "Type of rule" and "Patchwork" in Settings › Colour by:
+  - 1789–today only, from V-Dem's Regimes of the World (closed autocracy, electoral autocracy, electoral democracy, liberal democracy; country-year, v16 covers 1789–2025; licence reported as CC BY-SA 4.0, to confirm on v-dem.net); a block is drawn in pieces when the regime changes, as for empire years
+  - before 1789: neutral, with "no comparable data" in Key; no modern categories applied to ancient states
+  - columns that group several of today's countries (Estonia and Latvia, Central Asia…) need a rule: the main country, or stripes
+  - form of government (monarchy or republic, parliamentary or presidential) is a different classification; if wanted later, from a separate dataset (for example Cheibub, Gandhi and Vreeland, 1946–2008), not mixed into the same colours
+  - not Polity5 (copyrighted, redistribution needs written permission); possible cross-checks: Boix–Miller–Rosato (1800–2020) and LIED (1789–)
 - [ ] **P3** "Footprint" metric (idea of 21 October 2026, not for the prototype): share of humanity inside a state's borders summed over its years (HYDE grid × Cliopatria; a first sketch ranks the Han 75, Roman Empire 61, Qing 60, Gupta 49, Ming 46), with land × time beside it. Raw people × time is not usable (it mostly measures recent population growth). To settle first: how states are cut up (Rome is four records, Qing one), empires versus their members (counted twice today), claimed versus controlled land, HYDE's uncertainty before 1500. Shown as a line in a state's panel and an all-time ranking next to Top 5
 
 ### New layers
@@ -117,7 +126,32 @@ Sources, licence status and caveats are in `CANDIDATE-SOURCES.md` (20 October 20
 - [ ] **P1** Conquests: land gained and lost per state and year, computed from Cliopatria (*Computed* badge; it shows that land changed hands, not how)
 - [ ] **P1** Land use from HYDE (cropland, pasture, rangeland, built-up area), with the density layer's pipeline
 - [ ] **P1** Wars and battles: a dated Wikidata snapshot, with the query kept in the build; UCDP GED (CC BY 4.0) aggregated for 1989–2025
-- [ ] **P1** Largest cities from Reba et al. (3700 BCE – 2000), once SEDAC confirms the licence; the cities also join search
+- [ ] **P1** **Cities layer**, the first point layer (decided 21 October 2026): split in two, and built without Reba et al. to start
+  - [ ] **P1** **Capitals through time** (sub-layer 1, first; next phase, not in the prototype). Done on 21 October 2026: `tools/palimpsest-capitals.rq`, the query result (`tools/wikidata-capitals-2026-10-21.json`: 991 of 1,418 identifiers have a P36, only 15% dated), `tools/build_capitals.py` → `tools/capitals.json` (1,108 map states, 91 KB) and `tools/capitals_report.csv` (hand-placed versus Wikidata: 239 agree, 15 partly, 37 disagree, 68 missing in Wikidata). Finding: an undated Wikidata capital that contradicts the hand-placed one is usually wrong (Joseon → Pyongyang, Sasanian → Balkh, Western Göktürks → Ordu-Baliq), often because Cliopatria's identifier points to a neighbouring item. Plan: combine sources in this order:
+    - after 1816: CShapes 2.0 (1886–2019, dated, coordinates; CC BY-NC-SA, already used for the checks) and the Correlates of War capitals in peacesciencer (1816–2024, dated, coordinates; licence to check)
+    - before: Seshat Polaris-2026 `polity_capital` (expert-coded; 615 capitals for 415 polities, 251 linked to Cliopatria by SeshatID; names only, so placed through Wikidata, Pleiades or the hand-placed list; dated by Seshat's polity phases; "None" for states without a capital, such as the Holy Roman Empire); it sides with the hand-placed list on Sasanian, Saadi and Kushan capitals and fills Byzantium
+    - China: CHGIS seats of government (licence to confirm)
+    - then Wikidata dated, the hand-placed list, and Wikidata undated last (marked "undated")
+    - display: Source badge for the first four, Approximate for the hand-placed list; the Network keeps its hubs on these capitals; the point-layer rules sketched on 21 October 2026 (capitals of large states only when zoomed out)
+  - [ ] **P2** **Cities** (sub-layer 2, later). Sources, in this order:
+    - Wikidata (CC0): cities with P625, P571 inception, P1082 population with its P585 date, P1448 dated official names, P17 country; `tools/palimpsest-cities.rq`, dated snapshot; only cities with a dated population before 1950 or an inception before 1800, to stay under a few thousand entries
+    - Pleiades (CC BY): settlements and their attestation periods, for the ancient Mediterranean and Near East
+    - Natural Earth populated places 1:50m (public domain): today's cities with their rank. Done for search on 21 October 2026 (1,251 cities, `source/blocks/places.json`, block `placedata`); not drawn yet
+    - CHGIS (Harvard; CC BY-NC-SA, to confirm on the publisher's page): dated administrative seats of China, 222 BCE – 1911, for the Asian gap; marked non-commercial in the panel and the credits
+    - Reba, Reitsma and Seto: only after SEDAC answers about the licence (see below); the `reliability` field is planned for it now
+    - Not Chandler (1987) or Modelski directly: books under copyright
+  - Merging: one city = one record, keyed by its Wikidata QID when it has one; Pleiades and Natural Earth matched by their Wikidata identifier, otherwise by name and a distance under 20 km (and the case is noted). Each city keeps a list of attestations `{date_min, date_max, population?, source, source_record_id, spatial_precision, evidence_type, reliability?}` (`CANDIDATE-SOURCES.md`, section 5)
+  - Display rules, shared by every future point layer:
+    - a city appears only in years an attestation covers; an isolated dated population is shown 50 years either side, and says so ("population in 1300, shown 1250–1350"); nothing is said when nothing is recorded
+    - point size: population on a log scale when known, otherwise a fixed hollow point ("attested, population unknown"); no Top 5 of cities for now (the sources are too uneven)
+    - the capital of the year: its own symbol (a square) over the city
+    - Canvas 2D, no library; picked by distance, with a 44 px target on touch screens; density set by zoom (only the N largest attested that year when zoomed out); labels that avoid the states' labels
+    - city panel: name (and the period's name from P1448 when it differs), coordinates, population curve with its source dates, the states whose borders contained it (reusing "What ruled here?"), provenance badges per attestation, Wikipedia and Pleiades links
+    - Settings: a "Cities" layer (off by default on phones, on on laptops), a chip in the toolbar, a line in Key; on the Map only; the Network's hubs use the capitals of sub-layer 1
+    - search: every city in the index (type "place"), with French names; a result opens the Map on the city, at the current year when it is attested, otherwise at its first attestation, saying so
+    - links: the `s-l.` subject for places; the old links to Core's 36 cities keep working
+  - Constraints: no call to Wikidata or any API at runtime; a `citydata` block under 300 KB gzipped (otherwise the first candidate for loading on demand); everything through `source/` and `build.py`; Playwright screenshots at 1440×900 and 390×844 for 500 BCE, 100, 1300, 1800 and 2000, layer on and off, with no script error
+- [ ] **P2** Reba et al., *Historical Urban Population* (3700 BCE – 2000): waiting for SEDAC's answer about the licence (the data.gov record says "No license information was provided. Government Work", which is not a licence)
 - [ ] **P2** Volcanic eruptions and earthquakes (NOAA NCEI); eVolv2k (CC BY 4.0) as a time strip of large eruptions, since it gives latitude only
 - [ ] **P2** Languages of today (Glottography, CC BY 4.0), labelled as present-day
 - [ ] **P2** Religions (Database of Religious History, CC BY 4.0), with its uneven sampling stated in the panel
@@ -139,6 +173,7 @@ Sources, licence status and caveats are in `CANDIDATE-SOURCES.md` (20 October 20
 
 - [ ] Timeline first screen (from the UX review): "ASIA" shown twice in the continent strip, flags without names, two empire colours too close (Holy Roman Empire and Qing), nothing says the time axis is not linear
 - [ ] Doubtful succession links seen in testing, kept until reviewed (an exclusion list in `tools/build_successions.py` if confirmed): Western Roman Empire → Vandal Kingdom (shown at Rome for the sack of 455), Fatimid Caliphate → Almohad Caliphate
+- [ ] **Crimea is drawn inside Russia** in today's borders: world-atlas 2.0.2 uses Natural Earth's de facto boundaries. It affects the dashed borders, "Here today", the Network and population per country. Decide on a point of view (for example Natural Earth's Ukrainian or UN-recognised versions, or a disputed-area style) and say it in the credits
 - [ ] Clicks were reported as slow in one Chrome install (not in Edge, not on the phone, not reproducible in Chromium tests). The cause was the author's Chrome profile, most likely an extension; clearing the cache did not help. Reopen if other visitors report it.
 
 ---

@@ -108,6 +108,7 @@ button.kitem:hover { background: #f3f1ea; } .kitem.on, button.kitem.on:hover { b
 .kitem i { flex: none; width: 16px; height: 16px; border-radius: 4px; }
 .kitem i.kout { background: #f3c9c2; box-shadow: inset 0 0 0 2.5px #7a2318; }
 .kitem i.kdash { background: none; border: 1.5px dashed #444; }
+.heretoday { margin: 6px 0 2px; font-size: 13px; color: #4a4843; }
 .kitem i.ktoday { background: none; border-top: 2px dashed #1d1d1b; border-radius: 0; height: 2px; margin: 7px 0; }
 .kt { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair); cursor: pointer; }
 @media (max-width: 760px) {
@@ -386,6 +387,8 @@ body.net-mode .kchip.coremap { display: none !important; }
 .trk { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; }
 .trk input[type=range] { width: 100%; }
 .eras { position: absolute; left: 8px; right: 8px; top: calc(50% + 9px); height: 12px; pointer-events: none; }
+.eras span[data-era] { pointer-events: auto; cursor: pointer; } .eras span[data-era]:hover { color: var(--ink); border-left-color: var(--ink); }
+.eras span.tk { width: auto; transform: translateX(-1px); } .eras span.tk.end { transform: translateX(-100%); border-left: 0; border-right: 1px solid #d6d2c8; padding: 0 3px 0 0; }
 .eras span { position: absolute; top: 0; height: 12px; line-height: 12px; padding-left: 3px; border-left: 1px solid #d6d2c8; font-size: 10px; font-weight: 700; color: #8a867c; white-space: nowrap; overflow: hidden; }
 body.map-mode .toast { top: calc(var(--hdr) + 58px); }
 @media (max-width: 760px) {
@@ -569,6 +572,8 @@ body.map-mode .toast { top: calc(var(--hdr) + 58px); }
 <script type="application/json" id="popgriddata">__POPGRID__</script>
 <script type="application/json" id="densdata">__DENS__</script>
 <script type="application/json" id="succdata">__SUCC__</script>
+<script type="application/json" id="placedata">__PLACES__</script>
+<script type="application/json" id="todaygriddata">__TODAYGRID__</script>
 <script>
 (() => {
 const D = JSON.parse(document.getElementById("data").textContent);
@@ -816,7 +821,7 @@ function layoutX() {
 // ---------------------------------------------------------------- canvas + camera
 const cv = $("stage"), ctx = cv.getContext("2d");
 let W = 0, H = 0, DPR = 1, s = 0.1, tx = 0, ty = 0, minS = 0.01, maxS = 9;   // s = time zoom (vertical); columns are laid out in screen pixels
-const AX = () => (W < 700 ? 46 : 52), HDR = 96, CONTH = 15, FLAGS = () => CONTH + (W < 700 ? 24 : 27);
+const AX = () => (W < 700 ? 52 : 74), HDR = 96, CONTH = 15, FLAGS = () => CONTH + (W < 700 ? 24 : 27);
 let fitS = -1;
 const timeFit = () => (H - HDR - FLAGS() - 12) / (WORLD_H - TOP * 0.35);
 function resize() {
@@ -831,7 +836,7 @@ function resize() {
 }
 // time fit: the whole time range fills the height
 function fit(anim) {
-  eraSel = null;
+  if (eraSel) setEra(null, true);
   const ns = timeFit(), availW = W - AX() - 8;
   let ntx = AX() + 4;
   if (WORLD_W > availW + 1) { const focus = SHOWN.find((t) => t.id === "italy" && t._wt > 0.5) || SHOWN[Math.floor(SHOWN.length / 2)];
@@ -915,14 +920,18 @@ function blockText(p, sx, sy, sw, sh) {
     let y = sy + 3;
     const pad = Math.max(3, Math.min(6, tw * 0.06));
     // the country's name sits at the bottom of today's block: keep the block's own text above it
-    const todayLab = p.e == null && p._lane === 0 && sh > 70 && tw > 56, tfs = Math.max(11, Math.min(26, tw / 5.5));
-    const bot = todayLab ? sy + sh - (8 + tfs * 1.15 + 2 * tfs * 1.05 + 4) : sy + sh;
-    if (sh >= 24 && tw >= 40) { ctx.font = `400 ${tw > 120 ? 11 : 9.5}px ${NARROW}`; ctx.globalAlpha = 0.8; ctx.fillText((p.sa ? "c. " : "") + p.sl.replace(/^c\. /, ""), sx + pad, y); ctx.globalAlpha = 1; y += tw > 120 ? 13 : 11; }
-    if (showName) {
-      const fs = Math.max(9.5, Math.min(17, tw / 7.2));
+    const tfs = Math.max(11, Math.min(26, tw / 5.5)), todayH = 8 + tfs * 1.15 + 2 * tfs * 1.05 + 4;
+    const todayLab = p.e == null && p._lane === 0 && sh > Math.max(70, todayH + 4) && tw > 56;
+    const bot = (todayLab ? sy + sh - todayH : sy + sh) - 2;
+    const fs0 = Math.max(9.5, Math.min(17, tw / 7.2)), dateH = tw > 120 ? 13 : 11;
+    // the name comes first: the date only when both fit; a smaller name rather than a half-cut one; nothing rather than a clipped line
+    const withDate = sh >= 24 && tw >= 40 && bot - y >= dateH + fs0 * 1.05;
+    if (withDate) { ctx.font = `400 ${tw > 120 ? 11 : 9.5}px ${NARROW}`; ctx.globalAlpha = 0.8; ctx.fillText((p.sa ? "c. " : "") + p.sl.replace(/^c\. /, ""), sx + pad, y); ctx.globalAlpha = 1; y += dateH; }
+    const room = bot - y, fs = Math.min(fs0, room / 1.05);
+    if (showName && fs >= 9) {
       ctx.font = `700 ${fs}px ${NARROW}`;
-      const maxLines = Math.max(1, Math.min(4, Math.floor((bot - y - 2) / (fs * 1.1))));
-      const lines = wrap(p.n, tw - pad * 2, maxLines);
+      const maxLines = Math.min(4, Math.floor((room + fs * 0.1) / (fs * 1.1)));
+      const lines = wrap(p.n, tw - pad * 2, Math.max(1, maxLines));
       ctx.textAlign = "center";
       lines.forEach((l) => { ctx.fillText(l, sx + tw / 2, y); y += fs * 1.1; });
       ctx.textAlign = "left";
@@ -947,7 +956,8 @@ function blockText(p, sx, sy, sw, sh) {
 
 // ---------------------------------------------------------------- render
 let hiEmp = "", achOn = true, selected = null, hoverYear = null;
-const ERAS = [["Early Bronze Age", -3000, -2100], ["Bronze Age", -2100, -1200], ["Iron Age", -1200, -500], ["Classical Antiquity", -500, 500], ["The Middle Ages", 500, 1500], ["The Modern Era", 1500, END]];
+// periods named by their dates, not by European ages ("Middle Ages" means little for China, Africa or the Americas)
+const ERAS = [["3400–1200 BCE", -3400, -1200], ["1200 BCE – 500 CE", -1200, 500], ["500–1500", 500, 1500], ["1500–1800", 1500, 1800], ["1800–today", 1800, END]];
 const TICKS = [-10000, -3000, -2500, -2000, -1500, -1000, -750, -500, -250, 1, 250, 500, 750, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1750, 1800, 1850, 1900, 1925, 1950, 1975, 2000];
 function render() {
   const left = AX(), fl = FLAGS(), top = HDR + fl; keyRefresh();
@@ -998,19 +1008,29 @@ function render() {
     box.forEach(([x, w, y1, y2]) => ctx.strokeRect(tx + x, ty + y1 * s, w, (y2 - y1) * s)); }
   // screen-space text
   ctx.save(); ctx.beginPath(); ctx.rect(left, top, W - left, H - top); ctx.clip();
-  [...lane0, ...lanesUp].forEach((p) => { if (vis(p) && p._w > 20) blockText(p, tx + p._x, ty + p._y1 * s, p._w, (p._y2 - p._y1) * s); });
-  // achievement numbers
-  if (achOn && COLW > 80 && COLW * 0.045 >= 7.5 && s > timeFit() * 1.6) { ctx.font = `700 10px ${NARROW}`; ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    D.ach.forEach((a) => { if (a.num) a._pts.forEach((pt) => ctx.fillText(a.num, tx + pt.x, ty + pt.y * s + 0.5)); }); ctx.textAlign = "left"; }
-  // empire super-labels
-  if (CMODE !== "rule") BIG.forEach((b) => {
+  // empire super-label boxes first, so block text they would cover is left out (it stays in the panel and tooltip)
+  const bigs = CMODE === "rule" ? [] : BIG.map((b) => {
     const bw = b.x2 - b.x1, bh = (b.y2 - b.y1) * s;
     ctx.font = `800 100px ${WIDE}`; const w100 = ctx.measureText(b.name).width;
     const fs = Math.min(bw * 0.9 / w100 * 100, bh * 0.3, 72);
-    if (fs < 10) return;
+    if (fs < 10) return null;
     const cx = tx + (b.x1 + b.x2) / 2, cy = ty + (b.y1 + b.y2) / 2 * s;
-    if (cx < left - bw || cx > W + bw || cy < top - bh || cy > H + bh) return;
+    if (cx < left - bw || cx > W + bw || cy < top - bh || cy > H + bh) return null;
+    const tw = w100 * fs / 100, px = Math.max(6, fs * 0.35), py = Math.max(3, fs * 0.18);
+    return { b, fs, cx, cy, r: [cx - tw / 2 - px, cy - fs * 0.62 - py, cx + tw / 2 + px, cy + fs * 0.62 + py] };
+  }).filter(Boolean);
+  const under = (x, y, w, h) => bigs.some(({ r }) => x < r[2] && x + w > r[0] && y < r[3] && y + h > r[1] && !(x <= r[0] && x + w >= r[2] && y <= r[1] && y + h >= r[3]));
+  [...lane0, ...lanesUp].forEach((p) => { if (!vis(p) || p._w <= 20) return; const x = tx + p._x, y = ty + p._y1 * s, h = (p._y2 - p._y1) * s;
+    if (under(x, y, p._w, h)) return; blockText(p, x, y, p._w, h); });
+  // achievement numbers
+  if (achOn && COLW > 80 && COLW * 0.045 >= 7.5 && s > timeFit() * 1.6) { ctx.font = `700 10px ${NARROW}`; ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    D.ach.forEach((a) => { if (a.num) a._pts.forEach((pt) => ctx.fillText(a.num, tx + pt.x, ty + pt.y * s + 0.5)); }); ctx.textAlign = "left"; }
+  // empire super-labels, on a tag of the empire colour so pieces underneath never show through
+  bigs.forEach(({ b, fs, cx, cy, r }) => {
     ctx.globalAlpha = hiEmp && hiEmp !== b.eid ? 0.25 : 1;
+    ctx.fillStyle = EMP_COLOR[b.eid]; ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(r[0], r[1], r[2] - r[0], r[3] - r[1], Math.min(8, fs * 0.25)); else ctx.rect(r[0], r[1], r[2] - r[0], r[3] - r[1]);
+    ctx.fill();
     ctx.font = `800 ${fs}px ${WIDE}`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.fillStyle = inkFor(EMP_COLOR[b.eid]); ctx.fillText(b.name, cx, cy);
     ctx.globalAlpha = 1; ctx.textAlign = "left";
@@ -1030,11 +1050,11 @@ function render() {
     if (on || hov) { ctx.fillStyle = on ? "#1d1d1b" : "#ebe7dd"; ctx.fillRect(0, Math.max(top, y1 + 1), EZ, Math.max(0, Math.min(H, y2 - 1) - Math.max(top, y1 + 1))); }
     ctx.fillStyle = on ? "#fff" : "#1d1d1b"; ctx.fillRect(small ? 3 : 5, y1 + 2, on ? 2.5 : 1.5, Math.max(0, y2 - y1 - 4));
     const tw = ctx.measureText(n).width; if (y2 - y1 > tw + 12) { ctx.save(); ctx.translate(small ? 10 : 13, (Math.max(top, y1) + Math.min(H, y2)) / 2 < y1 + tw / 2 + 6 ? y1 + tw / 2 + 6 : Math.min((Math.max(top, y1) + Math.min(H, y2)) / 2, y2 - tw / 2 - 6)); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = on ? "#fff" : hov ? INK : "#55534e"; ctx.fillText(n, 0, 0); ctx.restore(); } });
-  const dy = ty + Yw(-3000) * s, dt = ty + TOP * s;
+  const dy = ty + Yw(ERAS[0][1]) * s, dt = ty + TOP * s;
   if (dy - dt > 40) { ctx.save(); ctx.translate(small ? 10 : 13, (dt + dy) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = "#8a867c"; ctx.fillText("Deep past", 0, 0); ctx.restore(); }
   ctx.font = `500 ${small ? 8.5 : 10}px ${NARROW}`; ctx.fillStyle = "#55534e"; ctx.textAlign = "right"; let last = -1e9;
   TICKS.forEach((yr) => { const y = ty + Yw(yr) * s; if (y < top + 6 || y > H - 4 || y - last < 22) return; last = y;
-    const lab = yr === 1 ? "1 CE" : yr < 0 ? (small ? `${-yr >= 10000 ? (-yr / 1000) + "k" : -yr} BC` : `${(-yr).toLocaleString("en")} BCE`) : String(yr);
+    const lab = yr === 1 ? (small ? "1" : "1 CE") : yr < 0 ? (small ? `−${-yr >= 10000 ? (-yr / 1000) + "k" : -yr}` : `${-yr >= 10000 ? (-yr / 1000) + "k" : (-yr).toLocaleString("en")} BCE`) : String(yr);
     ctx.fillText(lab, left - 4, y); ctx.fillRect(left - 3, y, 3, 1); });
   const axYear = hoverYear != null ? hoverYear : yearSel;
   if (axYear != null) { const y = ty + Yw(axYear) * s; if (y > top) { const lab = fmt(axYear); ctx.font = `700 11px ${WIDE}`; const w = ctx.measureText(lab).width + 10;
@@ -1331,7 +1351,7 @@ function showTrack(t) { setFocus({ k: "track", t: t.id }); selTrack = t; yearSel
   h += stripHTML(trackSegs(t), { s0: ps[0].s, label: "Its story through time", attr: (g) => `data-p="${g.p.i}"` });
   if (nc) h += popSpark(nc, null);
   const era = (lo, hi) => ps.filter((p) => p.s >= lo && p.s < hi);
-  [["Prehistory and antiquity", -1e9, 500], ["Middle Ages, 500–1500", 500, 1500], ["Modern era, 1500 to today", 1500, 1e9]].forEach(([nm, lo, hi], k) => { const L = era(lo, hi);
+  [["Before 500 CE", -1e9, 500], ["500–1500", 500, 1500], ["1500 to today", 1500, 1e9]].forEach(([nm, lo, hi], k) => { const L = era(lo, hi);
     h += sect(nm, L.length, L.length ? `<ul>${L.map((p) => `<li>${chip(p)}<button class="lk" data-p="${p.i}" data-go="1">${esc(p.n)}</button><br><span class="dim">${esc(range(p))}</span></li>`).join("")}</ul>` : "", k > 0 || L.length < 8); });
   if (emp.size) h += sect("Empires", emp.size, `<div class="chipl">${[...emp].map((id) => `<button class="cbtn" data-emp="${id}"><i style="background:${EMP_COLOR[id] || "#ddd"}"></i>${esc(empById[id].n)}</button>`).join("")}</div>`, false);
   h += acts([nc ? act(`data-tonet="c:${nc.i}:${Math.max(-3400, Math.min(2024, mYear))}"`, "Its story in the network", "net", true) : ""]);
@@ -1374,7 +1394,7 @@ function showAch(a) { yearSel = null; selTrack = null; setFocus({ k: "year", y: 
 function showAbout() {
   const n = blocks.length, PEOPLE_N = D.tracks.reduce((k, t) => k + t.p.filter((p) => p.ll).length, 0), POL_N = D.tracks.reduce((k, t) => k + t.p.filter((p) => p.ul).length, 0);
   openSheet(`<h2>About Palimpsest</h2><p class="lead" style="margin-top:2px">World history, layer by layer.</p><p class="dim">A palimpsest is a manuscript that was scraped and written over, where the earlier writing still shows through. History looks the same: borders drawn over older borders, states over peoples, and people everywhere underneath.</p><p class="dim">Prototype. Source code, data and notes: <a href="https://github.com/barthelemyr/palimpsest" target="_blank" rel="noopener">github.com/barthelemyr/palimpsest</a>. Corrections welcome as issues.</p><div class="src" style="background:#efe9fb;margin:8px 0 14px"><h3>Made with Claude</h3><p>This website was generated with <b>Claude</b>, an AI model made by Anthropic: the code, the design, the data processing and the curated timeline data (periods, descriptions and capitals) were produced by Claude, working with the site's author.</p><p class="dim">The facts rest on the sources named below and in each panel. AI-generated content can contain mistakes, so check the sources for anything important; entries marked “Standard chronology” have not yet been individually verified.</p></div><p>Every column is a country or region, ordered roughly from west to east. Time runs downward, from the deep past at the top to today at the bottom.</p><p>By default a colour means an empire: the same colour in several countries is the same empire, and pale blocks are local states and periods. <b>Settings › Colour by</b> switches to <i>type of rule</i> (independent, ruled from outside, colony) or to the original patchwork look, and lists the empires in view.</p>
-  <ul><li><b>What ruled here?</b> On the Map, long-press (or right-click) any spot, or use the button of that name: every state that ruled that spot, stacked from the oldest to today.</li><li><b>Before and after</b>: a state's panel lists the states recorded just before and just after it, from Wikidata (replaces / replaced by, follows / followed by). A link can mean succession, conquest or annexation; about four states in ten have one.</li><li><b>Corrections to the borders data</b>: after 1945, Cliopatria sometimes keeps a colonial power over a former colony after its independence (France over Algeria until 2023, Britain over the Gulf states, the USA over Iraq). Where two unrelated states are recorded at the same place, the map lets the smaller, more local one win; a corrected state says so in its Sources.</li><li><b>Panels</b> fold to their title with the arrow next to ×, so the view and its buttons stay free; they stay folded when you change view, and open again when you pick something.</li><li><b>Back</b>: the browser's Back button returns to the previous view or subject, and every link you copy opens the same view, year and subject.</li><li><b>Search</b> (press /, or the loupe on a phone): a place, a country, a state or empire, a period, an event or a year, in English or by its common French name. A result opens in the view you are in when that view can show it; otherwise the site switches view and says so.</li><li>Two zooms. <b>Time</b>: spread two fingers up and down, or use + and − (ctrl or cmd with the scroll wheel). <b>Geography</b>: spread two fingers sideways, or use the Countries − / + buttons (ctrl or cmd + shift with the wheel), from the cradles of civilisation to key countries (the original poster's 21, plus Peru and five African regions), major countries and the whole world.</li><li>Tap a block for its story, the empire it belonged to, and its sources.</li><li>Tap a flag for a country's full story, or the year scale to see one moment everywhere. Tap a <b>continent</b> name above the flags to show only its countries, and an <b>era</b> on the far left (Bronze Age, Middle Ages…) to zoom to it; tap again to come back. Choosing a continent also applies to the map.</li><li>Switch to <b>Map</b> to see the borders of the same year; the year carries over both ways. The address bar always holds a link to what you are looking at.</li><li><b>Badges say where content comes from</b>: <i>Source</i> (taken directly from a published dataset), <i>Computed</i> (calculated by this atlas from its sources), <i>Editorial</i> (curated text and dates, AI-assisted, not individually referenced), <i>Approximate</i> (hand-placed location) and <i>✓ Checked</i> (has specific references).</li><li><b>One subject, three views.</b> Whatever you open becomes the focus (shown at the top). Switch view with the tabs, the “See it as” buttons at the bottom of every panel, or the keys 1–3: the same subject is shown in the new view. The × clears it.</li><li><b>The toolbar</b> under the header is the same in every view: <b>Key</b> (what the colours mean), the number of countries on the Timeline, <b>Settings</b> (continent, colours, layers and the Network's options), and on the Map and the Network <b>Top 5</b> (the largest states of the year) and <b>What ruled here?</b>. Settings in use appear next to it; × turns one off.</li><li><b>Population density</b> (a layer in Settings) shades the land by people per km², from HYDE 3.3's population grid (a modelled estimate, 50 km cells), and draws the states as outlines on top.</li><li><b>People and unmapped states</b> fills gaps between the recorded borders: ${PEOPLE_N} peoples, cultures and prehistoric societies from the timeline (●●●: Bantu farmers, Khoisan, Taíno, Celts, Scythians…) and ${POL_N} kingdoms and states the borders dataset does not draw (□: the Kingdom of Kongo, Great Zimbabwe, Aksum, Saba…). Each is a hand-placed approximate location, not a border, and appears only in years when no state is recorded at that spot. “What ruled here?” lists them for the place you pick.</li><li><b>Network</b> shows today's countries as circles near home, pulled towards the recorded states and empires whose territory covered them (a computed overlap, not a statement of belonging). Tap a country for every state recorded on its land.</li></ul>
+  <ul><li><b>What ruled here?</b> On the Map, long-press (or right-click) any spot, or use the button of that name: every state that ruled that spot, stacked from the oldest to today.</li><li><b>Before and after</b>: a state's panel lists the states recorded just before and just after it, from Wikidata (replaces / replaced by, follows / followed by). A link can mean succession, conquest or annexation; about four states in ten have one.</li><li><b>Corrections to the borders data</b>: after 1945, Cliopatria sometimes keeps a colonial power over a former colony after its independence (France over Algeria until 2023, Britain over the Gulf states, the USA over Iraq). Where two unrelated states are recorded at the same place, the map lets the smaller, more local one win; a corrected state says so in its Sources.</li><li><b>Panels</b> fold to their title with the arrow next to ×, so the view and its buttons stay free; they stay folded when you change view, and open again when you pick something.</li><li><b>Back</b>: the browser's Back button returns to the previous view or subject, and every link you copy opens the same view, year and subject.</li><li><b>Search</b> (press /, or the loupe on a phone): a place, a country, a state or empire, a period, an event or a year, in English or by its common French name. A result opens in the view you are in when that view can show it; otherwise the site switches view and says so.</li><li>Two zooms. <b>Time</b>: spread two fingers up and down, or use + and − (ctrl or cmd with the scroll wheel). <b>Geography</b>: spread two fingers sideways, or use the Countries − / + buttons (ctrl or cmd + shift with the wheel), from the cradles of civilisation to key countries (the original poster's 21, plus Peru and five African regions), major countries and the whole world.</li><li>Tap a block for its story, the empire it belonged to, and its sources.</li><li>Tap a flag for a country's full story, or the year scale to see one moment everywhere. Tap a <b>continent</b> name above the flags to show only its countries, and a <b>period</b> on the far left (500–1500, 1800–today…) to zoom to it; tap again to come back. <b>Settings › Period</b> does the same in every view: on the Map and the Network, the year slider then covers only that period (the dates under the slider work too). Choosing a continent also applies to the map.</li><li>Switch to <b>Map</b> to see the borders of the same year; the year carries over both ways. The address bar always holds a link to what you are looking at.</li><li><b>Badges say where content comes from</b>: <i>Source</i> (taken directly from a published dataset), <i>Computed</i> (calculated by this atlas from its sources), <i>Editorial</i> (curated text and dates, AI-assisted, not individually referenced), <i>Approximate</i> (hand-placed location) and <i>✓ Checked</i> (has specific references).</li><li><b>One subject, three views.</b> Whatever you open becomes the focus (shown at the top). Switch view with the tabs, the “See it as” buttons at the bottom of every panel, or the keys 1–3: the same subject is shown in the new view. The × clears it.</li><li><b>The toolbar</b> under the header is the same in every view: <b>Key</b> (what the colours mean), the number of countries on the Timeline, <b>Settings</b> (continent, colours, layers and the Network's options), and on the Map and the Network <b>Top 5</b> (the largest states of the year) and <b>What ruled here?</b>. Settings in use appear next to it; × turns one off.</li><li><b>Population density</b> (a layer in Settings) shades the land by people per km², from HYDE 3.3's population grid (a modelled estimate, 50 km cells), and draws the states as outlines on top.</li><li><b>People and unmapped states</b> fills gaps between the recorded borders: ${PEOPLE_N} peoples, cultures and prehistoric societies from the timeline (●●●: Bantu farmers, Khoisan, Taíno, Celts, Scythians…) and ${POL_N} kingdoms and states the borders dataset does not draw (□: the Kingdom of Kongo, Great Zimbabwe, Aksum, Saba…). Each is a hand-placed approximate location, not a border, and appears only in years when no state is recorded at that spot. “What ruled here?” lists them for the place you pick.</li><li><b>Network</b> shows today's countries as circles near home, pulled towards the recorded states and empires whose territory covered them (a computed overlap, not a statement of belonging). Tap a country for every state recorded on its land.</li></ul>
   <p class="dim">${COLS.length} countries and regions, ${n.toLocaleString("en")} periods. Most dates follow standard historical chronology and are not yet linked to individual sources; each block says whether it has been checked. Inspired by ChartOrigin's poster "Timeline of World History". Data version ${esc(D.meta.v)}.</p><p class="dim">Map borders: Cliopatria v0.2.1 by the Seshat Global History Databank (Bennett et al.), CC BY 4.0. Coastlines and today's borders: Natural Earth (public domain). Population: HYDE 3.3 (Klein Goldewijk et al., Utrecht University), Creative Commons Attribution; modelled estimates, very uncertain before 1500 CE. Successions: Wikidata, CC0.</p>`);
 }
 body.addEventListener("click", (e) => {   // links that move between views
@@ -1410,14 +1430,11 @@ function setView(v) { if (v === "poster") { v = "world"; gz = 2; } else if (v !=
   if (hiEmp && !SHOWN.some((t) => t.p.some((p) => p.af && p.af.some((x) => x[0] === hiEmp)))) hiEmp = ""; resize(); fit(false); }
 // zoom by continent (the band above the flags) and by era (the band on the left)
 let eraSel = null, eraHover = null, contHoverTL = null, prevGz = 2, contSync = false;
-const ERA_Y = () => [...ERAS.map(([n, a, b]) => [n, Yw(a), Yw(b)]), ["Deep past", TOP, Yw(-3000)]];
+const ERA_Y = () => [...ERAS.map(([n, a, b]) => [n, Yw(a), Yw(b)]), ["Deep past", TOP, Yw(ERAS[0][1])]];
 function eraAt(py) { const wy = (py - ty) / s; return ERA_Y().find(([, y1, y2]) => wy >= y1 && wy < y2) || null; }
 function bandAt(px) { const wx = px - tx, t = SHOWN.find((c) => c._wt > 0.02 && wx >= c._x && wx < c._x + c._w); return t ? t.c : null; }
-function pickEra(er) {
-  if (eraSel === er[0]) { fit(true); return; }
-  const [, y1, y2] = er, ns = Math.max(minS, Math.min(maxS, (H - HDR - FLAGS() - 22) / (y2 - y1)));
-  eraSel = er[0]; setCam(ns, tx, HDR + FLAGS() + 10 - y1 * ns, true);
-}
+function pickEra(er) { if (er[0] === "Deep past") { const y1 = TOP, y2 = Yw(ERAS[0][1]), ns = Math.max(minS, Math.min(maxS, (H - HDR - FLAGS() - 22) / (y2 - y1))); setCam(ns, tx, HDR + FLAGS() + 10 - y1 * ns, true); return; }
+  setEra(eraSel === er[0] ? null : er[0]); }
 function showContinentTL(c) {   // c = continent name or null for the whole world
   const v = c ? CONTV[c] : "world"; if (v === VIEW) return;
   if (VIEW === "world") prevGz = gz;
@@ -1433,6 +1450,7 @@ function ensureShown(t) { if (!SHOWN.includes(t)) { if (VIEWS[VIEW].cont && mCon
 // Data: one shared-arc topology (neighbouring borders are the same line), gzip + varint, decoded once.
 const MD = JSON.parse(document.getElementById("mapdata").textContent);
 let ENTS = [], RECS = [], COLORS = [], GBOX = [], ARC_XY = null, ARC_OFF = null, ARC_LEN = null, GEO = [], LANDP = null, mapReady = false;
+let lastPolityTap = null;   // the state and point of the last click on the map
 const TD = JSON.parse(document.getElementById("todaydata").textContent); let TODAY = null, todayOn = false, peopleOn = false, peopleVis = [], todayHit = [];
 var peopleSel = null;   // the people or unmapped state whose panel is open
 const periodToEnt = {}, empToEnt = {};
@@ -1662,7 +1680,8 @@ let emptyT = 0;
 function emptyTip(e) {
   if (!mapReady) return; const wx = (e.clientX - mtx) / ms, wy = (e.clientY - mty) / ms;
   if (!hctx.isPointInPath(LANDP, wx, wy)) return;
-  showTip(e, "No polity recorded here", `in ${fmt(mYear)} in Cliopatria. People may have lived here without a state, or the dataset has a gap.`);
+  const th = todayOn ? todayCountryAt(wx, wy) : null;
+  showTip(e, "No polity recorded here", `in ${fmt(mYear)} in Cliopatria. People may have lived here without a state, or the dataset has a gap.${th ? ` Today: ${th.n}.` : ""}`);
   clearTimeout(emptyT); emptyT = setTimeout(hideTip, 2600);
 }
 function mHit(px, py) {
@@ -1679,7 +1698,20 @@ function mHit(px, py) {
 // ---------------------------------------------------------------- time controls
 const slider = $("yr"), yrOut = $("yrout"), playBtn = $("play");
 slider.min = MIN_Y; slider.max = MAX_Y;
+let yLo = MIN_Y, yHi = MAX_Y;   // the slider's range: all of time, or the chosen period
+const eraRange = (n) => { const e = ERAS.find((x) => x[0] === n); return e ? [Math.max(MIN_Y, e[1]), Math.min(MAX_Y, e[2])] : [MIN_Y, MAX_Y]; };
+// choose a period for every view (null: all of time): the Timeline zooms to it, the Map's and the Network's slider cover only it
+function setEra(n, quiet) {
+  eraSel = n && ERAS.some((x) => x[0] === n) ? n : null; [yLo, yHi] = eraRange(eraSel); slider.min = yLo; slider.max = yHi;
+  if (!quiet && (mYear < yLo || mYear > yHi)) setYear(mYear < yLo ? yLo : yHi); else slider.value = mYear;
+  renderEras();
+  if (mode === "poster" && !quiet) { if (eraSel) eraCam(); else fit(true); }
+  if (typeof filtersNow === "function") filtersNow(); saveHash();
+}
+function eraCam() { const e = ERAS.find((x) => x[0] === eraSel); if (!e) return; const y1 = Yw(e[1]), y2 = Yw(e[2]), ns = Math.max(minS, Math.min(maxS, (H - HDR - FLAGS() - 22) / (y2 - y1)));
+  setCam(ns, tx, HDR + FLAGS() + 10 - y1 * ns, true); }
 function setYear(y, fromSlider) {
+  if (eraSel && !fromSlider && (y < yLo || y > yHi)) setEra(null, true);   // a year outside the period (typed, searched, a state's dates) leaves it
   mYear = Math.max(MIN_Y, Math.min(MAX_Y, Math.round(y))); if (mYear === 0) mYear = 1;
   if (!fromSlider) slider.value = mYear;
   yrOut.innerHTML = `${mYear < 0 ? (-mYear).toLocaleString("en") : mYear}<small>${mYear < 0 ? "BCE" : "CE"}</small>`;
@@ -1693,10 +1725,10 @@ const speed = (y) => y < -1000 ? 12 : y < 0 ? 6 : y < 1000 ? 4 : y < 1800 ? 2 : 
 let lastT = 0;
 function playStep(now) {
   if (!playing) return;
-  if (now - lastT > 70) { lastT = now; if (mYear >= MAX_Y) { togglePlay(false); return; } setYear(mYear + speed(mYear)); }
+  if (now - lastT > 70) { lastT = now; if (mYear >= yHi) { togglePlay(false); return; } setYear(Math.min(yHi, mYear + speed(mYear)), true); slider.value = mYear; }
   requestAnimationFrame(playStep);
 }
-function togglePlay(on) { playing = on ?? !playing; playBtn.setAttribute("aria-label", playing ? "Pause" : "Play"); playBtn.innerHTML = playing ? "❚❚" : "▶"; if (playing) { if (mYear >= MAX_Y) setYear(MIN_Y); requestAnimationFrame(playStep); } }
+function togglePlay(on) { playing = on ?? !playing; playBtn.setAttribute("aria-label", playing ? "Pause" : "Play"); playBtn.innerHTML = playing ? "❚❚" : "▶"; if (playing) { if (mYear >= yHi) setYear(yLo, true), slider.value = mYear; requestAnimationFrame(playStep); } }
 playBtn.onclick = () => togglePlay();
 $("yminus").onclick = () => setYear(mYear - (mYear < 0 ? 10 : 1));
 $("yplus").onclick = () => setYear(mYear + (mYear < 0 ? 10 : 1));
@@ -1716,21 +1748,22 @@ mcv.addEventListener("pointermove", (e) => {
     const wx = (mg.mx - mg.tx) / mg.s, wy = (mg.my - mg.ty) / mg.s; ms = mg.s * d / mg.d; mtx = mx - wx * ms; mty = my - wy * ms; mClamp(); mDraw(); }
   else if (!mp.size && e.pointerType === "mouse" && contPick) { const c = contAt((e.clientX - mtx) / ms, (e.clientY - mty) / ms); if (c !== contHover) { contHover = c; mDraw(); } if (c) showTip(e, c, "Tap to show only this continent"); else hideTip(); }
   else if (!mp.size && e.pointerType === "mouse" && coreOn) { mcv.style.cursor = "crosshair"; hideTip(); }
-  else if (!mp.size && e.pointerType === "mouse") { mcv.style.cursor = ""; const tq = todayOn && !contPick ? todayUnder(e.clientX, e.clientY) : null;
-    if (tq) { mcv.style.cursor = "pointer"; const r0 = mHit(e.clientX, e.clientY); showTip(e, `${tq.n} (today)`, `${r0 ? `In ${fmt(mYear)}: ${ENTS[r0.e].n} · ` : ""}click for ${tq.n}: the states on its land and its people`); return; }
-    const pq = peopleHit(e.clientX, e.clientY);
+  else if (!mp.size && e.pointerType === "mouse") { mcv.style.cursor = ""; const pq = peopleHit(e.clientX, e.clientY);
     if (pq) { mcv.style.cursor = "pointer"; peopleTip(e, pq); return; }
+    const tq = todayOn ? todayAt(e.clientX, e.clientY) : null;   // the name of a country of today: opens that country
+    if (tq) { mcv.style.cursor = "pointer"; showTip(e, `${tq.n} (today)`, `Click the name for ${tq.n}: the states on its land and its people`); return; }
     const r = mHit(e.clientX, e.clientY), dn = densOn ? densTxt(e.clientX, e.clientY, mtx, mty, ms) : "";
     if (r) { mcv.style.cursor = "pointer"; const en = ENTS[r.e], up = r.top >= 0 && ENTS[r.e].k === 0 ? `, part of ${ENTS[r.top].n}` : "";
-      showTip(e, en.n, `${fmt(en.f)} – ${fmt(en.t)}${up}${dn ? ` · ${dn} here` : ""}`); } else if (dn) showTip(e, dn, `in ${fmt(mYear)} · HYDE 3.3 model, 50 km cell`); else hideTip(); }
+      const th = todayOn ? todayCountryAt((e.clientX - mtx) / ms, (e.clientY - mty) / ms) : null;
+      showTip(e, en.n, `${fmt(en.f)} – ${fmt(en.t)}${up}${dn ? ` · ${dn} here` : ""}${th ? ` · today ${th.n}` : ""}`); } else if (dn) showTip(e, dn, `in ${fmt(mYear)} · HYDE 3.3 model, 50 km cell`); else hideTip(); }
 });
 function mEnd(e) { const tap = mg && mg.type === "pan" && !mg.moved && performance.now() - mg.t0 < 450 && mp.size === 1;
   mp.delete(e.pointerId);
   if (tap) { const now = performance.now(); if (e.pointerType === "touch" && now - mLastTap < 300) { mZoomAt(2, e.clientX, e.clientY, true); mLastTap = 0; }
     else if (contPick) { const c = contAt((e.clientX - mtx) / ms, (e.clientY - mty) / ms); if (c) setCont(c); }
     else if (coreOn) { coreAt([(e.clientX - mtx) / ms, (e.clientY - mty) / ms], ""); }
-    else if (todayOn && todayUnder(e.clientX, e.clientY)) { mLastTap = now; showCountry(todayUnder(e.clientX, e.clientY).i); }
-    else { mLastTap = now; const pq = peopleHit(e.clientX, e.clientY); const r = pq ? null : mHit(e.clientX, e.clientY); if (pq) showPeople(pq); else if (r) { lastPolityTap = { e: r.e, pt: [(e.clientX - mtx) / ms, (e.clientY - mty) / ms] }; showPolity(r.e); } else { if (mSelE >= 0) closeSheet(); emptyTip(e); } } }
+    else { mLastTap = now; const pq = peopleHit(e.clientX, e.clientY), tq = pq || !todayOn ? null : todayAt(e.clientX, e.clientY), r = pq || tq ? null : mHit(e.clientX, e.clientY);
+      if (pq) showPeople(pq); else if (tq) showCountry(tq.i); else if (r) { lastPolityTap = { e: r.e, pt: [(e.clientX - mtx) / ms, (e.clientY - mty) / ms] }; showPolity(r.e); } else { if (mSelE >= 0) closeSheet(); emptyTip(e); } } }
   if (mp.size === 1) { const [p] = [...mp.values()]; mg = { type: "pan", x0: p.x, y0: p.y, tx: mtx, ty: mty, t0: 0, moved: true }; } else if (!mp.size) mg = null; }
 mcv.addEventListener("pointerup", mEnd); mcv.addEventListener("pointercancel", mEnd);
 mcv.addEventListener("pointerleave", hideTip);
@@ -1778,6 +1811,7 @@ function showPolity(ei, keepCam) { setFocus({ k: "state", e: ei });
   const e = ENTS[ei], r = recOf(ei);
   const kind = e.k === 1 ? "Empire, realm or union" : r && r.top >= 0 ? `Member of the <button class="lk" data-ent="${r.top}">${esc(ENTS[r.top].n)}</button>` : "State or polity";
   let h = head({ kick: kind, title: e.n, color: r ? COLORS[r.c] : null, wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), r ? badge(`on the map in ${fmt(mYear)}`, "dark") : badge(`not on the map in ${fmt(mYear)}`)] });
+  if (lastPolityTap && lastPolityTap.e === ei) h += todayHere(lastPolityTap.pt);   // opened by a click on the map
   const cp = typeof capOf === "function" && ND.cap[ei] ? capOf(ei, mYear) : null;
   const ups = r ? r.mem.filter((m) => ENTS[m].k === 1 && ENTS[m].n !== e.n) : [];
   h += facts([["Dates", esc(span(e.f, e.t)) + otherDates("state", ENTS.indexOf(e))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))],
@@ -1904,7 +1938,8 @@ function showCore() {
     const sm = L.map((x, i) => i > 0 && L[i - 1].e !== x.e && succLinked(L[i - 1].e, x.e)), nSm = sm.filter(Boolean).length;
     const SMARK = "↓ Wikidata: followed by";
     h += `<p class="lead">Since ${esc(fmt(first))}, this spot has been inside the recorded borders of <b>${nState}</b> state${nState === 1 ? "" : "s"} and changed hands <b>${changes}</b> time${changes === 1 ? "" : "s"}. The longest was <b>${esc(ENTS[longest.e].n)}</b>, ${yrs(longest).toLocaleString("en")} years.${nSm ? ` Wikidata links ${nSm} of these changes.` : ""}</p>`;
-    h += facts([["First record", esc(fmt(first))], ["Today", now ? esc(ENTS[now.e].n) : "—"], ["Inside a recorded state, since the first record", `${Math.round(covered / span * 100)}% of the time`], ["Average reign of a state", `${Math.round(covered / L.length).toLocaleString("en")} years`]]);
+    const tc = todayCountryAt(corePt[0], corePt[1]);
+    h += facts([["First record", esc(fmt(first))], ["Today", now ? esc(ENTS[now.e].n) : "—"], tc ? ["Country today", tc.c ? `<button class="lk" data-ncountry="${tc.c.i}">${esc(tc.n)}</button>` : esc(tc.n), true] : null, ["Inside a recorded state, since the first record", `${Math.round(covered / span * 100)}% of the time`], ["Average reign of a state", `${Math.round(covered / L.length).toLocaleString("en")} years`]]);
     // the column
     const y0 = coreYmin(D), Hc = Math.max(760, Math.min(1300, 70 * L.length + 300)), k = Hc / (Yw(2024) - Yw(y0)), Y = (yr) => coreY(yr, y0, k);
     let col = "", ust = "", labs = "", lines = ""; let last = -1e9; const min = 31;
@@ -2548,7 +2583,7 @@ const LI = { today: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" 
   popsize: '<svg viewBox="0 0 24 24" fill="#b07034"><circle cx="7" cy="15" r="3"/><circle cx="16" cy="11" r="6" opacity=".8"/></svg>',
   nostate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><circle cx="19" cy="17" r="1.5" stroke-dasharray="2 2"/></svg>' };
 function layerList() {
-  const L = [["today", "Today's borders", mode === "net" ? "Dashed lines of today's countries" : "Dashed lines and names of today's countries; click a country to open it", todayOn, setToday],
+  const L = [["today", "Today's borders", mode === "net" ? "Dashed lines of today's countries" : "Dashed lines and names of today's countries; click a name to open that country", todayOn, setToday],
     ["dens", "Population density", "Where people lived, in people per km² (HYDE 3.3 modelled estimate); states become outlines", densOn, setDens],
     ["people", "People and unmapped states", "Peoples, cultures and states from the timeline, at an approximate location, where the borders dataset records no state", peopleOn, setPeople]];
   if (mode === "net") L.push(["popsize", "Size by population", "Country circles show how many people lived in each of today's countries (HYDE estimate) instead of land area", nPopSize, setNetPop],
@@ -2620,12 +2655,13 @@ setMode = function (m) {
 };
 let yearLineT = 0, hashT = 0, hashLoading = false, navKeyLast = null, restoreUntil = 0, hashMute = false;
 const contTok = () => mCont ? "c-" + mCont.toLowerCase().replace(/ /g, "-") : "";
+const eraTok = () => eraSel ? "e-" + (ERAS.findIndex((x) => x[0] === eraSel) + 1) : "", eraOfTok = (p) => { const t = p.find((x) => /^e-\d$/.test(x)); return t ? (ERAS[+t.slice(2) - 1] || [null])[0] : null; };
 function hashParts() {   // every link holds the view, the year, the layers and the subject
   const f = focusTok();
   if (coreOn && mode === "map") return corePt ? ["core", invEE(corePt[0], corePt[1]).map((v) => v.toFixed(3)).join(","), mYear, encodeURIComponent(coreName), FOCUS && FOCUS.k !== "place" ? f : ""] : ["core"];
-  if (mode === "net") return ["network", mYear, f, todayOn ? "today" : "", peopleOn ? "people" : "", densOn ? "dens" : "", nPopSize ? "pop" : "", contTok()];
-  if (mode === "map") return ["map", mYear, f, todayOn ? "today" : "", peopleOn ? "people" : "", densOn ? "dens" : "", contTok()];
-  return ["poster", VIEW !== "world" ? VIEW : "", "g" + (Math.round(gz * 10) / 10), CMODE !== "empires" ? CMODE : "", f];
+  if (mode === "net") return ["network", mYear, f, todayOn ? "today" : "", peopleOn ? "people" : "", densOn ? "dens" : "", nPopSize ? "pop" : "", contTok(), eraTok()];
+  if (mode === "map") return ["map", mYear, f, todayOn ? "today" : "", peopleOn ? "people" : "", densOn ? "dens" : "", contTok(), eraTok()];
+  return ["poster", VIEW !== "world" ? VIEW : "", "g" + (Math.round(gz * 10) / 10), CMODE !== "empires" ? CMODE : "", eraTok(), f];
 }
 const navKey = () => curLens() + "|" + focusTok();
 function saveHash() { if (hashMute) return; clearTimeout(hashT); hashT = setTimeout(() => {
@@ -2640,6 +2676,7 @@ function loadHash() {
   if (!p[0]) { if (coreOn) closeSheet(); toMode("poster"); clearFocus(); return; }   // back to the start
   if (p[0] === "poster") { toMode("poster"); CMODE = lay("rule") ? "rule" : lay("patchwork") ? "patchwork" : "empires"; const v = p.slice(1).find((x) => VIEWS[x]) || "world"; if (v !== VIEW) setView(v); else { build(VIEW); draw(); }
     const gl = p.find((x) => /^g[\d.]+$/.test(x)); if (gl) { setGeo(parseFloat(gl.slice(1)), undefined, false); fit(false); } keyLabel();
+    { const en = eraOfTok(p); if (en !== eraSel) { setEra(en, true); if (en) eraCam(); } }
     if (ft) restoreFocus(ft); else clearFocus(); return; }
   if (p[0] === "core") { toMode("map"); const y = parseInt(p[2], 10);
     if (p[1]) { const [lo, la] = p[1].split(",").map(Number); coreOn = true; coreUI();
@@ -2650,10 +2687,11 @@ function loadHash() {
   if (p[0] === "network" || p[0] === "map") { const net = p[0] === "network", y = parseInt(p[1], 10); if (!isNaN(y)) mYear = y;
     if (todayOn !== lay("today")) setToday(lay("today")); if (peopleOn !== lay("people")) setPeople(lay("people")); if (densOn !== lay("dens")) setDens(lay("dens")); if (net && nPopSize !== lay("pop")) setNetPop(lay("pop"));
     if (coreOn) closeSheet();
+    { const en = eraOfTok(p); if (en !== eraSel) setEra(en, true); }
     hashLoading = true; try { if (mode === (net ? "net" : "map")) setYear(mYear); else setMode(net ? "net" : "map"); } finally { hashLoading = false; }
     const ct = p.find((x) => x.startsWith("c-")); mapLoad.then(() => { const n = ct ? CONT_ORDER.find((c) => "c-" + c.toLowerCase().replace(/ /g, "-") === ct) : null; if ((n || null) !== mCont) setCont(n || null); });
     if (ft) { restoreFocus(ft); return; }
-    const name = p.slice(2).find((x) => x && !["today", "people", "dens", "pop"].includes(x) && !x.startsWith("c-"));   // links made before 20 October 2026
+    const name = p.slice(2).find((x) => x && !["today", "people", "dens", "pop"].includes(x) && !x.startsWith("c-") && !/^e-\d$/.test(x));   // links made before 20 October 2026
     if (!name) { clearFocus(); return; }
     mapLoad.then(() => { if (net) { const c = NC.find((q) => q.n === name); if (c) showCountry(c.i); else { const g = ENTS.findIndex((e) => e.n === name); if (g >= 0 && nHubs.has(g)) showGroup(g); } }
       else { const i = ENTS.findIndex((e) => e.n === name); if (i >= 0) focusEnt(i, mYear); } restoreUntil = performance.now() + 700; }); }
@@ -2873,11 +2911,16 @@ function sKeys(names) {   // normalised names, each with its French variant when
     FR.forEach(([en, fr]) => { const s = " " + b + " "; if (s.includes(" " + en + " ")) { const a = s.replace(" " + en + " ", " " + fr + " ").trim(); if (!out.some((o) => o[0] === a)) out.push([a, lab || ""]); } }); });
   return out;
 }
-let SIDX = null, sidxMap = null;
+let SIDX = null, sidxMap = null, PLACES = null;
 function searchIndex() {
   if (SIDX && sidxMap === mapReady) return SIDX;
   const E = [];
   CITIES.forEach(([n, lo, la]) => E.push({ g: "p", label: n, sub: "Who ruled here, layer by layer", keys: sKeys([[n]]), w: 1, F: { k: "place", pt: EE(lo, la), name: n }, icon: PIN }));
+  // today's cities (Natural Earth 1:50m), for search only: one opens "What ruled here?" on that spot; Core's own cities come first
+  if (!PLACES) PLACES = JSON.parse(document.getElementById("placedata").textContent).l;
+  PLACES.forEach(([n, fr, alt, lo, la, cc, pop]) => { if (CITIES.some(([, a, b]) => Math.abs(a - lo) < 0.3 && Math.abs(b - la) < 0.3)) return;
+    E.push({ g: "p", label: n, sub: `${cc ? cc + " · " : ""}who ruled here, layer by layer`, keys: sKeys([[n], ...(fr ? [[fr]] : []), ...(alt ? alt.split("|").map((a) => [a]) : [])]),
+      w: 0.2 + Math.log10(1 + pop) / 10, F: { k: "place", pt: EE(lo, la), name: n }, icon: PIN, ne: 1 }); });
   const covered = new Set();
   COLS.forEach((t) => { (t.cs || []).forEach((c) => covered.add(normQ(c))); const nc = trackNC(t); if (nc) covered.add(NKEY[nc.i]);
     E.push({ g: "c", label: t.n, sub: `${t.c} · ${t.p.length} periods on the timeline`, keys: sKeys([[t.n], ...(t.cs || []).map((c) => [c])]), w: 3 - (t._rank || 4) * 0.5, F: { k: "track", t: t.id }, icon: flagHTML(t, 1, 11) }); });
@@ -2934,7 +2977,7 @@ function sResults(raw) {
   const q = normQ(raw); if (!q) return [];
   const qw = q.split(" "), out = [], y = parseYear(raw);
   if (y != null) out.push({ g: "y", label: `Go to ${fmt(y)}`, sub: y < MIN_Y ? "The world then, on the Timeline (the Map starts in 3400 BCE)" : "The world then: borders, events and people", F: { k: "year", y }, s: 0, w: 9, icon: ICON.year });
-  searchIndex().forEach((x) => { const [s, bi] = sScore(q, qw, x.keys); if (s < 9) out.push({ ...x, s, today: bi >= 0 ? x.keys[bi][1] : "" }); });
+  searchIndex().forEach((x) => { const [s, bi] = sScore(q, qw, x.keys); if (s < 9) out.push({ ...x, s: s + (x.ne ? 0.5 : 0), today: bi >= 0 ? x.keys[bi][1] : "" }); });   // a city of today gives way to a country or state of the same name
   const by = {}; out.forEach((r) => (by[r.g] = by[r.g] || []).push(r));
   Object.values(by).forEach((L) => L.sort((a, b) => a.s - b.s || b.w - a.w));
   return SORDER.filter((g) => by[g]).sort((a, b) => by[a][0].s - by[b][0].s || SORDER.indexOf(a) - SORDER.indexOf(b)).map((g) => [g, by[g].slice(0, SCAP[g])]);
@@ -3006,7 +3049,7 @@ $("explore").onclick = openSearch; $("about").onclick = showAbout;
 
 // ---------------------------------------------------------------- NAVIGATION: a stable subject, real browser history, "What ruled here?" as an action, a time bar never covered
 // The subject (FOCUS) is what the reader chose. A view that cannot show it as it is shows the nearest thing and says so in the panel.
-let SUBST_P = null, closeTipShown = false, lastPolityTap = null;
+let SUBST_P = null, closeTipShown = false;
 function sameSubj(a, b) {
   if (!a || !b) return false;
   if (a.k === b.k) switch (a.k) {
@@ -3102,12 +3145,15 @@ $("back").onclick = () => {
 };
 
 // ---------------------------------------------------------------- the time bar: never under a panel; type a year; eras under the slider
-const ERA_TINY = { "Early Bronze Age": "Br. I", "The Middle Ages": "Medieval", "The Modern Era": "Mod." };
-const ERA_SHORT = { "Early Bronze Age": "E. Bronze", "Bronze Age": "Bronze", "Iron Age": "Iron", "Classical Antiquity": "Antiquity", "The Middle Ages": "Middle Ages", "The Modern Era": "Modern" };
+const ERA_SHORT = { "3400–1200 BCE": "−3400", "1200 BCE – 500 CE": "−1200", "500–1500": "500", "1500–1800": "1500", "1800–today": "1800" }, ERA_TINY = ERA_SHORT;
 function renderEras() { const el = $("eras"), trk = $("trk"); if (!el || !trk) return; const w = trk.clientWidth - 16; if (w <= 0) return; const span = MAX_Y - MIN_Y;
+  if (eraSel) { const sp = yHi - yLo, st = sp <= 400 ? 50 : sp <= 1100 ? 100 : 250, tk = []; for (let y = Math.ceil(yLo / st) * st; y <= yHi; y += st) tk.push(y);
+    const minGap = 34 / Math.max(1, w) * sp; let last = -1e9;
+    el.innerHTML = tk.filter((y) => { if (y - last < minGap) return false; last = y; return true; }).map((y) => { const f = (y - yLo) / sp; return `<span class="tk${f > 0.93 ? " end" : ""}" style="left:${(f * 100).toFixed(2)}%">${y < 0 ? "−" + (-y) : y}</span>`; }).join(""); return; }
   el.innerHTML = ERAS.filter(([, a, b]) => b > MIN_Y && a < MAX_Y).map(([n, a, b]) => { const a1 = Math.max(a, MIN_Y), b1 = Math.min(b, MAX_Y), px = (b1 - a1) / span * w, sh = ERA_SHORT[n] || n;
     const ti = ERA_TINY[n] || sh, lab = px >= n.length * 5.8 + 8 ? n : px >= sh.length * 5.8 + 8 ? sh : px >= ti.length * 5.8 + 6 ? ti : "";
-    return `<span style="left:${((a1 - MIN_Y) / span * 100).toFixed(2)}%;width:${((b1 - a1) / span * 100).toFixed(2)}%" title="${esc(n)}">${esc(lab)}</span>`; }).join(""); }
+    return `<span data-era="${esc(n)}" style="left:${((a1 - MIN_Y) / span * 100).toFixed(2)}%;width:${((b1 - a1) / span * 100).toFixed(2)}%" title="${esc(n)} · tap to zoom the slider to it">${esc(lab)}</span>`; }).join(""); }
+$("eras").addEventListener("click", (e) => { const sp = e.target.closest("[data-era]"); if (sp) setEra(sp.dataset.era); });
 { const tb = $("timebar"); const setTbh = () => { const h = tb.offsetHeight; if (h) document.documentElement.style.setProperty("--tbh", h + "px"); renderEras(); };
   if (window.ResizeObserver) new ResizeObserver(setTbh).observe(tb); addEventListener("resize", setTbh); setTimeout(setTbh, 0); }
 function editYear() {
@@ -3135,6 +3181,8 @@ function renderSettings() {
   const c = curCont();
   let h = `<h4>Continent</h4><div class="sseg">${["", ...CONT_PICK].map((n) => `<button class="chip" data-sc="${esc(n)}" aria-pressed="${c === n}">${esc(n || "Whole world")}</button>`).join("")}</div>`;
   if (mode === "map") h += `<p class="snote">Or <button class="lk" data-scpick="1">tap a continent on the map</button>.</p>`;
+  h += `<h4>Period</h4><div class="sseg">${["", ...ERAS.map((x) => x[0])].map((n) => `<button class="chip" data-se="${esc(n)}" aria-pressed="${(eraSel || "") === n}">${esc(n || "All time")}</button>`).join("")}</div>`
+    + `<p class="snote">${mode === "poster" ? "Zooms the Timeline to that period; the Map's and the Network's year slider then cover only it." : "The year slider then covers only that period; the Timeline zooms to it."}</p>`;
   if (mode === "poster") {
     h += `<h4>Colour by</h4><div class="sseg">${Object.entries(CMODE_NAME).map(([k, l]) => `<button class="chip" data-scm="${k}" aria-pressed="${CMODE === k}">${esc(l)}</button>`).join("")}</div>`;
     h += `<h4>Show</h4>` + toggleRow("ach", "Achievements", "Inventions, discoveries and ideas (●), when zoomed in", achOn, ICON.year);
@@ -3160,6 +3208,7 @@ setBtn.onclick = (e) => { e.stopPropagation(); openSettings(setMenu.hidden); };
 function pickCont(n) { if (mode === "poster") pickContinent(n || null); else setCont(n || null); }
 setMenu.addEventListener("click", (e) => { e.stopPropagation(); const b = e.target.closest("button"); if (!b) return;
   if (b.dataset.sc != null) pickCont(b.dataset.sc);
+  else if (b.dataset.se != null) setEra(b.dataset.se || null);
   else if (b.dataset.scpick) { openSettings(false); openContMenu(true); return; }
   else if (b.dataset.scm) { CMODE = b.dataset.scm; build(VIEW); draw(); keyLabel(); renderKey(); saveHash(); }
   else if (b.dataset.sl) { const k = b.dataset.sl;
@@ -3176,8 +3225,8 @@ document.addEventListener("pointerdown", (e) => { if (!setMenu.hidden && !setMen
 addEventListener("keydown", (e) => { if (e.key === "Escape" && !setMenu.hidden) openSettings(false); });
 // ---------------------------------------------------------------- active settings, shown as chips in the toolbar; × turns one off
 function activeFilters() {
-  const L = [], c = curCont(); if (c) L.push(["cont", c]);
-  if (mode === "poster") { if (CMODE !== "empires") L.push(["cmode", `Colour: ${CMODE_NAME[CMODE]}`]); if (!achOn) L.push(["ach", "Achievements hidden"]); if (eraSel) L.push(["era", eraSel]); }
+  const L = [], c = curCont(); if (c) L.push(["cont", c]); if (eraSel) L.push(["era", `Period: ${eraSel}`]);
+  if (mode === "poster") { if (CMODE !== "empires") L.push(["cmode", `Colour: ${CMODE_NAME[CMODE]}`]); if (!achOn) L.push(["ach", "Achievements hidden"]); }
   else {
     if (todayOn) L.push(["today", "Today's borders"]); if (densOn) L.push(["dens", "Population density"]); if (peopleOn) L.push(["people", "People"]);
     if (mode === "net") { if (nPopSize) L.push(["popsize", "Size by population"]); if (!nMapOn) L.push(["basemap", "No basemap"]); if (nShowAll) L.push(["nostate", "No polity recorded"]); if (!nTether) L.push(["tether", "No lines home"]); if (Math.abs(nGeo - 0.7) > 0.02) L.push(["geo", "Custom layout"]); }
@@ -3189,7 +3238,7 @@ function offFilter(k) {
     case "cont": pickCont(null); break;
     case "cmode": CMODE = "empires"; build(VIEW); draw(); keyLabel(); renderKey(); saveHash(); break;
     case "ach": achOn = true; draw(); renderKey(); break;
-    case "era": fit(true); break;
+    case "era": setEra(null); break;
     case "today": setToday(false); break; case "dens": setDens(false); break; case "people": setPeople(false); break; case "race": setRace(false); break;
     case "popsize": setNetPop(false); break; case "basemap": setNetMap(true); break; case "nostate": setNetAll(false); break;
     case "tether": nTether = true; nDraw(); break; case "geo": nGeo = 0.7; nAlpha = Math.max(nAlpha, 0.8); nKick(); break;
@@ -3298,21 +3347,31 @@ helpMenu.addEventListener("click", (e) => { if (e.target.closest("[data-sabout2]
 document.addEventListener("pointerdown", (e) => { if (!helpMenu.hidden && !helpMenu.contains(e.target) && !helpBtn.contains(e.target)) openHelp(false); });
 addEventListener("keydown", (e) => { if (e.target.closest("input, select, textarea")) return; if (e.key === "?") { e.preventDefault(); openHelp(helpMenu.hidden); } else if (e.key === "Escape" && !helpMenu.hidden) openHelp(false); });
 { const fh = setMode; setMode = function (m) { const r = fh(m); if (!helpMenu.hidden) openHelp(false); return r; }; }
+{ const fe = setMode; setMode = function (m) { const keep = eraSel, r = fe(m); if (keep && !eraSel) setEra(keep, true); if (eraSel && m === "poster" && !FOCUS) eraCam(); renderEras(); return r; }; }   // the chosen period carries over between views
 
 
 // ---------------------------------------------------------------- today's countries on the Map, and chart readings
 function todayAt(x, y) { const pad = touchUI ? 12 : 4;
   for (let k = todayHit.length - 1; k >= 0; k--) { const [n, b] = todayHit[k]; if (x >= b[0] - pad && x <= b[2] + pad && y >= b[1] - pad && y <= b[3] + pad) { const key = normQ(n), c = NC.find((q, i) => NKEY[i] === key); if (c) return c; } }
   return null; }
-let tcKey = "", tcVal = null; const TODAY_ALIAS = { "united states of america": "united states", "democratic republic of the congo": "dr congo", "dem rep congo": "dr congo" };   // Cliopatria name -> Natural Earth name
-function todayCountryAt(wx, wy) {   // today's country at a point: the states Cliopatria records for today (2024) at that spot, matched to Natural Earth's countries
-  if (!mapReady) return null; const key = `${Math.round(wx * 4)},${Math.round(wy * 4)}`; if (key === tcKey) return tcVal;
-  let best = null;
-  for (const r of RECS) { if (r.t < 2024 || ENTS[r.e].k !== 0) continue; const b = GBOX[r.g]; if (wx < b[0] || wx > b[2] || wy < b[1] || wy > b[3] || !inGeom(r.g, wx, wy)) continue;
-    const keys = [ENTS[r.e].n, ...(ENTS[r.e].al || [])].map(normQ).map((k) => TODAY_ALIAS[k] || k);   // the state's own name first, then its aliases (the USA lists Puerto Rico)
-    let c = null; for (const k of keys) { c = NC.find((n) => NKEY[n.i] === k); if (c) break; } if (c) { best = c; break; } }
-  tcKey = key; tcVal = best; return best; }
-function todayUnder(x, y) { return todayAt(x, y) || todayCountryAt((x - mtx) / ms, (y - mty) / ms); }
+// Today's country at any point of the map, from Natural Earth itself (a lookup grid, source/mapdata/build_todaygrid.py),
+// so the answer matches the dashed borders everywhere, including where Cliopatria has gaps or other names.
+const TG = JSON.parse(document.getElementById("todaygriddata").textContent); let TG_END = null, TG_VAL = null;
+async function loadTodayGrid() { if (TG_END) return;
+  const r = reader(await gunzip(TG.runs)), n = TG.w * TG.h, ends = [], vals = []; let pos = 0;
+  while (pos < n) { vals.push(r.u()); pos += r.u(); ends.push(pos); }
+  TG_VAL = Uint8Array.from(vals); TG_END = Uint32Array.from(ends); }
+setTimeout(() => loadTodayGrid().catch(() => {}), 0);
+function todayCountryAt(wx, wy) {   // {n: Natural Earth name, c: the country in the Network's list, or null for tiny ones}, or null at sea
+  if (!TG_END) return null; const col = Math.floor((wx - TG.x0) / TG.cell), row = Math.floor((wy - TG.y0) / TG.cell);
+  if (col < 0 || row < 0 || col >= TG.w || row >= TG.h) return null;
+  const k = row * TG.w + col; let lo = 0, hi = TG_END.length - 1;
+  while (lo < hi) { const m = (lo + hi) >> 1; if (TG_END[m] > k) hi = m; else lo = m + 1; }
+  const v = TG_VAL[lo]; if (!v) return null; const n = TG.names[v - 1], key = normQ(n);
+  return { n, c: NC.find((q, i) => NKEY[i] === key) || null }; }
+function todayHere(pt) {   // "Here today: France", for a point the reader clicked
+  const t = pt ? todayCountryAt(pt[0], pt[1]) : null; if (!t) return "";
+  return `<p class="heretoday">Here today: ${t.c ? `<button class="lk" data-ncountry="${t.c.i}">${esc(t.n)}</button>` : `<b>${esc(t.n)}</b>`}</p>`; }
 function todayLink(a) { const key = normQ(a), c = NC.find((q, i) => NKEY[i] === key); return c ? `<button class="lk" data-ncountry="${c.i}">${esc(a)}</button>` : esc(a); }
 function sparkFmt(pop, unit) { return pop ? (v) => `≈ ${fmtPop(v)}` : (v) => `${Math.round(v).toLocaleString("en")}${unit ? " " + unit : ""}`; }
 function sparkShort(v, pop, unit) { const s = v >= 1e9 ? `${+(v / 1e9).toFixed(1)}B` : v >= 1e6 ? `${+(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${+(v / 1e3).toFixed(0)}k` : `${Math.round(v)}`; return pop ? s : unit && !/countr/.test(unit) ? `${s} ${unit}` : s; }

@@ -1,6 +1,6 @@
 # Building Palimpsest
 
-The site is one file, `index.html`. It is made of a **template** (all HTML, CSS and JavaScript) and ten **data blocks** (JSON) that the build injects into it. You can work at two levels:
+The site is one file, `index.html`. It is made of a **template** (all HTML, CSS and JavaScript) and twelve **data blocks** (JSON) that the build injects into it. You can work at two levels:
 
 1. **Change the site** (code, design, texts): edit `site-template.html`, then run `python3 build.py`. No downloads needed: the data blocks are committed in `blocks/`.
 2. **Rebuild a data block** from the raw sources: download the inputs below, run the scripts in `mapdata/` or `flags/`, copy the output into `blocks/`, then run `build.py`.
@@ -13,9 +13,9 @@ If you edited `index.html` directly (for example in a quick fix on GitHub), run 
 
 | Path | What it is |
 |---|---|
-| `site-template.html` | The whole site, with placeholders `__DATA__`, `__MAP__`, `__TODAY__`, `__NET__`, `__FLAGS__`, `__CONT__`, `__HYDE__`, `__POPGRID__`, `__DENS__` |
+| `site-template.html` | The whole site, with placeholders `__DATA__`, `__MAP__`, `__TODAY__`, `__NET__`, `__FLAGS__`, `__CONT__`, `__HYDE__`, `__POPGRID__`, `__DENS__`, `__SUCC__`, `__PLACES__`, `__TODAYGRID__` |
 | `build.py` | Template + blocks → `../index.html` |
-| `blocks/` | The ten data blocks (exactly those embedded in `index.html`) |
+| `blocks/` | The twelve data blocks (exactly those embedded in `index.html`) |
 | `mapdata/` | Borders, today's borders, continents, network, population and density |
 | `flags/` | Flag sprite |
 | `timeline/` | The scripts that revised the timeline data from v4.0 to v4.5 (history; see below) |
@@ -45,15 +45,17 @@ Run each command from the folder it names. Steps depend on the ones above them.
 | 2. Shared-arc topology | `mapdata/topo` | `node topo2.js` and `node today.js` | `topo_w.json`, `today_mesh.json` |
 | 3. Borders | `mapdata` | `python3 build_map2.py` | `map2.json` |
 | 4. Today's borders | `mapdata` | `python3 build_today.py` | `today.json` |
+| 4b. Today's country lookup grid | `mapdata` | `python3 build_todaygrid.py` (cell 1.5 map units, about 10 km) | `todaygrid.json` |
 | 5. Continents | `mapdata` | `python3 build_continents.py` | `continents.json` |
 | 6. Network | `mapdata` | `python3 build_network.py` (uses `capitals.py`) | `network.json` |
 | 7. Population per country | `mapdata` | `HYDE_DIR=… python3 build_hyde.py` (reads `$HYDE_DIR/hyde_txt/popc_c.txt`; `hyde_lower/` and `hyde_upper/` optional) | `hyde.json` |
 | 8. Population per state | `mapdata` | `python3 build_popgrid.py <folder with popc_*.asc>` (about 3 minutes) | `popgrid.json` |
 | 9. Density | `mapdata` | `python3 build_density.py <folder with popc_*.asc> <maxln_cr.asc>` | `density.json` |
 | 10. Flags | `flags` | `node prep_flags.js`, then `python3 raster.py` | `flags.json` |
+| 12. Places for search | `mapdata` | `python3 build_places.py <ne_50m_populated_places.geojson>` (Natural Earth v5.1.2; URL and checksum in the script) | `places.json` |
 | 11. Successions | repository root | `python3 tools/build_successions.py index.html tools/wikidata-successions-2026-10-21.json tools/successions.json` (to refresh the links, rerun `tools/palimpsest-successions.rq` on query.wikidata.org first) | `tools/successions.json` |
 
-Then copy the outputs into `blocks/` (`map2.json`, `today.json`, `continents.json`, `network.json`, `hyde.json`, `popgrid.json`, `density.json`, `flags.json`, `successions.json`) and run `python3 build.py`.
+Then copy the outputs into `blocks/` (`map2.json`, `today.json`, `todaygrid.json`, `continents.json`, `network.json`, `hyde.json`, `popgrid.json`, `density.json`, `flags.json`, `successions.json`, `places.json`) and run `python3 build.py`.
 
 `build_map2.py` also reads the empire colours from `site-template.html` (`EMP_COLOR`) and the timeline from `../../data/world_history_timeline_v4_5.json`.
 

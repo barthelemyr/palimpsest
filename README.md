@@ -32,7 +32,7 @@ Every panel says where its content comes from with a badge: **Source** (taken fr
 |---|---|---|
 | [Cliopatria](https://github.com/Seshat-Global-History-Databank/cliopatria) v0.2.1, Seshat Global History Databank (Bennett et al.) | CC BY 4.0 | Historical borders (1,637 polities, 12,765 dated shapes) |
 | [HYDE 3.3](https://doi.org/10.24416/UU01-94FNH0), Klein Goldewijk et al., Utrecht University | Creative Commons Attribution | Population per country, per state (computed from the grid) and density |
-| [Natural Earth](https://www.naturalearthdata.com) | Public domain | Coastlines and today's borders |
+| [Natural Earth](https://www.naturalearthdata.com) | Public domain | Coastlines, today's borders, and today's cities in search |
 | [world-atlas](https://github.com/topojson/world-atlas) | ISC | ISO codes of countries |
 | [flag-icons](https://github.com/lipis/flag-icons) | MIT | Flags |
 | [countries-list](https://github.com/annexare/Countries) | MIT | Continents |
@@ -44,7 +44,7 @@ Inspired by ChartOrigin's poster *Timeline of World History*; the content was re
 ## How it is built
 
 - `index.html` is the whole site: one file (about 3.9 MB) with all data embedded; only its two fonts come from Google Fonts. No server, no tracking, no build step needed to view it.
-- `source/` holds everything needed to rebuild it: `site-template.html` (all HTML, CSS and JavaScript), the ten data blocks in `source/blocks/`, and `build.py`, which puts them together (`python3 build.py --check` confirms that `index.html` matches). The Python and Node scripts that made the data blocks from the raw sources (Cliopatria, Natural Earth, HYDE) are there too, with pinned versions and step-by-step instructions: [source/README.md](source/README.md).
+- `source/` holds everything needed to rebuild it: `site-template.html` (all HTML, CSS and JavaScript), the twelve data blocks in `source/blocks/`, and `build.py`, which puts them together (`python3 build.py --check` confirms that `index.html` matches). The Python and Node scripts that made the data blocks from the raw sources (Cliopatria, Natural Earth, HYDE) are there too, with pinned versions and step-by-step instructions: [source/README.md](source/README.md).
 - `data/world_history_timeline_v4_5.json` is the curated timeline dataset (122 columns, about 1,200 periods, events, achievements, landmarks), readable on its own.
 - `docs/notes.md` documents the process, the methods and the open questions in detail; [TECHNOLOGY.md](TECHNOLOGY.md) lists what the site is made of; [BACKLOG.md](BACKLOG.md) lists what comes next; [CANDIDATE-SOURCES.md](CANDIDATE-SOURCES.md) lists open datasets for future layers.
 

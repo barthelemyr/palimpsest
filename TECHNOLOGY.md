@@ -10,7 +10,7 @@ What the Palimpsest prototype (v0.1, October 2026) is made of: the building bloc
 
 | Building block | How it is done | Library? |
 |---|---|---|
-| Page structure | One `index.html` (about 3.9 MB, 2.3 MB gzipped): HTML, one `<style>` block (~480 lines), one `<script>` block (~2,700 lines), ten embedded JSON data blocks | None |
+| Page structure | One `index.html` (about 3.9 MB, 2.3 MB gzipped): HTML, one `<style>` block (~480 lines), one `<script>` block (~2,700 lines), twelve embedded JSON data blocks | None |
 | Language | Plain JavaScript (ES2020+: arrow functions, `async`/`await`, `Map`, `Set`, template strings), no modules, no TypeScript, no framework | None |
 | Drawing | **Canvas 2D** for the Timeline, Map and Network (`Path2D`, `isPointInPath` for hit testing, `ImageData` for the density layer); inline SVG for icons | None |
 | Map projection | **Equal Earth**, implemented directly from its published formula (Šavrič, Patterson and Jenny, 2018); the borders are pre-projected at build time, so the browser only scales and pans | None (no d3-geo) |
@@ -43,6 +43,8 @@ What the Palimpsest prototype (v0.1, October 2026) is made of: the building bloc
 | `popgriddata` | HYDE 3.3 population per Cliopatria shape (from the grid) | 249 KB |
 | `densdata` | HYDE 3.3 density grid at 0.5° | 474 KB |
 | `succdata` | Wikidata succession links between map states ("Before and after") | 13 KB |
+| `placedata` | Natural Earth 1:50m populated places, for search only (1,251 cities) | 82 KB |
+| `todaygriddata` | Natural Earth: today's country at any point of the map, as a lookup grid of about 10 km (`source/mapdata/build_todaygrid.py`) | 89 KB |
 
 All data is parsed on page load; nothing is loaded on demand yet. The same blocks are committed as files in `source/blocks/`.
 

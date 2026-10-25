@@ -29,7 +29,8 @@ Open datasets that could feed new layers: wars, inventions, conquests, impact on
 |---|---|---|---|---|
 | Conquests | Computed from Cliopatria (territory gained or lost) | ✅ already used | areas | **P1** |
 | Impact on nature: land use | HYDE land-use grids (same grids as population) | ✅ CC BY (version to confirm, as for population) | grid | **P1** |
-| Largest cities | Reba et al., *Historical Urban Population* | 🔴 | points | **P1** (once cleared) |
+| Capitals through time | Wikidata P36 with dates | ✅ | points | **P1** (under way) |
+| Cities | Wikidata, then Pleiades, Natural Earth, CHGIS; Reba et al. once cleared | ✅ / 🟢 / 🔴 | points | P2 |
 | Wars and battles | Wikidata snapshot; UCDP GED from 1989 | ✅ | points | **P1** |
 | Volcanoes and earthquakes | NOAA NCEI; eVolv2k | 🟡 / ✅ | points | P2 |
 | Languages | Glottography | ✅ | areas (today) | P2 |
@@ -43,6 +44,7 @@ Open datasets that could feed new layers: wars, inventions, conquests, impact on
 | Migrations | Abel, bilateral flows (1990–2020 only) | 🔴 | flows | P3 |
 | Domestication | Crop Origins; EUROEVOL | 🟡 / ✅ | points | P3 |
 | Inventions | Wikidata; Seshat Polaris-2026 | ✅ / 🔴 | points | P3 |
+| Regime type (1789–today) | V-Dem Regimes of the World | ✅ CC BY-SA 4.0 (reported, to confirm) | Timeline colour | P2 |
 
 **Important for the existing population layers:** HYDE 3.4 (2024) and HYDE 3.5 (2025) have been released since the HYDE 3.3 used today. Check what changed before the next population rebuild and before building the land-use layer.
 
@@ -90,9 +92,21 @@ No open "first recorded invention, place and date" dataset exists. Label any suc
 
 ### 2.5 Largest cities over time
 
+*Revised 21 October 2026: the layer is split into capitals through time (Wikidata P36, first) and cities (later), and built without Reba et al. until its licence is clear.*
+
 | Dataset | Licence | Coverage | Data | Checked | Fit and caveats |
 |---|---|---|---|---|---|
-| [Historical Urban Population, 3700 BC – AD 2000](https://sedac.ciesin.columbia.edu/data/set/urbanspatial-hist-urban-pop-3700bc-ad2000) v1.00 (Reba, Reitsma and Seto; NASA SEDAC, 2018; DOI [10.7927/H4ZG6QBX](https://doi.org/10.7927/H4ZG6QBX)) | 🔴 the NASA data portal says "licence not specified"; the SEDAC page gives only a citation | 3700 BCE – 2000 CE, world | City, latitude, longitude, year, population, reliability rank; about 1,700 cities † | Publisher | **Best long-run fit**, and it would lift the 36-city limit of search. Uneven evidence and observation dates; rankings are fragile. Paper: [Scientific Data 2016](https://doi.org/10.1038/sdata.2016.34). Ask SEDAC about the licence |
+| Wikidata: `P36` capital with `P580`/`P582`/`P585` qualifiers; cities with `P625`, `P571` inception, `P1082` population and its `P585` date, `P1448` dated official name, `P17` country | ✅ CC0 | World, uneven; dated populations mostly modern | Query output; dated snapshots in `tools/` | Known | Capitals first (`tools/palimpsest-capitals.rq`). For cities, keep only those with a dated population before 1950 or an inception before 1800. Read full statements (`p:`/`ps:`/`pq:`) |
+| [Pleiades](https://pleiades.stoa.org) settlements | ✅ CC BY | Ancient Mediterranean and Near East | Places with attestation periods; most carry a Wikidata identifier | Publisher (see section 3) | Attestation, not size |
+| [Natural Earth populated places](https://www.naturalearthdata.com) 1:50m | ✅ Public domain | Today | Points with a rank | Known | Today's cities only; lifts search's 36-city limit |
+| [CHGIS](https://chgis.fas.harvard.edu) (China Historical GIS, Harvard and Fudan) | 🟢 CC BY-NC-SA (to confirm on the publisher's page) | China, 222 BCE – 1911 | Dated administrative seats | Not yet | Fills the Asian gap; marked non-commercial |
+| Chandler (1987), Modelski (2003) | 🔴 books under copyright | World | Tables | Known | Not used directly |
+
+The original candidate stays below, on hold.
+
+| Dataset | Licence | Coverage | Data | Checked | Fit and caveats |
+|---|---|---|---|---|---|
+| [Historical Urban Population, 3700 BC – AD 2000](https://sedac.ciesin.columbia.edu/data/set/urbanspatial-hist-urban-pop-3700bc-ad2000) v1.00 (Reba, Reitsma and Seto; NASA SEDAC, 2018; DOI [10.7927/H4ZG6QBX](https://doi.org/10.7927/H4ZG6QBX)) | 🔴 the NASA data portal says "licence not specified"; the SEDAC page gives only a citation | 3700 BCE – 2000 CE, world | City, latitude, longitude, year, population, reliability rank; about 1,700 cities † | Publisher | **Best long-run fit**, and it would lift the 36-city limit of search. Uneven evidence and observation dates; rankings are fragile. Paper: [Scientific Data 2016](https://doi.org/10.1038/sdata.2016.34). Ask SEDAC about the licence. The data.gov record now says "No license information was provided. Government Work", which is not a licence: still open (21 October 2026) |
 | [GHS Urban Centre Database](https://human-settlement.emergency.copernicus.eu/datasets.php) R2024A (European Commission JRC) | ✅ CC BY 4.0 | 1975–2030 (values after 2025 are projections); about 11,000 urban centres | CSV, GeoPackage | Perplexity | Modern complement only; its city definition differs from historical estimates |
 
 ### 2.6 Trade routes
@@ -221,11 +235,12 @@ So that every new layer can carry the provenance badges, each record should hold
 
 | To | About |
 |---|---|
-| NASA SEDAC (CIESIN, Columbia University) | Licence of *Historical Urban Population* v1.00 |
+| NASA SEDAC (CIESIN, Columbia University) | Licence of *Historical Urban Population* v1.00 (still open on 21 October 2026; data.gov says only "Government Work") |
 | Peter Brecke (Georgia Tech) | Permission to show data derived from the Conflict Catalog |
 | Correlates of War | Confirm that a free, non-commercial site may republish data derived from Territorial Change v6 |
 | Guy Abel | Licence of the bilateral migration flow estimates |
-| Seshat Global History Databank | Licence of Polaris-2026 |
+| Seshat Global History Databank | Licence of Polaris-2026 (the GitHub repository is MIT; Seshat data is usually CC BY-NC-SA), needed for its capitals |
+| peacesciencer (Steven V. Miller) | Licence of the Correlates of War capitals list (`cow_capitals`) |
 | SlaveVoyages | Terms after the move to Harvard |
 
 ## Sources consulted (20 October 2026)

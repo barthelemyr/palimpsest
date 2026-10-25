@@ -1,0 +1,1204 @@
+state,wikidata,from,to,manual_city,manual_lon,manual_lat,wikidata_city,wikidata_capital,wikidata_dated,wikidata_lon,wikidata_lat,distance_km,agree_share,verdict
+Akkadian Empire,Q4461035,-2300,-2101,Akkad (approx.),44.2,33.1,Akkad,Q150996,no (whole life),,,,0%,Wikidata capital has no coordinates
+Assyria,Q41137,-1800,-901,Assur,43.26,35.46,Assur / Tell Leilan / Ekallatum,Q200200,no (whole life),43.2625,35.456666666,0,200%,agree
+Neo-Assyrian Empire,Q10914393,-900,-601,Nineveh,43.15,36.36,Assur,Q200200,no (whole life),43.2625,35.456666666,101,0%,disagree
+Assyrian Egypt,Q97357417,-650,-616,Nineveh,43.15,36.36,,,,,,,,missing in Wikidata
+Babylonia,Q47690,-1800,-601,Babylon,44.42,32.54,Babylon,Q5684,no (whole life),44.42415,32.522907,2,100%,agree
+Neo-Babylonian Empire,Q624887,-600,-531,Babylon,44.42,32.54,Babylon,Q5684,no (whole life),44.42415,32.522907,2,100%,agree
+Elam,Q128904,-3200,-601,Susa,48.26,32.19,Anshan Persia / Susa,Q569107,no (whole life),52.407777777,30.011666666,463,100%,agree
+Median Kingdom,Q1183338,-615,-551,Ecbatana,48.52,34.8,,,,,,,,missing in Wikidata
+Achaemenid Empire,Q389688,-550,-327,Persepolis,52.89,29.93,Ecbatana / Persepolis / Pasargadae,Q696193,no (whole life),48.516247,34.8065,680,100%,agree
+New Kingdom of Egypt,Q180568,-1500,-801,Thebes,32.65,25.7,Thebes / Memphis / Pi-Ramesses,Q101583,yes,32.610277777,25.720555555,5,98%,agree
+Hyksos,Q192319,-1800,-1401,Avaris,31.82,30.79,,,,,,,,missing in Wikidata
+Twenty-sixth Dynasty of Egypt,Q662410,-615,-501,Sais,30.77,30.96,,,,,,,,missing in Wikidata
+Kingdom of Israel,Q3185305,-1000,-701,Samaria,35.19,32.28,Gibeah / Hebron / Jerusalem,Q1021662,no (whole life),,,,0%,Wikidata capital has no coordinates
+Phoenicia,Q41642,-1150,-501,Tyre,35.2,33.27,Tyre / Sidon,Q82070,no (whole life),35.2,33.266666666,0,100%,agree
+Philistia,Q7185566,-1150,-701,Gaza,34.47,31.5,,,,,,,,missing in Wikidata
+Judea,Q104028,-144,5,Jerusalem,35.22,31.78,,,,,,,,missing in Wikidata
+Nabataeans,Q220594,-164,105,Petra,35.44,30.33,,,,,,,,missing in Wikidata
+Macedonian Empire,Q83958,-675,-332,Pella,22.52,40.76,Pella / Aigai,Q213679,no (whole life),22.525642,40.760033,0,100%,agree
+Macedonian Empire,Q83958,-331,-323,Babylon,44.42,32.54,Pella / Aigai,Q213679,no (whole life),22.525642,40.760033,2149,0%,disagree
+Macedonian Empire,Q83958,-322,-292,Pella,22.52,40.76,Pella / Aigai,Q213679,no (whole life),22.525642,40.760033,0,100%,agree
+Macedonian Empire,Q83958,-675,-332,Pella,22.52,40.76,Pella / Aigai,Q213679,no (whole life),22.525642,40.760033,0,100%,agree
+Macedonian Empire,Q83958,-331,-323,Babylon,44.42,32.54,Pella / Aigai,Q213679,no (whole life),22.525642,40.760033,2149,0%,disagree
+Macedonian Empire,Q83958,-322,-292,Pella,22.52,40.76,Pella / Aigai,Q213679,no (whole life),22.525642,40.760033,0,100%,agree
+Antigonid Dynasty,Q237325,-291,-278,Pella,22.52,40.76,,,,,,,,missing in Wikidata
+Antigonid Macedonia,Q237325,-277,-165,Pella,22.52,40.76,,,,,,,,missing in Wikidata
+Kingdom of Lysimachus,Q32133,-323,-282,Lysimachia,26.75,40.53,,,,,,,,missing in Wikidata
+Seleucid Empire,Q705904,-318,-64,Antioch,36.16,36.2,,,,,,,,missing in Wikidata
+Ptolemaic Kingdom,Q2320005,-331,-28,Alexandria,29.92,31.2,Alexandria,Q87,no (whole life),29.8925,31.1975,3,100%,agree
+Kingdom of Pontus,Q7380487,-281,67,Amaseia,35.83,40.65,Sinop / Amasya,Q599416,yes,35.151111111,42.026666666,163,28%,partly
+Illyrian Kingdom,Q16084290,-256,-226,Scodra,19.51,42.07,Scodra,Q42716631,no (whole life),19.488733,42.04246,4,100%,agree
+Carthage,Q2429397,-650,-145,Carthage,10.32,36.85,Carthage,Q6343,no (whole life),10.312944,36.847009,1,100%,agree
+Roman Republic,Q175881,-500,-32,Rome,12.48,41.89,Rome,Q220,no (whole life),12.482777777,41.893055555,0,100%,agree
+Roman Empire,Q12544,-31,329,Rome,12.48,41.89,,,,,,,,skipped: wrong Wikidata identifier in Cliopatria
+Roman Empire,Q12544,330,394,Constantinople,28.98,41.01,,,,,,,,skipped: wrong Wikidata identifier in Cliopatria
+Western Roman Empire,Q42834,395,475,Ravenna,12.2,44.42,Ravenna / Ravenna / Mediolanum,Q13364,yes,12.201666666,44.416111111,0,183%,agree
+Eastern Roman Empire,Q12544,395,632,Constantinople,28.98,41.01,,,,,,,,skipped: wrong Wikidata identifier in Cliopatria
+Byzantine Empire,Q112039853,633,1474,Constantinople,28.98,41.01,,,,,,,,missing in Wikidata
+Nicaean Empire,Q181254,1206,1278,Nicaea,29.72,40.43,Nicaea,Q739037,no (whole life),29.7195,40.429,0,100%,agree
+Despotate of Epirus,Q187684,1206,1481,Arta,20.99,39.16,Arta / Ioannina / Vonitsa,Q208573,yes,20.9875,39.165,1,73%,agree
+Gallic Empire,Q273025,261,282,Trier,6.64,49.75,Cologne,Q365,no (whole life),6.957777777,50.942222222,134,0%,disagree
+Palmyrene Empire,Q877875,261,269,Palmyra,38.27,34.55,Palmyra,Q5747,no (whole life),38.267222,34.56,1,100%,agree
+Kingdom of Armenia,Q208404,-326,646,Artaxata,44.55,39.88,Van / Tigranocerta / Artashat,Q83061,no (whole life),43.416666666,38.501944444,182,100%,agree
+Kingdom of Jerusalem,Q55502,1099,1293,Jerusalem,35.22,31.78,Jerusalem,Q1218,no (whole life),35.234156,31.776679,1,100%,agree
+Kingdom of Cyprus,Q213638,1192,1491,Nicosia,33.37,35.17,Nicosia,Q3856,no (whole life),33.365,35.1725,1,100%,agree
+Parthian Empire,Q1986139,-239,237,Ctesiphon,44.58,33.09,Hecatompylos / Nisa / Ctesiphon,Q1518300,no (whole life),54.103672,35.953053,928,200%,agree
+Sasanian Empire,Q1661685,215,643,Ctesiphon,44.58,33.09,Balkh,Q182159,no (whole life),66.898888888,36.758055555,2070,0%,disagree
+Greco-Bactrian Kingdom,Q488880,-247,-127,Bactra,66.9,36.76,Balkh / Ai-Khanoum,Q182159,no (whole life),66.898888888,36.758055555,0,100%,agree
+Yuezhi,Q467985,-404,42,Bactra (approx.),66.9,36.76,,,,,,,,missing in Wikidata
+Kushan Empire,Q25979,43,237,Purushapura (Peshawar),71.57,34.01,Bagram,Q814388,no (whole life),69.233333333,34.933333333,238,0%,disagree
+Western Kushans,Q25979,238,259,Purushapura (Peshawar),71.57,34.01,Bagram,Q814388,no (whole life),69.233333333,34.933333333,238,0%,disagree
+Eastern Kushans,Q25979,238,346,Mathura,77.67,27.49,Bagram,Q814388,no (whole life),69.233333333,34.933333333,1152,0%,disagree
+Kidarites,Q26996,358,450,Balkh,66.9,36.76,,,,,,,,missing in Wikidata
+White Huns,Q41761342,410,560,Kunduz region (approx.),68.86,36.73,,,,,,,,missing in Wikidata
+Indo-Scythians,Q240123,-144,282,Taxila,72.84,33.75,Sigal,Q7511898,no (whole life),,,,0%,Wikidata capital has no coordinates
+Indo-Greeks,Q215643,-126,13,Sagala,74.53,32.49,Alexandria on the Caucasus,Q2005166,no (whole life),69.3106,34.9925,557,0%,disagree
+Samanid Empire,Q486181,886,999,Bukhara,64.42,39.77,,,,,,,,missing in Wikidata
+Saffarid Dynasty,Q45310,860,899,Zaranj,61.86,30.96,Zaranj,Q475802,no (whole life),61.86,30.96,0,100%,agree
+Ghaznavid Empire,Q12844800,962,1209,Ghazni,68.42,33.55,,,,,,,,missing in Wikidata
+Ghurid Dynasty,Q199443,1152,1209,Firozkoh,64.52,34.39,Firozkoh,Q7856199,no (whole life),,,,0%,Wikidata capital has no coordinates
+Great Seljuk Empire,Q3708094,1040,1201,Isfahan,51.67,32.65,Hamadan / Isfahan / Nishapur,Q28587,yes,48.516666666,34.8,377,41%,partly
+Khwarezmid Empire,Q63134381,1202,1235,Urgench,59.15,42.3,,,,,,,,missing in Wikidata
+Khwarezmid Dynasty,Q486918,1094,1201,Urgench,59.15,42.3,,,,,,,,missing in Wikidata
+Kara-Khitans,Q862304,1126,1219,Balasagun,75.2,42.75,Balasagun,Q1764282,no (whole life),75.248425,42.74759,4,100%,agree
+Kara-Khanids,Q494354,850,1045,Balasagun,75.2,42.75,Balasagun / Kashgar,Q1764282,no (whole life),75.248425,42.74759,4,100%,agree
+Western Karakhanid Khanate,Q494354,1046,1084,Samarkand,66.97,39.65,Balasagun / Kashgar,Q1764282,no (whole life),75.248425,42.74759,773,0%,disagree
+Buyid Dynasty,Q12536,936,1055,Baghdad,44.37,33.31,,,,,,,,missing in Wikidata
+Abbasid Caliphate/Buyid Dynasty,Q12536,947,969,Baghdad,44.37,33.31,,,,,,,,missing in Wikidata
+Timurid Empire,Q484195,1375,1408,Samarkand,66.97,39.65,Samarkand / Herat,Q5753,yes,66.975833333,39.654722222,1,88%,agree
+Timurid Empire,Q484195,1409,1528,Herat,62.2,34.35,Herat / Samarkand,Q45313,yes,62.203056,34.341944,1,82%,agree
+Jalayirid Sultanate,Q866716,1344,1401,Baghdad,44.37,33.31,Tabriz / Baghdad,Q80053,yes,46.296111111,38.073888888,558,47%,partly
+Aq Qoyunlu,Q555994,1407,1511,Tabriz,46.29,38.08,,,,,,,,missing in Wikidata
+Qara Qoyunlu,Q324470,1375,1467,Tabriz,46.29,38.08,Tabriz / Mosul / Erciş,Q80053,no (whole life),46.296111111,38.073888888,1,100%,agree
+Kartids,Q1734616,1344,1384,Herat,62.2,34.35,Herat,Q45313,no (whole life),62.203056,34.341944,1,100%,agree
+Safavid Dynasty,Q161205,1502,1554,Tabriz,46.29,38.08,,,,,,,,missing in Wikidata
+Safavid Dynasty,Q161205,1555,1597,Qazvin,50.0,36.27,,,,,,,,missing in Wikidata
+Safavid Dynasty,Q161205,1598,1737,Isfahan,51.67,32.65,,,,,,,,missing in Wikidata
+Afsharid Iran,Q63149558,1734,1756,Mashhad,59.6,36.3,Mashhad,Q121157,no (whole life),59.605923055,36.297494444,1,100%,agree
+Qajar Dynasty,Q189326,1788,1923,Tehran,51.39,35.69,,,,,,,,missing in Wikidata
+Hotaki Dynasty,Q627449,1709,1737,Kandahar,65.71,31.61,Kandahar,Q45604,no (whole life),65.71588,31.62068,1,100%,agree
+Durrani Empire,Q467627,1748,1775,Kandahar,65.71,31.61,Kandahar,Q45604,yes,65.71588,31.62068,1,100%,agree
+Durrani Empire,Q467627,1776,1827,Kabul,69.17,34.53,Kabul / 0375ddfa07d02daf876fdf1aa7801751 / Kandahar,Q5838,yes,69.165833333,34.532777777,0,92%,agree
+Emirate of Afghanistan,Q1335260,1828,1925,Kabul,69.17,34.53,Kabul,Q5838,no (whole life),69.165833333,34.532777777,0,100%,agree
+Shaybanids,Q856361,1497,1511,Bukhara,64.42,39.77,,,,,,,,missing in Wikidata
+Khanate of Bukhara,Q577668,1516,1787,Bukhara,64.42,39.77,Bukhara,Q5764,no (whole life),64.428611111,39.774722222,1,100%,agree
+Emirate of Bukhara,Q746558,1788,1919,Bukhara,64.42,39.77,Bukhara,Q5764,no (whole life),64.428611111,39.774722222,1,100%,agree
+Khanate of Khiva,Q491106,1512,1919,Khiva,60.36,41.38,Khiva / Köneürgenç,Q486195,no (whole life),60.361111111,41.381388888,0,100%,agree
+Kazakh Khanate,Q1433867,1468,1847,Turkestan,68.25,43.3,Turkistan / Sighnaq / Tashkent,Q848638,yes,68.269166666,43.301944444,2,34%,partly
+Shirvan,Q638064,825,1539,Shamakhi,48.64,40.63,,,,,,,,missing in Wikidata
+Kingdom of Georgia,Q154667,1010,1802,Tbilisi,44.79,41.69,Tbilisi / Kutaisi,Q994,yes,44.7925,41.7225,4,86%,agree
+Kingdom of Kartli,Q195972,1463,1705,Tbilisi,44.79,41.69,Tbilisi,Q994,no (whole life),44.7925,41.7225,4,100%,agree
+Xiongnu,Q188836,-208,153,Longcheng (approx.),102.8,47.5,Chanyu Ting,Q28409755,yes,,,,0%,Wikidata capital has no coordinates
+Göktürk Khaganate,Q15146034,555,586,Ötüken (approx.),101.8,47.5,Suyab,Q413452,no (whole life),75.2667,42.8,2134,0%,disagree
+Western Göktürks,Q205466,587,660,Suyab,75.6,42.8,Ordu-Baliq,Q2475401,no (whole life),102.659444,47.431111,2173,0%,disagree
+Türgesh,Q1277895,692,749,Suyab,75.6,42.8,Suyab,Q413452,no (whole life),75.2667,42.8,27,100%,agree
+Uyghur Khaganate,Q831218,750,849,Ordu-Baliq,102.66,47.43,Ordu-Baliq,Q2475401,no (whole life),102.659444,47.431111,0,100%,agree
+Khazaria,Q173282,630,979,Atil (approx.),47.6,46.4,Balanjar,Q651082,no (whole life),,,,0%,Wikidata capital has no coordinates
+Huns,Q45813,106,425,Pannonia (approx.),20.0,46.9,,,,,,,,missing in Wikidata
+Hunnic Empire,Q45813,426,673,"Attila's court, Pannonia (approx.)",20.0,46.9,,,,,,,,missing in Wikidata
+Avar Khaganate,Q68962,561,805,The Avar Ring (approx.),19.6,46.9,,,,,,,,missing in Wikidata
+Mongol Empire,Q12557,1206,1293,Karakorum,102.83,47.2,Avarga / Karakorum / Khanbaliq,Q4827751,yes,109.152777777,47.094444444,478,30%,partly
+Yuan Dynasty,Q7313,1294,1374,Khanbaliq (Beijing),116.4,39.9,Khanbaliq,Q101186473,no (whole life),116.4,39.933333333,4,100%,agree
+Ilkhanate,Q178084,1294,1305,Tabriz,46.29,38.08,Tabriz / Maragheh / Soltaniyeh,Q80053,no (whole life),46.296111111,38.073888888,1,100%,agree
+Ilkhanate,Q178084,1306,1343,Soltaniyeh,48.8,36.44,Tabriz / Maragheh / Soltaniyeh,Q80053,no (whole life),46.296111111,38.073888888,287,100%,agree
+Golden Horde,Q79965,1294,1695,Sarai,47.4,47.2,Sarai / Sarai Berke / Bolğar,Q477152,no (whole life),,,,0%,Wikidata capital has no coordinates
+White Horde,Q2553863,1363,1384,Sygnak (approx.),68.2,44.3,,,,,,,,missing in Wikidata
+Chagatai Khanate,Q487829,1294,1462,Almaliq,80.8,44.0,Almaliq / Qarshi,Q2627464,no (whole life),80.53305556,44.24,34,0%,disagree
+Moghulistan,Q1191125,1463,1518,Almaliq,80.8,44.0,Aksu / Almaliq / Turpan,Q421648,no (whole life),80.25,41.166389,318,0%,disagree
+Dzungar Khanate,Q1923401,1609,1756,Ghulja,81.32,43.9,Yining,Q866021,no (whole life),81.316667,43.916667,2,100%,agree
+Tibetan Empire,Q2431480,623,849,Lhasa,91.13,29.65,Lhasa,Q5869,no (whole life),91.1408186,29.6457567,1,100%,agree
+Maurya Empire,Q62943,-318,-171,Pataliputra,85.14,25.61,Patna / Pataliputra,Q80484,no (whole life),85.141388888,25.61,0,200%,agree
+Nanda Empire,Q949268,-333,-319,Pataliputra,85.14,25.61,Pataliputra,Q389755,no (whole life),85.144,25.611,0,100%,agree
+Shunga Empire,Q651377,-170,-67,Pataliputra,85.14,25.61,Pataliputra,Q389755,no (whole life),85.144,25.611,0,100%,agree
+Kanva Dynasty,Q784974,-66,-28,Pataliputra,85.14,25.61,,,,,,,,missing in Wikidata
+Magadha - Shaishunaga dynasty,Q972165,-404,-334,Pataliputra,85.14,25.61,Rajgir,Q863683,no (whole life),85.42,25.03,70,0%,disagree
+Gupta Empire,Q11774,324,554,Pataliputra,85.14,25.61,Pataliputra,Q389755,no (whole life),85.144,25.611,0,100%,agree
+Harsha's Empire,Q216895,612,655,Kannauj,79.92,27.05,,,,,,,,missing in Wikidata
+Maukhari Dynasty,Q12448145,555,611,Kannauj,79.92,27.05,Kannauj,Q614890,no (whole life),79.922019444,27.031336111,2,100%,agree
+Pala Empire,Q668412,750,1168,Gauda,88.14,24.87,Pataliputra,Q389755,no (whole life),85.144,25.611,312,0%,disagree
+Mahameghavahana Dynasty,Q6733051,-170,-165,Kalinga (approx.),85.82,20.27,,,,,,,,missing in Wikidata
+Mamluk Dynasty,Q847420,1210,1293,Delhi,77.21,28.61,Delhi,Q1353,no (whole life),77.216666666,28.666666666,6,100%,agree
+Khalji Dynasty,Q919071,1294,1325,Delhi,77.21,28.61,Delhi,Q1353,no (whole life),77.216666666,28.666666666,6,100%,agree
+Tughlaq Dynasty,Q1124402,1326,1414,Delhi,77.21,28.61,Delhi / Deogiri,Q1353,no (whole life),77.216666666,28.666666666,6,100%,agree
+Sur Empire,Q373650,1540,1594,Delhi,77.21,28.61,Delhi,Q1353,no (whole life),77.216666666,28.666666666,6,100%,agree
+Mughal Empire,Q33296,1529,1647,Agra,78.02,27.18,Delhi / Lahore / Fatehpur Sikri,Q1353,yes,77.216666666,28.666666666,183,10%,partly
+Mughal Empire,Q33296,1648,1858,Delhi,77.21,28.61,Old Delhi / Delhi / Lahore,Q3242297,yes,77.23,28.66,6,100%,agree
+Sikh Empire,Q83572,1799,1848,Lahore,74.34,31.55,Gujranwala / Lahore,Q243322,no (whole life),74.183333333,32.15,68,100%,agree
+Republic of India,Q668,1947,2024,New Delhi,77.21,28.61,New Delhi,Q987,no (whole life),77.208888888,28.613888888,0,100%,agree
+Islamic Republic of Pakistan,Q843,1947,2024,Islamabad,73.05,33.68,Islamabad / Rawalpindi,Q1362,yes,73.036944444,33.698888888,2,100%,agree
+Qin Dynasty,Q7183,-218,-209,Xianyang,108.71,34.33,Xianyang,Q2360265,no (whole life),108.857778,34.413889,16,100%,agree
+Han Dynasty,Q1068371,-202,24,Chang'an,108.94,34.34,,,,,,,,skipped: wrong Wikidata identifier in Cliopatria
+Han Dynasty,Q1068371,25,237,Luoyang,112.45,34.62,,,,,,,,skipped: wrong Wikidata identifier in Cliopatria
+Xin Dynasty,Q504769,6,29,Chang'an,108.94,34.34,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,8,100%,agree
+Cao Wei,Q320930,224,264,Luoyang,112.45,34.62,Luoyang,Q187136,no (whole life),112.42447,34.65867,5,100%,agree
+Eastern Wu,Q274488,207,282,Jianye (Nanjing),118.8,32.06,Nanjing,Q16666,yes,118.778888888,32.060833333,2,49%,partly
+Western Jin,Q7352,265,425,Luoyang,112.45,34.62,Luoyang,Q187136,no (whole life),112.42447,34.65867,5,100%,agree
+Liu Song Dynasty,Q49697,426,479,Jiankang (Nanjing),118.8,32.06,Jiankang,Q1330294,no (whole life),118.79647,32.05837,0,100%,agree
+Southern Qi,Q62456,480,509,Jiankang (Nanjing),118.8,32.06,Jiankang,Q1330294,no (whole life),118.79647,32.05837,0,100%,agree
+Liang Dynasty,Q783489,510,560,Jiankang (Nanjing),118.8,32.06,Luoyang,Q187136,no (whole life),112.42447,34.65867,659,0%,disagree
+Sui Dynasty,Q7405,587,627,Daxing (Chang'an),108.94,34.34,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,8,100%,agree
+Tang Dynasty,Q9683,623,910,Chang'an,108.94,34.34,"Chang'an, Tang Empire",Q10923028,yes,108.9,34.266666666,9,98%,agree
+Five Dynasties and Ten Kingdoms,Q242115,911,979,Kaifeng,114.3,34.8,,,,,,,,missing in Wikidata
+Liao Dynasty,Q4958,911,1125,Shangjing,119.2,43.9,Zhongjing / Shangjing Linhuangfu / Liao Nanjing,Q1767796,yes,119.15555556,41.56972222,259,100%,agree
+Northern Song,Q7462,961,1138,Kaifeng,114.3,34.8,Lin'an Prefecture / Bianliang,Q15936775,no (whole life),120.166666666,30.266666666,746,100%,agree
+Southern Song,Q7462,1139,1278,Lin'an (Hangzhou),120.16,30.27,Lin'an Prefecture / Bianliang,Q15936775,no (whole life),120.166666666,30.266666666,1,100%,agree
+Ming Dynasty,Q9903,1375,1420,Nanjing,118.8,32.06,Yingtian Fu,Q15912502,yes,118.766666666,32.05,3,100%,agree
+Ming Dynasty,Q9903,1421,1644,Beijing,116.4,39.9,Shuntian Fu / Yingtian Fu,Q7334692,yes,116.391388888,39.905,1,93%,agree
+Qing Dynasty,Q8733,1645,1911,Beijing,116.4,39.9,Shuntian Fu / Fengtian Fu,Q7334692,yes,116.391388888,39.905,1,100%,agree
+Nanyue,Q827040,-206,-111,Panyu (Guangzhou),113.26,23.13,Panyu County,Q15900973,no (whole life),,,,0%,Wikidata capital has no coordinates
+People's Republic of China,Q148,1950,2024,Beijing,116.4,39.9,,,,,,,,missing in Wikidata
+Goguryeo,Q28370,-36,681,Pyongyang,125.75,39.03,Gungnae / Pyongyang / Jolbon,Q711386,yes,126.17861111,41.12083333,235,34%,partly
+Unified Silla,Q715257,682,935,Gyeongju,129.22,35.86,Gyeongju,Q42097,no (whole life),129.216666666,35.85,1,100%,agree
+Taebong,Q699871,911,921,Cheorwon,127.31,38.15,Kaesong,Q109079,no (whole life),126.552777777,37.971666666,69,0%,disagree
+Goryeo,Q28208,922,1394,Kaesong,126.55,37.97,Kaesong / Ganghwa Island,Q109079,yes,126.552777777,37.971666666,0,92%,agree
+Joseon,Q28405,1395,1897,Hanseong (Seoul),126.98,37.57,Pyongyang / Asadal,Q18808,no (whole life),125.7475,39.016666666,194,0%,disagree
+Korean Empire,Q28233,1898,1910,Seoul,126.98,37.57,Hanseongbu,Q624467,no (whole life),127.0,37.583333333,2,100%,agree
+Warring States Japan,Q204023,1468,1601,Kyoto,135.77,35.01,,,,,,,,missing in Wikidata
+Empire of Japan,Q188712,1868,1945,Tokyo,139.69,35.69,Tokyo City,Q1207735,yes,139.76472222,35.67666667,7,71%,agree
+Khmer Empire,Q201705,800,1867,Angkor,103.87,13.41,Yasodharapura / Koh Ker,Q2654910,yes,103.866666666,13.4125,0,98%,agree
+Chenla,Q1057118,555,717,Isanapura,105.04,12.87,Sambor Prei Kuk,Q1818746,no (whole life),105.040025,12.867283,0,100%,agree
+Chenla,Q1057118,555,717,Isanapura,105.04,12.87,Sambor Prei Kuk,Q1818746,no (whole life),105.040025,12.867283,0,100%,agree
+Majapahit,Q49326,1294,1518,Trowulan,112.38,-7.54,Trowulan Temple,Q962410,no (whole life),112.366667,-7.55,2,100%,agree
+Sultanate of Brunei,Q887803,1363,2024,Brunei,114.94,4.89,Mukim Kota Batu,Q2365632,no (whole life),114.963527777,4.883083333,3,100%,agree
+First Toungoo Empire,Q23039102,1502,1756,Pegu,96.48,17.34,Bago / Taungoo,Q800122,yes,96.498055555,17.343333333,2,24%,partly
+Sukhothai Kingdom,Q863279,1241,1458,Sukhothai,99.82,17.01,Phitsanulok,Q867579,yes,100.263611111,16.815833333,52,0%,disagree
+Rattanakosin Kingdom,Q1155700,1783,1931,Bangkok,100.5,13.75,Bangkok,Q1861,no (whole life),100.516666666,13.75,2,100%,agree
+Lan Xang,Q853477,1363,1708,Luang Prabang,102.13,19.89,Luang Prabang / Vientiane,Q190165,yes,102.134722222,19.89,0,57%,agree
+Vientiane,Q9326,1709,1827,Vientiane,102.6,17.97,,,,,,,,missing in Wikidata
+Republic of Indonesia,Q252,1946,2024,Jakarta,106.85,-6.21,Jakarta / Yogyakarta / Bukittinggi,Q3630,yes,106.826944444,-6.175277777,5,96%,agree
+Rashidun Caliphate,Q12490507,633,656,Medina,39.61,24.47,Medina / Kufa,Q35484,yes,39.61,24.47,0,100%,agree
+Rashidun Caliphate,Q12490507,657,665,Kufa,44.33,32.03,Kufa,Q186234,yes,44.4,32.03,7,56%,agree
+Umayyad Caliphate,Q8575586,656,756,Damascus,36.29,33.51,Damascus / Harran,Q3766,yes,36.292,33.513,0,83%,agree
+Abbasid Caliphate,Q12536,750,1259,Baghdad,44.37,33.31,Baghdad / Samarra / Hashimiyya,Q1530,yes,44.366111111,33.315277777,1,86%,agree
+Fatimid Caliphate,Q160307,911,972,Mahdia,10.06,35.5,Mahdia / Al-Mansuriya,Q466054,yes,11.062222222,35.504722222,91,40%,partly
+Fatimid Caliphate,Q160307,973,1176,Cairo,31.24,30.04,Cairo / Al-Mansuriya,Q85,yes,31.235833333,30.044444444,1,98%,agree
+Tulunids,Q726798,875,910,Fustat,31.24,30.01,Al-Qatta'i,Q4119512,no (whole life),31.233333333,30.016666666,1,100%,agree
+Ayyubid Sultanate,Q180114,1177,1249,Cairo,31.24,30.04,Cairo,Q85,no (whole life),31.235833333,30.044444444,1,100%,agree
+Mamluk Sultanate,Q282428,1241,1518,Cairo,31.24,30.04,Cairo,Q85,no (whole life),31.235833333,30.044444444,1,100%,agree
+Muhammad Ali dynasty,Q3057606,1805,1865,Cairo,31.24,30.04,,,,,,,,missing in Wikidata
+Khedivate of Egypt,Q127861,1866,1884,Cairo,31.24,30.04,Cairo,Q85,no (whole life),31.235833333,30.044444444,1,100%,agree
+United Arab Republic,Q170468,1958,1972,Cairo,31.24,30.04,Cairo,Q85,no (whole life),31.235833333,30.044444444,1,100%,agree
+Hamdanid Emirates,Q837187,936,1259,Aleppo,37.16,36.2,Aleppo,Q41183,no (whole life),37.16,36.2,0,100%,agree
+Zengid dynasty,Q189545,1139,1259,Mosul,43.13,36.34,Mosul / Damascus / Aleppo,Q83317,no (whole life),43.129166666,36.341666666,0,100%,agree
+Qarmatians,Q138803,899,1071,Al-Ahsa,49.6,25.4,,,,,,,,missing in Wikidata
+Uyunid Emirate,Q1448688,1072,1235,Al-Ahsa,49.6,25.4,,,,,,,,missing in Wikidata
+Emirate of Diriyah,Q146871,1744,1819,Diriyah,46.57,24.73,Diriyah,Q277505,no (whole life),46.575555555,24.733333333,1,100%,agree
+Emirate of Nejd,Q146862,1824,1925,Riyadh,46.72,24.63,Riyadh,Q3692,yes,46.715,24.638333333,1,100%,agree
+Sultanate of Muscat and Oman,Q157734,1900,1946,Muscat,58.41,23.59,Muscat,Q3826,no (whole life),58.592222222,23.613888888,19,100%,agree
+Lakhmid Kingdom,Q943191,270,633,Al-Hira,44.4,31.9,Al-Hirah,Q310799,no (whole life),44.39,31.98,9,100%,agree
+Kingdom of Jordan,Q810,1947,2024,Amman,35.93,31.95,Amman,Q3805,no (whole life),35.926084,31.930983,2,100%,agree
+Iraqi Republic,Q796,1960,2005,Baghdad,44.37,33.31,Baghdad,Q1530,no (whole life),44.366111111,33.315277777,1,100%,agree
+State of Israel,Q801,1948,2024,Jerusalem,35.22,31.78,Jerusalem,Q1218,yes,35.234156,31.776679,1,99%,agree
+Almoravid Dynasty,Q75613,1056,1205,Marrakesh,-7.99,31.63,Marrakech / Azougui / Aghmat,Q101625,yes,-7.98108,31.62947,1,61%,agree
+Almohad Caliphate,Q199688,1139,1343,Marrakesh,-7.99,31.63,Tinmel / Marrakech,Q1948981,no (whole life),-8.228472222,30.984638888,75,100%,agree
+Marinid Sultanate,Q582861,1250,1467,Fez,-4.98,34.03,Fez,Q80985,no (whole life),-5.003333333,34.043333333,3,100%,agree
+Saadi Sultanate,Q1136188,1556,1740,Marrakesh,-7.99,31.63,Fez,Q80985,no (whole life),-5.003333333,34.043333333,387,0%,disagree
+Vandals,Q42211,337,438,Carthage,10.32,36.85,Carthage,Q6343,no (whole life),10.312944,36.847009,1,100%,agree
+Ottoman Empire,Q12560,1305,1362,Bursa,29.06,40.18,Bursa / Söğüt / Didymoteicho,Q40738,yes,29.080538888,40.191330555,2,59%,agree
+Ottoman Empire,Q12560,1363,1452,Edirne,26.56,41.68,Edirne / Bursa / Didymoteicho,Q43387,yes,26.57361,41.67304,1,98%,agree
+Ottoman Empire,Q12560,1453,1923,Constantinople (Istanbul),28.98,41.01,Constantinople / Edirne / Istanbul,Q16869,yes,28.976018,41.01224,0,100%,agree
+Germiyanids,Q1324889,1305,1439,Kütahya,29.98,39.42,Kütahya,Q188894,no (whole life),29.983333333,39.424166666,1,100%,agree
+Kingdom of Axum,Q139377,-50,946,Aksum,38.72,14.13,Axum,Q5832,no (whole life),38.733333333,14.116666666,2,100%,agree
+Ethiopian Empire,Q207521,1272,1935,Gondar,37.47,12.6,Gondar / Addis Ababa,Q218861,yes,37.466666666,12.6,0,93%,agree
+Ethiopia,Q115,1942,2024,Addis Ababa,38.76,9.03,Addis Ababa,Q3624,no (whole life),38.7525,9.035833333,1,100%,agree
+Adal Sultanate,Q2365048,1415,1546,Harar,42.12,9.31,Zeila,Q157800,no (whole life),43.473888888,11.353888888,271,0%,disagree
+Mali Empire,Q184536,1236,1611,Niani (approx.),-8.36,11.38,Kangaba,Q1031919,no (whole life),-8.416666666,11.933333333,62,0%,disagree
+Songhai Empire,Q202687,1463,1608,Gao,-0.04,16.27,Gao,Q188904,no (whole life),-0.05,16.266666666,1,100%,agree
+Mahdist State,Q3125368,1890,1899,Omdurman,32.48,15.64,Omdurman,Q180921,no (whole life),32.462887,15.683517,5,100%,agree
+Republic of Sudan,Q1049,1956,2024,Khartoum,32.53,15.5,Khartoum,Q1963,no (whole life),32.52654,15.60308,11,100%,agree
+Federal Republic of Somalia,Q1045,1960,2024,Mogadishu,45.34,2.05,Mogadishu,Q2449,no (whole life),45.341944444,2.039166666,1,100%,agree
+Mali Federation,Q216632,1960,2024,Dakar,-17.47,14.72,Dakar,Q3718,no (whole life),-17.432,14.672555555,7,100%,agree
+Republic of Cabo Verde,Q1011,1976,2024,Praia,-23.51,14.93,Praia,Q3751,no (whole life),-23.509155555,14.917719444,1,100%,agree
+Belgian Congo,Q213510,1890,1962,Léopoldville,15.31,-4.32,Boma / Kinshasa,Q223917,no (whole life),13.05,-5.85,303,100%,agree
+South African Republic,Q550374,1856,1899,Pretoria,28.19,-25.75,Pretoria,Q3926,no (whole life),28.188055555,-25.746388888,0,100%,agree
+South Africa,Q258,1932,2024,Pretoria,28.19,-25.75,Pretoria / Cape Town / Bloemfontein,Q3926,no (whole life),28.188055555,-25.746388888,0,100%,agree
+Merovingian Empire,Q146246,462,717,Paris,2.35,48.86,Tournai,Q173219,yes,3.388055555,50.605555555,208,0%,disagree
+Merovingian Empire,Q146246,710,717,Paris,2.35,48.86,,,,,,,,missing in Wikidata
+Carolingian Empire,Q146246,718,723,Aachen,6.08,50.78,,,,,,,,missing in Wikidata
+Carolingian Empire,Q146246,718,989,Aachen,6.08,50.78,Aachen,Q1017,yes,6.083788,50.776207,0,28%,partly
+West Franks,Q46370,850,989,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Aquitaine,Q1179,629,895,Toulouse,1.44,43.6,Bordeaux,Q1479,no (whole life),-0.579444444,44.837777777,212,0%,disagree
+Kingdom of Germany,Q175211,911,961,Aachen,6.08,50.78,Regensburg,Q2978,no (whole life),12.083333333,49.016666666,472,0%,disagree
+Holy Roman Empire,Q12548,922,1437,Aachen (coronations),6.08,50.78,Aachen / Prague,Q1017,yes,6.083788,50.776207,0,75%,agree
+Holy Roman Empire,Q12548,1438,1806,Vienna (Habsburg court),16.37,48.21,Wetzlar / Regensburg / Vienna,Q4178,yes,8.5,50.566666666,627,23%,partly
+Holy Roman Empire,Q12548,962,1437,Aachen (coronations),6.08,50.78,Aachen / Prague,Q1017,yes,6.083788,50.776207,0,81%,agree
+Holy Roman Empire,Q12548,1438,1621,Vienna (Habsburg court),16.37,48.21,Prague,Q1085,yes,14.421388888,50.0875,252,0%,disagree
+Holy Roman Empire Minor States,Q12548,1260,1806,Frankfurt,8.68,50.11,Prague / Wetzlar / Regensburg,Q1085,yes,14.421388888,50.0875,409,0%,disagree
+Bavarians,Q13048507,540,787,Regensburg,12.1,49.01,,,,,,,,missing in Wikidata
+Kingdom of France,Q207162,990,1791,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Kingdom of France,Q207162,990,1791,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Bourbon Kingdom of France,Q207162,1815,1847,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Bourbon Kingdom of France,Q207162,1815,1848,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French First Republic,Q58296,1791,1795,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French First Republic,Q58296,1792,1795,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Consulate,Q877619,1800,1804,Paris,2.35,48.86,,,,,,,,missing in Wikidata
+French Consulate,Q877619,1800,1804,Paris,2.35,48.86,,,,,,,,missing in Wikidata
+First French Empire,Q71084,1805,1814,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+First French Empire,Q71084,1805,1814,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Second Republic,Q58326,1848,1852,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Second Republic,Q58326,1848,1852,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Second French Empire,Q71092,1853,1870,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Second French Empire,Q71092,1853,1870,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Third Republic,Q70802,1871,1939,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Third Republic,Q70802,1871,1939,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+Vichy France,Q69808,1940,1944,Vichy,3.43,46.13,Vichy / Paris,Q93351,no (whole life),3.425833333,46.126944444,0,100%,agree
+Vichy France,Q69808,1940,1943,Vichy,3.43,46.13,Vichy / Paris,Q93351,no (whole life),3.425833333,46.126944444,0,100%,agree
+Free French,Q152582,1940,1944,Brazzaville,15.27,-4.26,Algiers / Brazzaville / London,Q3561,no (whole life),3.058611111,36.776388888,4736,100%,agree
+French Fourth Republic,Q69829,1945,1957,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Fourth Republic,Q69829,1945,1957,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Fifth Republic,Q200686,1958,2024,Paris,2.35,48.86,Paris,Q90,no (whole life),2.352222222,48.856666666,0,100%,agree
+French Mandate for Syria and Lebanon,Q139708,1920,1945,Damascus,36.29,33.51,Beirut / Aleppo,Q3820,yes,35.513055555,33.886944444,83,0%,disagree
+Angevin Empire,Q538677,1147,1209,Angers,-0.55,47.47,,,,,,,,missing in Wikidata
+Kingdom of England,Q179876,936,1708,London,-0.13,51.51,Westminster / London / City of London,Q189960,yes,-0.1333,51.4995,1,236%,agree
+Kingdom of England,Q179876,936,1708,London,-0.13,51.51,Westminster / London / City of London,Q189960,yes,-0.1333,51.4995,1,236%,agree
+Commonwealth of England,Q330362,1645,1661,London,-0.13,51.51,London,Q84,no (whole life),-0.1275,51.507222222,0,100%,agree
+British Empire,Q8680,1706,1999,London,-0.13,51.51,London,Q84,no (whole life),-0.1275,51.507222222,0,100%,agree
+British Empire,Q8680,1757,1858,London,-0.13,51.51,London,Q84,no (whole life),-0.1275,51.507222222,0,100%,agree
+Commonwealth of Nations,Q7785,2000,2024,London,-0.13,51.51,,,,,,,,missing in Wikidata
+North Sea Empire,Q3281269,1018,1039,Winchester,-1.31,51.06,Ribe,Q322361,no (whole life),8.763056,55.327222,821,0%,disagree
+Dutch Republic,Q170072,1582,1795,Amsterdam,4.9,52.37,The Hague,Q36600,no (whole life),4.31,52.08,52,0%,disagree
+Dutch Republic,Q170072,1582,1795,Amsterdam,4.9,52.37,The Hague,Q36600,no (whole life),4.31,52.08,52,0%,disagree
+Netherlands,Q55,1811,2024,Amsterdam,4.9,52.37,Amsterdam,Q727,no (whole life),4.883333333,52.366666666,1,100%,agree
+Netherlands,Q55,1815,2024,Amsterdam,4.9,52.37,Amsterdam,Q727,no (whole life),4.883333333,52.366666666,1,100%,agree
+Kingdom of Belgium,Q31,1830,2024,Brussels,4.35,50.85,Brussels,Q239,no (whole life),4.351666666,50.846666666,0,100%,agree
+Visigothic Kingdom,Q126936,426,506,Toulouse,1.44,43.6,Toulouse,Q7880,yes,1.443333333,43.604444444,1,100%,agree
+Visigothic Kingdom,Q126936,507,723,Toledo,-4.02,39.86,Toledo / Barcelona / Toulouse,Q5836,yes,-4.033333333,39.866666666,1,78%,agree
+Kingdom of the Suebi,Q1048918,414,586,Braga,-8.43,41.55,Braga,Q83247,no (whole life),-8.416666666,41.533333333,2,100%,agree
+Caliphate of Córdoba,Q171740,936,1071,Córdoba,-4.78,37.89,Córdoba,Q5818,no (whole life),-4.78,37.89,0,100%,agree
+Emirate of Córdoba,Q1337854,757,935,Córdoba,-4.78,37.89,Córdoba,Q5818,no (whole life),-4.78,37.89,0,100%,agree
+Kingdom of León,Q175276,911,1235,León,-5.57,42.6,León,Q15699,no (whole life),-5.566944444,42.598888888,0,100%,agree
+Kingdom of Castile,Q179293,961,1235,Burgos,-3.7,42.34,Burgos,Q9580,no (whole life),-3.699722222,42.340833333,0,100%,agree
+Crown of Castile,Q217196,1236,1515,Valladolid,-4.72,41.65,Madrid / Valladolid,Q2807,no (whole life),-3.703333333,40.416944444,161,100%,agree
+Crown of Aragon,Q204920,1169,1515,Barcelona,2.17,41.39,,,,,,,,missing in Wikidata
+Spanish Empire,Q80702,1516,1560,Toledo,-4.02,39.86,Toledo city / Valladolid city,Q31844059,no (whole life),-4.024974933,39.8565219,1,100%,agree
+Spanish Empire,Q80702,1561,1879,Madrid,-3.7,40.42,Toledo city / Valladolid city,Q31844059,no (whole life),-4.024974933,39.8565219,68,0%,disagree
+Spanish Empire,Q80702,1516,1560,Toledo,-4.02,39.86,Toledo city / Valladolid city,Q31844059,no (whole life),-4.024974933,39.8565219,1,100%,agree
+Spanish Empire,Q80702,1561,1931,Madrid,-3.7,40.42,Madrid city / Toledo city / Valladolid city,Q116170766,yes,-3.68760088,40.40841191,2,88%,agree
+Kingdom of Spain,Q29,1516,2024,Madrid,-3.7,40.42,Madrid / Toledo city / Madrid city,Q2807,yes,-3.703333333,40.416944444,0,91%,agree
+First Spanish Republic,Q497777,1873,1876,Madrid,-3.7,40.42,Madrid,Q2807,no (whole life),-3.703333333,40.416944444,0,100%,agree
+Second Spanish Republic,Q178038,1932,1938,Madrid,-3.7,40.42,Barcelona / Madrid,Q1492,no (whole life),2.176944444,41.3825,505,100%,agree
+Francoist Spain,Q13474305,1939,1975,Madrid,-3.7,40.42,Madrid / Salamanca,Q2807,yes,-3.703333333,40.416944444,0,100%,agree
+Kingdom of Portugal,Q45670,1147,1911,Lisbon,-9.14,38.72,Lisbon / Coimbra / Rio de Janeiro,Q597,yes,-9.139016,38.708042,1,84%,agree
+Portuguese Empire,Q200464,1502,1910,Lisbon,-9.14,38.72,Lisbon / Rio de Janeiro,Q597,yes,-9.139016,38.708042,1,99%,agree
+Portuguese Empire,Q200464,1502,1823,Lisbon,-9.14,38.72,Lisbon / Rio de Janeiro,Q597,yes,-9.139016,38.708042,1,98%,agree
+Portuguese Republic,Q167360,1911,1925,Lisbon,-9.14,38.72,Lisbon,Q597,no (whole life),-9.139016,38.708042,1,100%,agree
+Estado Novo,Q824489,1926,2024,Lisbon,-9.14,38.72,Lisbon,Q597,no (whole life),-9.139016,38.708042,1,100%,agree
+Ostrogoths,Q103122,455,499,Sirmium (approx.),19.61,44.97,,,,,,,,missing in Wikidata
+Ostrogothic Kingdom,Q583038,500,560,Ravenna,12.2,44.42,Ravenna / Pavia,Q13364,yes,12.201666666,44.416111111,0,66%,agree
+Lombards,Q130900,480,586,Pavia,9.16,45.19,,,,,,,,missing in Wikidata
+Kingdom of the Gepids,Q201706,510,566,Sirmium,19.61,44.97,,,,,,,,missing in Wikidata
+Republic of Venice,Q4948,705,1796,Venice,12.34,45.44,Venice / Malamocco / Eraclea,Q641,yes,12.331944444,45.439722222,1,97%,agree
+Kingdom of Italy,Q172579,587,1946,Rome,12.48,41.89,Rome / Florence / Turin,Q220,yes,12.482777777,41.893055555,0,6%,partly
+Italian Africa,Q926295,1890,1943,Rome,12.48,41.89,Rome,Q220,no (whole life),12.482777777,41.893055555,0,100%,agree
+German Confederation,Q151624,1815,1867,Frankfurt,8.68,50.11,Free City of Frankfurt,Q704300,no (whole life),8.68222222,50.11027778,0,100%,agree
+North German Confederation,Q150981,1868,1870,Berlin,13.4,52.52,Berlin,Q64,no (whole life),13.383333333,52.516666666,1,100%,agree
+Kingdom of Prussia,Q27306,1702,1863,Berlin,13.4,52.52,Berlin / Klaipėda,Q64,yes,13.383333333,52.516666666,1,99%,agree
+German Empire,Q43287,1871,1919,Berlin,13.4,52.52,Berlin,Q64,no (whole life),13.383333333,52.516666666,1,100%,agree
+German Africa,Q5551337,1871,1918,Berlin,13.4,52.52,,,,,,,,missing in Wikidata
+Weimar Republic,Q41304,1920,1935,Berlin,13.4,52.52,Berlin,Q64,no (whole life),13.383333333,52.516666666,1,100%,agree
+Nazi Germany,Q7318,1936,1944,Berlin,13.4,52.52,Berlin,Q64,no (whole life),13.383333333,52.516666666,1,100%,agree
+Habsburg Monarchy,Q66504140,1459,1805,Vienna,16.37,48.21,,,,,,,,missing in Wikidata
+Habsburg Monarchy,Q66504140,1487,1805,Vienna,16.37,48.21,,,,,,,,missing in Wikidata
+House of Habsburg,Q65968,1260,1515,Vienna,16.37,48.21,,,,,,,,missing in Wikidata
+Austrian Empire,Q131964,1806,1867,Vienna,16.37,48.21,Vienna,Q1741,no (whole life),16.3725,48.208333333,0,100%,agree
+Austria-Hungary,Q28513,1868,1918,Vienna,16.37,48.21,Vienna / Budapest,Q1741,no (whole life),16.3725,48.208333333,0,100%,agree
+Great Moravia,Q193152,814,910,Veligrad (approx.),17.05,48.8,Veligrad,Q1131299,no (whole life),,,,0%,Wikidata capital has no coordinates
+Samo's Empire,Q149427,623,660,Moravia (approx.),17.05,48.8,Devín,Q661046,no (whole life),16.98333333,48.17388889,70,0%,disagree
+Carantania,Q501754,661,749,Karnburg,14.33,46.68,Maria Saal,Q702126,no (whole life),14.348611111,46.680833333,1,100%,agree
+Czechoslovakia,Q33946,1919,1991,Prague,14.42,50.08,Prague,Q1085,no (whole life),14.421388888,50.0875,1,100%,agree
+Old Kingdom of Norway,Q202266,866,1401,Bergen,5.32,60.39,,,,,,,,missing in Wikidata
+Kingdom of Denmark,Q756617,936,1406,Copenhagen,12.57,55.68,Copenhagen,Q1748,no (whole life),12.568888888,55.676111111,0,100%,agree
+Kingdom of Denmark,Q756617,936,1406,Copenhagen,12.57,55.68,Copenhagen,Q1748,no (whole life),12.568888888,55.676111111,0,100%,agree
+Denmark,Q350186,1945,2024,Copenhagen,12.57,55.68,,,,,,,,missing in Wikidata
+Norway-Denmark,Q62651,1046,1055,Copenhagen,12.57,55.68,Copenhagen / Oslo,Q1748,no (whole life),12.568888888,55.676111111,0,100%,agree
+Denmark-Norway,Q62651,1526,1940,Copenhagen,12.57,55.68,Copenhagen / Oslo,Q1748,no (whole life),12.568888888,55.676111111,0,100%,agree
+Kalmar Union,Q62623,1402,1525,Copenhagen,12.57,55.68,Oslo / Stockholm / Copenhagen,Q585,yes,10.738888888,59.913333333,483,65%,agree
+Kalmar Union,Q62623,1402,1525,Copenhagen,12.57,55.68,Oslo / Stockholm / Copenhagen,Q585,yes,10.738888888,59.913333333,483,65%,agree
+Kingdom of Sweden,Q34,980,2024,Stockholm,18.07,59.33,Stockholm,Q1754,no (whole life),18.068611111,59.329444444,0,100%,agree
+Swedish Empire,Q215443,1612,1814,Stockholm,18.07,59.33,Stockholm,Q1754,no (whole life),18.068611111,59.329444444,0,100%,agree
+United Kingdoms of Sweden and Norway,Q62589,1815,1904,Stockholm,18.07,59.33,Christiania / Stockholm,Q21711493,no (whole life),,,,100%,Wikidata capital has no coordinates
+Pro-Swedish Poland,Q10543737,1706,1712,Warsaw,21.01,52.23,,,,,,,,missing in Wikidata
+Republic of Finland,Q33,1918,2024,Helsinki,24.94,60.17,Helsinki,Q1757,yes,24.9375,60.170833333,0,100%,agree
+Kingdom of Poland,Q577867,962,1449,Gniezno,17.6,52.53,Gniezno,Q51432,no (whole life),17.6,52.533333333,0,100%,agree
+Kingdom of Poland,Q577867,962,1449,Gniezno,17.6,52.53,Gniezno,Q51432,no (whole life),17.6,52.533333333,0,100%,agree
+Polish-Lithuania Kingdom,Q194355,1395,1449,Kraków,19.94,50.06,,,,,,,,missing in Wikidata
+House of Jagiellon,Q194355,1450,1571,Kraków,19.94,50.06,,,,,,,,missing in Wikidata
+Polish-Lithuanian Commonwealth,Q172107,1572,1595,Kraków,19.94,50.06,Vilnius / Kraków,Q216,yes,25.28,54.687222222,629,100%,agree
+Polish-Lithuanian Commonwealth,Q172107,1596,1793,Warsaw,21.01,52.23,Warsaw / Vilnius / Kraków,Q270,yes,21.011111111,52.23,0,100%,agree
+Second Polish Republic,Q207272,1919,1939,Warsaw,21.01,52.23,Warsaw,Q270,no (whole life),21.011111111,52.23,0,100%,agree
+Grand Duchy of Lithuania,Q49683,1220,1449,Vilnius,25.28,54.69,Navahrudak / Vilnius / Kernavė,Q278743,yes,25.825555555,53.599166666,126,57%,agree
+Livonian Brothers of the Sword,Q157605,1202,1240,Riga,24.1,56.95,,,,,,,,missing in Wikidata
+Livonian Conference,Q33698,1422,1563,Riga,24.1,56.95,,,,,,,,missing in Wikidata
+Principality of Polotsky,Q200797,1056,1249,Polotsk,28.8,55.49,,,,,,,,missing in Wikidata
+Kievan Rus',Q1108445,882,1240,Kyiv,30.52,50.45,Kyiv,Q1899,yes,30.523611111,50.45,0,100%,agree
+Halych-Volhynia occupation,Q239502,1056,1240,Halych,24.72,49.12,Halych / Chełm / Volodymyr,Q146450,no (whole life),24.721666666,49.112777777,1,100%,agree
+Tsardom of Russia,Q186096,1547,1720,Moscow,37.62,55.75,Moscow / Saint Petersburg,Q649,yes,37.6175,55.750555555,0,95%,agree
+Russian Empire,Q34266,1721,1916,St Petersburg,30.32,59.94,Saint Petersburg / Moscow,Q656,yes,30.316666666,59.95,1,99%,agree
+Republics of the Soviet Union,Q236036,1920,1921,Moscow,37.62,55.75,,,,,,,,missing in Wikidata
+Union of Soviet Socialist Republics,Q15180,1922,1991,Moscow,37.62,55.75,Moscow,Q649,yes,37.6175,55.750555555,0,100%,agree
+Principality of Hungary,Q2899771,900,999,Esztergom,18.74,47.79,Székesfehérvár / Esztergom,Q130212,no (whole life),18.410811,47.1910169,71,100%,agree
+Kingdom of Hungary,Q171150,1000,1360,Esztergom,18.74,47.79,Buda / Székesfehérvár / Esztergom,Q193478,yes,19.05,47.466666666,43,81%,agree
+Kingdom of Hungary,Q171150,1361,1546,Buda,19.04,47.5,Székesfehérvár / Buda / Visegrád,Q130212,yes,18.410811,47.1910169,59,89%,agree
+Eastern Hungarian Kingdom,Q625380,1529,1571,Gyulafehérvár (Alba Iulia),23.58,46.07,Alba Iulia / Buda / Lipova,Q174665,yes,23.572777777,46.076388888,1,67%,agree
+Hungarian Nationalists,Q28513,1849,1957,Debrecen,21.63,47.53,Vienna / Budapest,Q1741,no (whole life),16.3725,48.208333333,399,0%,disagree
+Hungarian Republic,Q28,1919,1943,Budapest,19.04,47.5,Budapest,Q1781,no (whole life),19.040833333,47.498333333,0,100%,agree
+Principality of Upper Hungary,Q7245120,1683,1686,Kassa (Košice),21.26,48.72,Košice,Q25409,no (whole life),21.25,48.716666666,1,100%,agree
+Principality of Moldavia,Q10957559,1363,1563,Suceava,26.25,47.65,Suceava / Siret,Q46400,yes,26.255555555,47.651388888,0,88%,agree
+Principality of Moldavia,Q10957559,1564,1858,Iași,27.59,47.16,Iași / Suceava,Q46852,yes,27.588888888,47.162222222,0,100%,agree
+Kingdom of Romania,Q203493,1919,1947,Bucharest,26.1,44.43,Bucharest,Q19660,yes,26.097777777,44.413361111,2,100%,agree
+Old Great Bulgaria,Q191484,633,681,Phanagoria,36.98,45.27,,,,,,,,missing in Wikidata
+First Bulgarian Empire,Q203817,682,892,Pliska,27.12,43.38,Ohrid / Veliki Preslav / Skopje,Q1223508,no (whole life),20.801944444,41.116944444,578,100%,agree
+First Bulgarian Empire,Q203817,893,1017,Preslav,26.82,43.16,Ohrid / Veliki Preslav / Skopje,Q1223508,no (whole life),20.801944444,41.116944444,546,100%,agree
+Second Bulgarian Empire,Q420759,1188,1394,Tarnovo,25.63,43.08,Veliko Tarnovo,Q173474,no (whole life),25.628291,43.078652,0,100%,agree
+Kingdom of Serbia,Q241748,1188,1884,Ras,20.51,43.14,Belgrade,Q3711,no (whole life),20.456944444,44.817777777,187,0%,disagree
+Serbian Empire,Q1406298,1352,1458,Skopje,21.43,42.0,Prizren / Skopje,Q200061,no (whole life),20.74,42.23,62,100%,agree
+Serbian Despots,Q878319,1375,1421,Belgrade,20.46,44.82,Belgrade,Q3711,no (whole life),20.456944444,44.817777777,0,100%,agree
+Serbs,Q127885,1805,1915,Belgrade,20.46,44.82,,,,,,,,missing in Wikidata
+Kingdom of Croatia,Q858841,926,1098,Knin,16.2,44.04,Nin / Biograd na Moru / Šibenik,Q396372,no (whole life),15.181111111,44.239722222,84,0%,disagree
+Kingdom of Bosnia,Q2980623,1385,1481,Jajce,17.27,44.34,Bobovac / Royal court in Sutjeska / Jajce,Q33186,yes,18.238046127,44.136676979,80,4%,partly
+Yugoslavia,Q83286,1919,1945,Belgrade,20.46,44.82,Belgrade,Q3711,no (whole life),20.456944444,44.817777777,0,100%,agree
+Socialist Federal Republic of Yugoslavia,Q83286,1946,1991,Belgrade,20.46,44.82,Belgrade,Q3711,no (whole life),20.456944444,44.817777777,0,100%,agree
+Serbia-Montenegro,Q37024,1992,2005,Belgrade,20.46,44.82,Belgrade,Q3711,no (whole life),20.456944444,44.817777777,0,100%,agree
+Republic of Cyprus,Q229,1961,2024,Nicosia,33.37,35.17,Nicosia,Q3856,no (whole life),33.365,35.1725,1,100%,agree
+Inca Empire,Q28573,1440,1571,Cusco,-71.97,-13.53,Cusco,Q5582862,no (whole life),-71.978611111,-13.516944444,2,100%,agree
+United States of America,Q30,1776,2024,Washington,-77.04,38.9,"Washington, D.C. / Philadelphia / New York City",Q61,yes,-77.036666666,38.895,1,90%,agree
+Gran Colombia,Q199821,1822,1833,Bogotá,-74.07,4.71,Bogotá,Q2841,no (whole life),-74.08175,4.60971,11,100%,agree
+Republic of New Granada,Q630882,1834,1858,Bogotá,-74.07,4.71,Bogotá,Q2841,no (whole life),-74.08175,4.60971,11,100%,agree
+Granadine Confederation,Q1141215,1859,1862,Bogotá,-74.07,4.71,Tunja / Bogotá,Q236744,no (whole life),-73.361388888,5.540277777,121,100%,agree
+United States of Colombia,Q1061488,1863,1865,Bogotá,-74.07,4.71,Bogotá,Q2841,no (whole life),-74.08175,4.60971,11,100%,agree
+Republic of Colombia,Q739,1866,2024,Bogotá,-74.07,4.71,Bogotá,Q2841,no (whole life),-74.08175,4.60971,11,100%,agree
+United Provinces of Central America,Q190025,1824,1839,Guatemala City,-90.51,14.63,Guatemala City / San Salvador / Sonsonate,Q1555,yes,-90.513333333,14.641666666,1,69%,agree
+Empire of Brazil,Q217230,1822,1889,Rio de Janeiro,-43.17,-22.9,Rio de Janeiro,Q8678,no (whole life),-43.205555555,-22.911111111,4,100%,agree
+Bolivia,Q750,1825,2024,Sucre,-65.26,-19.04,La Paz / Sucre,Q1491,yes,-68.133333333,-16.495833333,415,37%,partly
+Empire of Haiti,Q2006756,1805,1915,Port-au-Prince,-72.34,18.54,Port-au-Prince,Q34261,no (whole life),-72.340277777,18.546944444,1,100%,agree
+Commonwealth of Australia,Q408,1905,2024,Canberra,149.13,-35.28,Canberra / Melbourne,Q3114,yes,149.126944444,-35.293055555,1,82%,agree
+Middle Kingdom of Egypt,Q191324,-2000,-1601,,,,Thebes,Q101583,no (whole life),32.610277777,25.720555555,,,missing in the hand-placed list
+Shang Dynasty,Q128938,-1600,-1001,,,,Yinxu,Q464904,no (whole life),114.318611111,36.1225,,,missing in the hand-placed list
+Mitanni,Q178665,-1500,-1241,,,,Tell el Fakhariya,Q1149666,no (whole life),40.068694444,36.840027777,,,missing in the hand-placed list
+Phoenician Empire,Q41642,-1150,-501,,,,Tyre,Q82070,no (whole life),35.2,33.266666666,,,missing in the hand-placed list
+Kingdom of Kush,Q241790,-1000,346,,,,Napata,Q743282,no (whole life),31.81666667,18.53333333,,,missing in the hand-placed list
+Kingdom of Judah,Q48685,-900,-701,,,,Jerusalem,Q1218,yes,35.234156,31.776679,,,missing in the hand-placed list
+Kingdom of Urartu,Q185068,-800,-551,,,,Tushpa,Q766324,no (whole life),43.3425,38.5,,,missing in the hand-placed list
+Chu,Q504759,-750,-701,,,,Danyang,Q5221425,yes,119.6012702,32.0109736,,,missing in the hand-placed list
+Qin,Q1471995,-750,-219,,,,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,,,missing in the hand-placed list
+Roman Kingdom,Q201038,-750,-481,,,,Roma,Q18287233,no (whole life),12.485277777,41.892222222,,,missing in the hand-placed list
+Qi,Q1143524,-750,-204,,,,Ye,Q1274372,no (whole life),114.4002,36.2748,,,missing in the hand-placed list
+Song,Q7462,-750,-285,,,,Lin'an Prefecture,Q15936775,no (whole life),120.166666666,30.266666666,,,missing in the hand-placed list
+Teng,Q1356151,-750,-451,,,,Tengzhou,Q1207076,no (whole life),117.15,35.083333333,,,missing in the hand-placed list
+Chen,Q1069690,-750,-451,,,,Huaiyang District,Q1198882,no (whole life),114.86686,33.73344,,,missing in the hand-placed list
+Wey,Q1147897,-750,-248,,,,Zhaoge,Q837807,no (whole life),114.194166666,35.602222222,,,missing in the hand-placed list
+Lu,Q555994,-750,-248,,,,Tabriz,Q80053,yes,46.296111111,38.073888888,,,missing in the hand-placed list
+Zheng,Q197598,-750,-367,,,,Huazhou District,Q727188,no (whole life),109.7,34.45,,,missing in the hand-placed list
+Cai,Q1025803,-750,-451,,,,Xincai County,Q1199071,no (whole life),114.97063,32.75282,,,missing in the hand-placed list
+Yan,Q1472004,-750,-204,,,,Ji,Q6192085,no (whole life),116.382425,39.894262,,,missing in the hand-placed list
+Later Zhou,Q1154556,-750,960,,,,Kaifeng,Q208471,no (whole life),114.345,34.795,,,missing in the hand-placed list
+Wu,Q274488,-750,-451,,,,Ezhou,Q71305,yes,114.88418,30.39724,,,missing in the hand-placed list
+Lydia,Q620765,-700,-541,,,,Sardis,Q232615,no (whole life),28.040286,38.488314,,,missing in the hand-placed list
+Janapada of Avanti,Q4827705,-600,-405,,,,Ujjain,Q200119,no (whole life),75.777222222,23.182777777,,,missing in the hand-placed list
+Janapada of Anga,Q1155818,-600,-501,,,,Champapuri,Q5069932,no (whole life),86.94169444,25.23741667,,,missing in the hand-placed list
+Janapada of Magadha,Q234009,-600,-501,,,,Rajgir,Q863683,no (whole life),85.42,25.03,,,missing in the hand-placed list
+Janapada of Malla,Q1376303,-600,-451,,,,Kushinagar,Q825673,no (whole life),83.888888888,26.740277777,,,missing in the hand-placed list
+Janapada of Vajji,Q605199,-600,-481,,,,Vaishali,Q1509463,no (whole life),85.125591666,25.986594444,,,missing in the hand-placed list
+Janapada of Kuru,Q1068408,-600,-405,,,,Assandh,Q583672,no (whole life),76.605555555,29.521111111,,,missing in the hand-placed list
+Janapada of Kosala,Q756854,-600,-451,,,,Shravasti,Q2594448,no (whole life),82.050619,27.517073,,,missing in the hand-placed list
+Janapada of Matsya,Q2665398,-600,-405,,,,Viratnagar,Q2544533,no (whole life),76.18,27.45,,,missing in the hand-placed list
+Janapada of Surasena,Q1330149,-600,-405,,,,Mathura,Q200311,no (whole life),77.673673,27.4924134,,,missing in the hand-placed list
+Janapada of Vatsa,Q1331184,-600,-451,,,,Kauśāmbī,Q1194868,no (whole life),81.392897222,25.338983333,,,missing in the hand-placed list
+Janapada of Gandhāra,Q112980583,-600,-501,,,,Taxila,Q156093,no (whole life),72.7875,33.745833333,,,missing in the hand-placed list
+Janapada of Kāśī,Q12660335,-600,-451,,,,Varanasi,Q79980,no (whole life),83.012777777,25.318888888,,,missing in the hand-placed list
+Yue,Q1936158,-500,-334,,,,Yecheng,Q9433543,no (whole life),,,,,missing in the hand-placed list
+Odrysian Kingdom,Q870517,-450,-338,,,,Seuthopolis,Q1291235,no (whole life),25.305556,42.618056,,,missing in the hand-placed list
+Zhao,Q1574107,-404,-226,,,,Linfen,Q73156,no (whole life),111.50865,36.08121,,,missing in the hand-placed list
+Cimmerian Bosporus,Q321371,-404,372,,,,Panticapaeum,Q906661,no (whole life),36.468056,45.338611,,,missing in the hand-placed list
+Wei,Q320930,-404,-204,,,,Luoyang,Q187136,no (whole life),112.42447,34.65867,,,missing in the hand-placed list
+Han,Q1968654,-404,-203,,,,Manisa,Q147089,no (whole life),27.426388888,38.611944444,,,missing in the hand-placed list
+Minaeans,Q1177379,-383,-26,,,,Qarnawu,Q1517913,no (whole life),44.81527778,16.12805556,,,missing in the hand-placed list
+Qataban,Q748595,-350,183,,,,Timna,Q1533048,no (whole life),45.815833333,15.001666666,,,missing in the hand-placed list
+Minyue,Q1936158,-333,-111,,,,Yecheng,Q9433543,no (whole life),,,,,missing in the hand-placed list
+Atropatene,Q260437,-307,-165,,,,Ganzak,Q2607082,no (whole life),46.193187,37.011555,,,missing in the hand-placed list
+Colchis,Q183150,-301,-231,,,,Kutaisi,Q172415,no (whole life),42.705555555,42.271666666,,,missing in the hand-placed list
+Early Cheras,Q877155,-291,305,,,,Karur,Q817218,no (whole life),78.075,10.96,,,missing in the hand-placed list
+Aetolian League,Q245273,-284,-189,,,,Thermos,Q38281115,no (whole life),21.668664,38.559853,,,missing in the hand-placed list
+Achaean League,Q244796,-279,-145,,,,Aigio,Q212686,no (whole life),22.081111111,38.250555555,,,missing in the hand-placed list
+Galatia,Q26847,-279,-26,,,,Ancyra,Q107585355,no (whole life),28.855086,39.155825,,,missing in the hand-placed list
+Kingdom of Pergamon,Q2022162,-279,-127,,,,Pergamon,Q18986,no (whole life),27.183333,39.116667,,,missing in the hand-placed list
+Âu Lạc,Q867227,-256,-207,,,,Co Loa Citadel,Q798059,no (whole life),105.873206,21.113408,,,missing in the hand-placed list
+Kingdom of Sophene,Q2626105,-256,113,,,,Arsamosata,Q646120,no (whole life),39.5109175,38.6608665,,,missing in the hand-placed list
+Kingdom of Cappadocia,Q29654286,-239,22,,,,Caesarea of Cappadocia,Q10439273,no (whole life),35.4875,38.7225,,,missing in the hand-placed list
+Satavahana Dynasty,Q5257,-225,223,,,,Amaravathi,Q2087762,no (whole life),80.358,16.573,,,missing in the hand-placed list
+Mauretania,Q309272,-212,42,,,,Volubilis,Q391215,no (whole life),-5.5626871,34.0399646,,,missing in the hand-placed list
+Zhai,Q7183,-208,-204,,,,Xianyang,Q2360265,no (whole life),108.857778,34.413889,,,missing in the hand-placed list
+Gojoseon,Q28405,-197,-195,,,,Pyongyang,Q18808,no (whole life),125.7475,39.016666666,,,missing in the hand-placed list
+Korean Jin,Q1155101,-197,-92,,,,7c975f2b03bc394b3ad4beccbfcef4a4,7c975f2b03bc394b3ad4beccbfcef4a4,no (whole life),,,,,missing in the hand-placed list
+Himyarite Kingdom,Q289577,-110,601,,,,Zafar,Q140131,no (whole life),44.40287441,14.21389794,,,missing in the hand-placed list
+Great Yuan,Q7313,-110,50,,,,Khanbaliq,Q101186473,no (whole life),116.4,39.933333333,,,missing in the hand-placed list
+Kingdom of Osroene,Q237234,-63,214,,,,Edessa,Q1190403,no (whole life),38.7825,37.15,,,missing in the hand-placed list
+Caucasian Iberia,Q19083,-63,533,,,,Armaztsikhe,Q1280770,no (whole life),44.72166,41.83763,,,missing in the hand-placed list
+Caucasian Albania,Q177076,-63,509,,,,Kabalaka,Q4206513,no (whole life),47.706461078,40.883746013,,,missing in the hand-placed list
+Kingdom of Commagene,Q332137,-63,77,,,,Samosata,Q1026347,no (whole life),38.471342,37.564519,,,missing in the hand-placed list
+Lazica,Q136884,-63,545,,,,Nokalakevi,Q2586542,no (whole life),42.19388889,42.35722222,,,missing in the hand-placed list
+Kingdom of Adiabene,Q149747,-63,370,,,,Erbil,Q132754,no (whole life),44.009444444,36.191111111,,,missing in the hand-placed list
+Indo-Parthians,Q1255614,1,90,,,,Taxila,Q156093,no (whole life),72.7875,33.745833333,,,missing in the hand-placed list
+Western Satraps,Q2086608,43,489,,,,Ujjain,Q200119,no (whole life),75.777222222,23.182777777,,,missing in the hand-placed list
+Funan,Q867782,51,640,,,,Vyadhapura,Q3563897,no (whole life),,,,,missing in the hand-placed list
+Chámpa,Q216786,207,1652,,,,Vijaya,Q7929221,no (whole life),109.07507,13.92869,,,missing in the hand-placed list
+Shu Han,Q320925,224,262,,,,Chengdu,Q30002,no (whole life),104.063333333,30.66,,,missing in the hand-placed list
+Vakataka Kingdom,Q1501306,260,554,,,,Washim,Q2299018,no (whole life),77.15,20.1,,,missing in the hand-placed list
+Indo-Sasanian Empire,Q1661685,260,357,,,,Balkh,Q182159,no (whole life),66.898888888,36.758055555,,,missing in the hand-placed list
+Tamna,Q28057,263,1278,,,,Jeju,Q42142,no (whole life),126.521944444,33.509722222,,,missing in the hand-placed list
+Late Pallava Empire,Q466803,283,805,,,,Kanchipuram,Q212332,no (whole life),79.707777777,12.830833333,,,missing in the hand-placed list
+Tuyuhun,Q1196201,287,665,,,,Fuqi,Q10885263,no (whole life),99.58279,37.02636,,,missing in the hand-placed list
+Cheng Han,Q1069905,306,346,,,,Chengdu,Q30002,no (whole life),104.063333333,30.66,,,missing in the hand-placed list
+Former Zhao,Q1574107,306,336,,,,Linfen,Q73156,no (whole life),111.50865,36.08121,,,missing in the hand-placed list
+Former Yan,Q1472004,337,370,,,,Ji,Q6192085,no (whole life),116.382425,39.894262,,,missing in the hand-placed list
+Later Zhao,Q2314907,337,352,,,,Ye,Q1274372,no (whole life),114.4002,36.2748,,,missing in the hand-placed list
+Alodia,Q449639,347,1506,,,,Soba,Q1247214,no (whole life),32.68094444,15.52397222,,,missing in the hand-placed list
+Makuria,Q829356,347,1414,,,,Old Dongola,Q433112,no (whole life),30.743888888,18.223055555,,,missing in the hand-placed list
+Nobatia,Q568523,347,655,,,,Faras,Q584387,no (whole life),31.46,22.2,,,missing in the hand-placed list
+Baekje,Q28428,347,660,,,,Wiryeseong,Q623880,no (whole life),127.116838888,37.530625,,,missing in the hand-placed list
+Kadamba Empire,Q1479952,353,554,,,,Banavasi,Q2427885,no (whole life),75.0177,14.5341,,,missing in the hand-placed list
+Kalabhra Dynasty,Q2572901,353,601,,,,Puhar,Q2135463,no (whole life),79.855,11.144,,,missing in the hand-placed list
+Former Qin,Q1471995,353,393,,,,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,,,missing in the hand-placed list
+Kamarupa Kingdom,Q1194765,353,1138,,,,Guwahati,Q199605,no (whole life),91.750238,26.1805876,,,missing in the hand-placed list
+Silla,Q28456,378,681,,,,Gyeongju,Q42097,no (whole life),129.216666666,35.85,,,missing in the hand-placed list
+Western Qin,Q1668970,387,438,,,,Lanzhou,Q183584,no (whole life),103.83177,36.06171,,,missing in the hand-placed list
+Northern Wei,Q875305,387,533,,,,Pingcheng District,Q1070000,no (whole life),113.2756,40.08093,,,missing in the hand-placed list
+Western Yan,Q1149230,387,393,,,,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,,,missing in the hand-placed list
+Later Qin,Q1730130,387,416,,,,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,,,missing in the hand-placed list
+Northern Liang,Q1539360,397,440,,,,Zhangye,Q197402,no (whole life),100.45529,38.93545,,,missing in the hand-placed list
+Southern Liang,Q1069868,397,413,,,,Jiankang,Q1330294,yes,118.79647,32.05837,,,missing in the hand-placed list
+Xia,Q7427,410,438,,,,Yinchuan,Q211243,no (whole life),106.225,38.485,,,missing in the hand-placed list
+Burgundian Kingdom,Q13590051,414,437,,,,Worms,Q3852,yes,8.3620898,49.6302618,,,missing in the hand-placed list
+Vandal Kingdom,Q10416611,439,439,,,,Hippo Regius,Q858024,yes,7.75,36.8825,,,missing in the hand-placed list
+Kingdom of the Franks,Q146246,462,508,,,,Tournai,Q173219,yes,3.388055555,50.605555555,,,missing in the hand-placed list
+Kingdom of the Franks,Q146246,462,508,,,,Tournai,Q173219,yes,3.388055555,50.605555555,,,missing in the hand-placed list
+Maitraka Dynasty,Q6737189,476,731,,,,Vallabhi,Q1534153,no (whole life),71.8795,21.8878,,,missing in the hand-placed list
+Kingdom of Soissons,Q1247508,476,489,,,,Soissons,Q167152,no (whole life),3.3225,49.381111111,,,missing in the hand-placed list
+Kingdom of Kent,Q328818,490,762,,,,Canterbury,Q29303,no (whole life),1.0775,51.278333333,,,missing in the hand-placed list
+Ghassanids,Q733668,510,633,,,,Jabiyah,Q3607443,no (whole life),36.0,32.916667,,,missing in the hand-placed list
+Wihtgar,Q3568009,523,691,,,,Carisbrooke,Q1240936,no (whole life),-1.31725,50.6917,,,missing in the hand-placed list
+Eastern Wei,Q307069,534,554,,,,Luoyang,Q187136,no (whole life),112.42447,34.65867,,,missing in the hand-placed list
+Western Wei,Q1143164,534,560,,,,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,,,missing in the hand-placed list
+Kingdom of Deira,Q506008,534,633,,,,York,Q42462,no (whole life),-1.083333333,53.95,,,missing in the hand-placed list
+Kingdom of Wessex,Q105313,534,935,,,,Winchester,Q172157,no (whole life),-1.308611111,51.063333333,,,missing in the hand-placed list
+Kingdom of Mercia,Q105092,534,925,,,,Tamworth,Q704864,no (whole life),-1.695,52.633888888,,,missing in the hand-placed list
+Kingdom of Essex,Q110888,534,665,,,,London,Q84,no (whole life),-0.1275,51.507222222,,,missing in the hand-placed list
+Kingdom of Lindsey,Q886986,534,625,,,,Lincoln,Q180057,no (whole life),-0.55,53.25,,,missing in the hand-placed list
+Kingdom of Brycheiniog,Q954585,540,1084,,,,Talgarth,Q631340,no (whole life),-3.232,51.993,,,missing in the hand-placed list
+Kingdom of Powys,Q769782,540,1168,,,,Wroxeter,Q1848222,no (whole life),-2.6475,52.670555555,,,missing in the hand-placed list
+Northern Qi,Q1143524,555,576,,,,Ye,Q1274372,no (whole life),114.4002,36.2748,,,missing in the hand-placed list
+Chalukya Dynasty,Q1395011,555,756,,,,Manyakheta,Q191771,no (whole life),77.160833333,17.195,,,missing in the hand-placed list
+Kingdom of Bernicia,Q623751,555,633,,,,Bamburgh,Q805983,no (whole life),-1.7222,55.604,,,missing in the hand-placed list
+Turk Shahis,Q654380,561,874,,,,Kabul,Q5838,no (whole life),69.165833333,34.532777777,,,missing in the hand-placed list
+Chen Dynasty,Q62454,561,591,,,,Jiankang,Q1330294,no (whole life),118.79647,32.05837,,,missing in the hand-placed list
+Northern Zhou,Q551067,561,586,,,,Chang'an,Q6501000,no (whole life),108.858333333,34.308333333,,,missing in the hand-placed list
+Duchy of Tuscia,Q1054580,577,586,,,,Lucca,Q13373,no (whole life),10.516666666,43.85,,,missing in the hand-placed list
+Duchy of Benevento,Q267816,577,1084,,,,Benevento,Q13437,no (whole life),14.783333333,41.133333333,,,missing in the hand-placed list
+Duchy of Spoleto,Q2829270,577,898,,,,Spoleto,Q20571,no (whole life),12.73846229,42.73440954,,,missing in the hand-placed list
+Hwicce,Q733799,577,627,,,,Worcester,Q1646181,no (whole life),-2.220555555,52.191111111,,,missing in the hand-placed list
+Eastern Göktürks,Q205466,587,632,,,,Ordu-Baliq,Q2475401,no (whole life),102.659444,47.431111,,,missing in the hand-placed list
+Karkota Dynasty,Q466433,592,859,,,,Srinagar,Q170115,no (whole life),74.806111111,34.091111111,,,missing in the hand-placed list
+Kingdom of Dunoting,Q2264840,592,625,,,,Criccieth,Q1139893,no (whole life),-4.236261111,52.916969444,,,missing in the hand-placed list
+Pandya Dynasty,Q844910,592,921,,,,Madurai,Q228405,no (whole life),78.119394444,9.919661111,,,missing in the hand-placed list
+Kingdom of Rheged,Q633573,592,646,,,,Carlisle,Q192896,no (whole life),-2.936388888,54.894722222,,,missing in the hand-placed list
+Gauda Kingdom,Q17076645,602,611,,,,Karnasuvarna,Q3350691,no (whole life),88.19030762,24.02946091,,,missing in the hand-placed list
+Dumnonia,Q313136,602,709,,,,Isca Dumnoniorum,Q1226112,no (whole life),-3.534,50.722,,,missing in the hand-placed list
+Magna Frisia,Q87791,602,771,,,,Utrecht,Q39297398,no (whole life),5.12222,52.09083,,,missing in the hand-placed list
+Balasagan,Q3633213,638,646,,,,Paytakaran,Q2380131,no (whole life),48.433333,39.233333,,,missing in the hand-placed list
+Kingdom of Lazica,Q136884,638,777,,,,Nokalakevi,Q2586542,no (whole life),42.19388889,42.35722222,,,missing in the hand-placed list
+Dabuyid Dynasty,Q2816439,644,756,,,,Fuman,Q2151629,no (whole life),49.3125,37.223888888,,,missing in the hand-placed list
+Strathclyde,Q124661,644,1033,,,,Glasgow,Q4093,no (whole life),-4.25,55.861111111,,,missing in the hand-placed list
+Haripuñjaya,Q255931,661,1293,,,,Lamphun,Q1211214,no (whole life),99.007222222,18.580277777,,,missing in the hand-placed list
+Sunda Kingdom,Q1469742,674,1578,,,,Pakuan Pajajaran,Q3177676,no (whole life),,,,,missing in the hand-placed list
+Srivijaya,Q234197,674,1293,,,,Palembang,Q8131,no (whole life),104.764444444,-2.983333333,,,missing in the hand-placed list
+Volga Bulgaria,Q185488,674,1235,,,,Bilär,Q2603563,no (whole life),50.40348,54.97203,,,missing in the hand-placed list
+Principality of Iberia,Q199389,682,740,,,,Uplistsikhe,Q1351318,no (whole life),44.207505,41.966664,,,missing in the hand-placed list
+Cyprus Condominium,Q229,692,959,,,,Nicosia,Q3856,no (whole life),33.365,35.1725,,,missing in the hand-placed list
+Balhae,Q28322,705,742,,,,Dongmosan,Q12593333,yes,,,,,missing in the hand-placed list
+Cornwall,Q23148,710,946,,,,Truro,Q180803,no (whole life),-5.051,50.26,,,missing in the hand-placed list
+Water Chenla,Q1057118,718,805,,,,Sambor Prei Kuk,Q1818746,no (whole life),105.040025,12.867283,,,missing in the hand-placed list
+Land Chenla,Q1057118,718,805,,,,Sambor Prei Kuk,Q1818746,no (whole life),105.040025,12.867283,,,missing in the hand-placed list
+Kingdom of Asturias,Q231392,724,925,,,,Samartín del Rei Aurelio,Q818368,no (whole life),-5.613777762,43.27501905,,,missing in the hand-placed list
+Kingdom of Neustria,Q106577,724,731,,,,Soissons,Q167152,no (whole life),3.3225,49.381111111,,,missing in the hand-placed list
+Gurjara-Pratihara Dynasty,Q5324,732,1039,,,,Kannauj,Q614890,no (whole life),79.922019444,27.031336111,,,missing in the hand-placed list
+Mataram Kingdom,Q402580,741,1009,,,,Mamratipura,Q97368681,no (whole life),,,,,missing in the hand-placed list
+Nanzhao,Q1045322,779,910,,,,Dali,Q855228,yes,100.300277777,25.681111111,,,missing in the hand-placed list
+Emirate of Nekor,Q1709337,750,760,,,,Temsamane,Q2006438,yes,-3.6412968,35.1175252,,,missing in the hand-placed list
+Kimek-Kipchak confederation,Q2477776,750,1235,,,,Imakia,Q4200095,no (whole life),,,,,missing in the hand-placed list
+Rashtrakuta Dynasty,Q856691,755,989,,,,Manyakheta,Q191771,no (whole life),77.160833333,17.195,,,missing in the hand-placed list
+Papal States,Q170174,755,1870,,,,Rome,Q220,no (whole life),12.482777777,41.893055555,,,missing in the hand-placed list
+Duchy of Naples,Q1051600,763,1138,,,,Naples,Q2634,no (whole life),14.248611111,40.835833333,,,missing in the hand-placed list
+Principality of Serbia,Q1311990,768,961,,,,Stari Ras,Q917814,no (whole life),20.415669,43.128342,,,missing in the hand-placed list
+Duchy of Gascony,Q2295939,768,1065,,,,Bordeaux,Q1479,no (whole life),-0.579444444,44.837777777,,,missing in the hand-placed list
+Rustamid dynasty,Q940123,778,910,,,,Tiaret,Q565568,no (whole life),1.316666666,35.366666666,,,missing in the hand-placed list
+Idrisids,Q431575,793,979,,,,Volubilis,Q391215,yes,-5.5626871,34.0399646,,,missing in the hand-placed list
+Ghana Empire,Q206789,793,1201,,,,Koumbi Saleh,Q682728,no (whole life),-7.971444444,15.756138888,,,missing in the hand-placed list
+Aghlabid Dynasty,Q207600,800,910,,,,Kairouan,Q179570,no (whole life),10.1,35.683333333,,,missing in the hand-placed list
+Kingdom of the Iberians,Q154816,814,999,,,,Oltu,Q915429,no (whole life),41.995833333,40.545555555,,,missing in the hand-placed list
+Principality of Nitra,Q837326,814,839,,,,Nitra,Q26397,no (whole life),18.0875,48.314722222,,,missing in the hand-placed list
+Kingdom of Pamplona,Q200262,825,865,,,,Pamplona,Q10282,no (whole life),-1.65,42.816666666,,,missing in the hand-placed list
+Kingdom of Sobrarbe,Q3572492,825,829,,,,Aínsa,Q13049257,no (whole life),0.1375,42.417222,,,missing in the hand-placed list
+Emirate of Crete,Q603771,830,960,,,,Heraklion,Q160544,no (whole life),25.134444444,35.340277777,,,missing in the hand-placed list
+County of Aragon,Q1235737,830,921,,,,Jaca,Q49581,no (whole life),-0.55,42.55,,,missing in the hand-placed list
+Middle Franks,Q6673921,850,899,,,,Aachen,Q1017,no (whole life),6.083788,50.776207,,,missing in the hand-placed list
+Pagan Kingdom,Q888574,850,1293,,,,Bagan,Q29317,no (whole life),94.86,21.1725,,,missing in the hand-placed list
+Chola Empire,Q6806806,850,1259,,,,Gangaikonda Cholapuram,Q1493439,no (whole life),79.45278,11.20524,,,missing in the hand-placed list
+East Franks,Q153080,850,910,,,,Frankfurt,Q1794,no (whole life),8.682222222,50.110555555,,,missing in the hand-placed list
+Emirate of Sicily,Q118780154,850,1093,,,,Palermo,Q2656,no (whole life),13.361261944,38.115658055,,,missing in the hand-placed list
+Qocho Kingdom,Q2662180,860,1138,,,,Beiting,Q814907,no (whole life),89.204083333,44.096333333,,,missing in the hand-placed list
+Giudicato of Cagliari,Q2297073,866,1187,,,,Cagliari,Q1897,no (whole life),9.109522,39.214886,,,missing in the hand-placed list
+Giudicato of Gallura,Q2723760,866,1209,,,,Olbia,Q13630,no (whole life),9.5,40.916666666,,,missing in the hand-placed list
+Zaydi Alid dynasties,Q1990528,866,935,,,,Amol,Q331078,no (whole life),52.350833333,36.469722222,,,missing in the hand-placed list
+Giudicato of Logudoro,Q1761381,866,1259,,,,Porto Torres,Q391316,no (whole life),8.401388888,40.836944444,,,missing in the hand-placed list
+County of Ribagorza,Q1297894,866,1084,,,,Benabarre,Q816666,no (whole life),0.483333,42.116667,,,missing in the hand-placed list
+County of Urgell,Q1514510,870,1808,,,,La Seu d'Urgell,Q673412,no (whole life),1.458611111,42.357777777,,,missing in the hand-placed list
+County of Pallars,Q1541787,875,1014,,,,Sort,Q12690,no (whole life),1.128661,42.410086,,,missing in the hand-placed list
+Bagratid Armenia,Q2622868,886,1045,,,,Ani,Q546010,yes,43.572777777,40.5075,,,missing in the hand-placed list
+Kingdom of Khotan,Q914898,888,1009,,,,Hotan,Q235389,no (whole life),79.9327,37.1012,,,missing in the hand-placed list
+Hubaekje,Q698239,892,935,,,,Jeonju,Q42140,no (whole life),127.1475,35.823888888,,,missing in the hand-placed list
+Duchy of Bohemia,Q2162698,896,1002,,,,Prague,Q1085,no (whole life),14.421388888,50.0875,,,missing in the hand-placed list
+County of Rosellón,Q13522657,896,1176,,,,Perpignan,Q6730,no (whole life),2.894722222,42.6975,,,missing in the hand-placed list
+Sajid Dynasty,Q3432153,898,935,,,,Maragheh,Q605021,yes,46.239166666,37.391944444,,,missing in the hand-placed list
+County of Besalú,Q1541642,898,989,,,,Besalú,Q12586,no (whole life),2.698557,42.198926,,,missing in the hand-placed list
+County of Berga,Q15487,898,1235,,,,Berga,Q24002636,no (whole life),1.84628,42.10429,,,missing in the hand-placed list
+County of Barcelona,Q7038,898,1168,,,,Girona,Q24001084,no (whole life),2.82493,41.98311,,,missing in the hand-placed list
+Yan Kingdom,Q1291919,911,921,,,,Beijing,Q956,no (whole life),116.407526,39.90403,,,missing in the hand-placed list
+Later Jin,Q1154540,911,946,,,,Taiyuan,Q72778,no (whole life),112.54245,37.87326,,,missing in the hand-placed list
+Southern Han,Q1198071,911,979,,,,Guangzhou,Q16572,no (whole life),113.26,23.13,,,missing in the hand-placed list
+Kingdom of Galicia,Q303421,911,1111,,,,León,Q15699,yes,-5.566944444,42.598888888,,,missing in the hand-placed list
+Former Shu,Q571453,911,925,,,,Chengdu,Q30002,no (whole life),104.063333333,30.66,,,missing in the hand-placed list
+Later Liang Dynasty,Q783489,911,925,,,,Luoyang,Q187136,no (whole life),112.42447,34.65867,,,missing in the hand-placed list
+Wuyue,Q1193822,911,979,,,,Hangzhou,Q4970,no (whole life),120.1675,30.25,,,missing in the hand-placed list
+Kingdom of Vaspurakan,Q5228183,911,1027,,,,Van,Q83061,no (whole life),43.416666666,38.501944444,,,missing in the hand-placed list
+Chimor,Q581741,911,1187,,,,Chan Chan,Q277540,no (whole life),-79.075,-8.110555555,,,missing in the hand-placed list
+Southern Chu,Q1192347,911,959,,,,Changsha,Q174091,no (whole life),112.97087,28.19874,,,missing in the hand-placed list
+Qi Kingdom,Q1319681,911,925,,,,Fengxiang District,Q1201619,no (whole life),107.39494,34.52178,,,missing in the hand-placed list
+Duchy of Normandy,Q842091,922,1071,,,,Rouen,Q30974,no (whole life),1.1025,49.443055555,,,missing in the hand-placed list
+Jingnan,Q1325075,926,969,,,,Jiangling County,Q1363632,no (whole life),112.41094,30.03414,,,missing in the hand-placed list
+Later Tang,Q1143126,926,935,,,,Daming County,Q59898,no (whole life),115.142,36.28532,,,missing in the hand-placed list
+Icelandic Commonwealth,Q62389,936,1271,,,,Thingvellir National Park,Q107370,no (whole life),-21.125,64.258055555,,,missing in the hand-placed list
+Kingdom of Arles,Q3271735,936,1384,,,,Arles,Q48292,no (whole life),4.628611111,43.676944444,,,missing in the hand-placed list
+Ziyarid dynasty,Q207044,936,979,,,,Ray,Q636188,no (whole life),51.434444444,35.5975,,,missing in the hand-placed list
+Later Shu,Q526507,936,969,,,,Chengdu,Q30002,no (whole life),104.063333333,30.66,,,missing in the hand-placed list
+Ngô Dynasty,Q703919,947,1406,,,,Co Loa Citadel,Q798059,no (whole life),105.873206,21.113408,,,missing in the hand-placed list
+Zagwe dynasty,Q140446,947,1271,,,,Lalibela,Q207590,no (whole life),39.046203,12.035561,,,missing in the hand-placed list
+Kingdom of Dali,Q26472,947,1259,,,,Dali,Q855228,no (whole life),100.300277777,25.681111111,,,missing in the hand-placed list
+Duchy of Brittany,Q71747,947,1491,,,,Rennes,Q647,no (whole life),-1.680833333,48.114166666,,,missing in the hand-placed list
+Southern Tang,Q1326742,960,979,,,,Nanjing,Q16666,no (whole life),118.778888888,32.060833333,,,missing in the hand-placed list
+Northern Han,Q1141471,960,979,,,,Taiyuan,Q72778,no (whole life),112.54245,37.87326,,,missing in the hand-placed list
+Republic of Amalfi,Q686312,960,1033,,,,Amalfi,Q80563,no (whole life),14.602777777,40.633333333,,,missing in the hand-placed list
+Chandela Kingdom,Q2039087,960,1313,,,,Khajuraho,Q178948,no (whole life),79.925493888,24.852796111,,,missing in the hand-placed list
+Utpala Dynasty,Q1617123,960,1002,,,,Awantipora,Q584971,no (whole life),75.015277777,33.919722222,,,missing in the hand-placed list
+Western Chalukya Empire,Q14624218,980,1187,,,,Manyakheta,Q191771,no (whole life),77.160833333,17.195,,,missing in the hand-placed list
+County of Toulouse,Q1334322,990,1249,,,,Toulouse,Q7880,no (whole life),1.443333333,43.604444444,,,missing in the hand-placed list
+County of Blôis,Q19336869,990,1401,,,,Blois,Q160927,no (whole life),1.327222222,47.593055555,,,missing in the hand-placed list
+County of Flanders,Q157070,990,1384,,,,Bruges,Q12994,no (whole life),3.224166666,51.208888888,,,missing in the hand-placed list
+Western Xia,Q7427,990,1226,,,,Yinchuan,Q211243,no (whole life),106.225,38.485,,,missing in the hand-placed list
+County of Maine,Q732738,990,1481,,,,Le Mans,Q1476,no (whole life),0.196944444,48.004166666,,,missing in the hand-placed list
+County of Rouergue,Q590016,990,1065,,,,Rodez,Q188780,no (whole life),2.574166666,44.35,,,missing in the hand-placed list
+County of Champagne,Q546266,1125,1200,,,,Troyes,Q5489,yes,4.078055555,48.298888888,,,missing in the hand-placed list
+Duchy of Aquitaine,Q7703611,990,1439,,,,Toulouse,Q7880,no (whole life),1.443333333,43.604444444,,,missing in the hand-placed list
+County of Osona,Q1541779,990,1110,,,,Vic,Q13855,no (whole life),2.254575,41.930379,,,missing in the hand-placed list
+County of Ampuria,Q1541699,1000,1078,,,,Sant Martí d'Empúries,Q1106404,yes,3.116666666,42.133333333,,,missing in the hand-placed list
+Duchy of Burgundy,Q4712,1003,1481,,,,Dijon,Q7003,no (whole life),5.041944444,47.323055555,,,missing in the hand-placed list
+Taifa of Valencia,Q676811,1010,1249,,,,Balansiya,Q11907651,no (whole life),-0.375,39.466666666,,,missing in the hand-placed list
+Taifa of Alpuente,Q2670895,1010,1110,,,,Alpuente,Q23988889,no (whole life),-1.013888888,39.875833333,,,missing in the hand-placed list
+Taifa of Toledo,Q13534654,1010,1093,,,,Toledo,Q5836,no (whole life),-4.033333333,39.866666666,,,missing in the hand-placed list
+Republic of Pisa,Q1365493,1010,1401,,,,Pisa,Q13375,no (whole life),10.4,43.716666666,,,missing in the hand-placed list
+Taifa of Dénia,Q252323,1010,1249,,,,Dénia,Q646725,no (whole life),0.108611111,38.840277777,,,missing in the hand-placed list
+Taifa of Badajoz,Q276841,1010,1151,,,,Badajoz,Q15679,no (whole life),-6.970609,38.87789,,,missing in the hand-placed list
+Taifa of Tortosa,Q605930,1010,1110,,,,Tortosa,Q12812,no (whole life),0.521111111,40.8125,,,missing in the hand-placed list
+County of Nevers,Q2070440,1010,1520,,,,Nevers,Q166997,no (whole life),3.156666666,46.9925,,,missing in the hand-placed list
+Republic of Genoa,Q174306,1010,1795,,,,Genoa,Q1449,no (whole life),8.933888888,44.407222222,,,missing in the hand-placed list
+Taifa of Arcos,Q2390604,1015,1071,,,,Arcos de la Frontera,Q637863,no (whole life),-5.8063128,36.7482937,,,missing in the hand-placed list
+Taifa of Albarracín,Q2060937,1015,1110,,,,Albarracín,Q695488,no (whole life),-1.4440324,40.405312,,,missing in the hand-placed list
+Taifa of Almería,Q2580032,1015,1249,,,,Almería,Q10400,no (whole life),-2.463888888,36.841666666,,,missing in the hand-placed list
+Taifa of Zaragoza,Q33061,1015,1110,,,,Sarakusta,Q11947752,no (whole life),-0.877563649,41.654366145,,,missing in the hand-placed list
+Taifa of Morón,Q2666791,1015,1065,,,,Morón de la Frontera,Q609094,no (whole life),-5.451666666,37.122222222,,,missing in the hand-placed list
+Taifa of Saltés and Huelva,Q2081763,1015,1151,,,,Huelva,Q12246,no (whole life),-6.95,37.25,,,missing in the hand-placed list
+Taifa of Niebla,Q2668600,1015,1249,,,,Niebla,Q828723,no (whole life),-6.6778698,37.3614387,,,missing in the hand-placed list
+Taifa of Murcia,Q921067,1015,1249,,,,Murcia,Q12225,no (whole life),-1.130277777,37.983333333,,,missing in the hand-placed list
+Kingdom of Aragon,Q199442,1035,1097,,,,Jaca City,Q31917158,yes,-0.54987,42.56898,,,missing in the hand-placed list
+Taifa of Carmona,Q2668584,1015,1151,,,,Carmona,Q63092,no (whole life),-5.642222222,37.471111111,,,missing in the hand-placed list
+Taifa of Granada,Q205708,1015,1093,,,,Granada,Q8810,no (whole life),-3.6,37.175,,,missing in the hand-placed list
+Taifa of Santa Maria do Algarve,Q2077765,1018,1055,,,,Faro,Q159457,no (whole life),-7.935,37.016111111,,,missing in the hand-placed list
+Hammadid Dynasty,Q588672,1018,1089,,,,Qal'at Bani Hammad,Q500367,no (whole life),4.793333333,35.813888888,,,missing in the hand-placed list
+Taifa of Algeciras,Q1183407,1028,1168,,,,Algeciras,Q484552,no (whole life),-5.453888888,36.1275,,,missing in the hand-placed list
+Taifa of Seville,Q276951,1028,1093,,,,Ishbiliya,Q116158888,no (whole life),-5.992388888,37.386111111,,,missing in the hand-placed list
+Taifa of Silves,Q1994569,1040,1168,,,,Silves,Q749180,no (whole life),-8.433333333,37.183333333,,,missing in the hand-placed list
+County of Pallars Jussà,Q12723,1040,1191,,,,Tremp,Q18272,no (whole life),0.89465,42.16668,,,missing in the hand-placed list
+County of Pallars Sobirà,Q12719,1040,1201,,,,Sort,Q12690,no (whole life),1.128661,42.410086,,,missing in the hand-placed list
+Takrur,Q2272880,1040,1235,,,,Morfil,Q1456534,no (whole life),-14.583836111,16.583561111,,,missing in the hand-placed list
+Taifa of Ronda,Q2524715,1040,1065,,,,Ronda,Q13153,no (whole life),-5.164722222,36.737222222,,,missing in the hand-placed list
+Eastern Kara-Khanids,Q494354,1046,1138,,,,Balasagun,Q1764282,no (whole life),75.248425,42.74759,,,missing in the hand-placed list
+Kediri Kingdom,Q756895,1046,1226,,,,Kediri,Q11443,no (whole life),112.004722222,-7.811111111,,,missing in the hand-placed list
+Zirid dynasty,Q205718,1056,1057,,,,Kairouan,Q179570,yes,10.1,35.683333333,,,missing in the hand-placed list
+Principality of Volhynia,Q680472,1056,1201,,,,Volodymyr,Q33544,no (whole life),24.322222,50.848056,,,missing in the hand-placed list
+Principality of Kiev,Q1483430,1056,1240,,,,Kyiv,Q1899,no (whole life),30.523611111,50.45,,,missing in the hand-placed list
+Principality of Rostov-Suzdal,Q83546,1056,1240,,,,Rostov Veliky,Q193342,no (whole life),39.416666666,57.183333333,,,missing in the hand-placed list
+Principality of Chernigov,Q1322662,1056,1240,,,,Chernihiv,Q157053,no (whole life),31.294722222,51.493888888,,,missing in the hand-placed list
+Principality of Pereyaslavl,Q1261908,1056,1240,,,,Pereiaslav,Q639839,no (whole life),31.445,50.065,,,missing in the hand-placed list
+Principality of Smolensk,Q1483495,1056,1406,,,,Smolensk,Q2337,no (whole life),32.045277777,54.782777777,,,missing in the hand-placed list
+Novgorod Republic,Q151536,1056,1481,,,,Veliky Novgorod,Q2235,no (whole life),31.27579,58.52099,,,missing in the hand-placed list
+Taifa of Ceuta,Q5947557,1066,1084,,,,Ceuta under Muslim rule,Q106428150,no (whole life),-5.306433701,35.889755702,,,missing in the hand-placed list
+Sena Dynasty,Q2428714,1072,1235,,,,Nabadwip,Q1006330,no (whole life),88.365736111,23.408822222,,,missing in the hand-placed list
+Kingdom of Polonnaruwa,Q3167772,1072,1259,,,,Polonnaruwa,Q394443,no (whole life),81.0,7.933333333,,,missing in the hand-placed list
+Empire of Kanem,Q1139762,1072,1384,,,,Njimi,Q3342340,no (whole life),,,,,missing in the hand-placed list
+Kingdom of the Isles,Q459188,1085,1176,,,,Castletown,Q158530,no (whole life),-4.653888888,54.074166666,,,missing in the hand-placed list
+Sultanate of Rum,Q975405,1094,1098,,,,Nicaea,Q739037,yes,29.7195,40.429,,,missing in the hand-placed list
+Danishmendids,Q846670,1094,1187,,,,Sivas,Q107401,no (whole life),37.016666666,39.75,,,missing in the hand-placed list
+Grand Principality of Serbia,Q1311990,1094,1168,,,,Stari Ras,Q917814,no (whole life),20.415669,43.128342,,,missing in the hand-placed list
+Principality of Ryazan,Q269109,1094,1240,,,,Staraya Ryazan,Q4439776,no (whole life),40.427714,54.397114,,,missing in the hand-placed list
+County of Edessa,Q232806,1099,1151,,,,Edessa,Q1190403,no (whole life),38.7825,37.15,,,missing in the hand-placed list
+Armenian Kingdom of Cilicia,Q335088,1099,1374,,,,Kozan,Q926426,no (whole life),35.812347222,37.4507,,,missing in the hand-placed list
+Principality of Antioch,Q235030,1099,1271,,,,Antioch,Q200441,no (whole life),36.15,36.2,,,missing in the hand-placed list
+Principality of Koknese,Q2502248,1111,1209,,,,Koknese,Q504681,no (whole life),25.433333333,56.65,,,missing in the hand-placed list
+Principality of Drutsk,Q2596884,1111,1249,,,,Druck,Q11160769,no (whole life),29.765277777,54.340277777,,,missing in the hand-placed list
+Hoysala Kingdom,Q466581,1111,1351,,,,Halebidu,Q1013556,no (whole life),75.991666666,13.216944444,,,missing in the hand-placed list
+County of Tripoli,Q272033,1111,1293,,,,Tripoli,Q168954,no (whole life),35.834444444,34.436666666,,,missing in the hand-placed list
+Principality of Minsk,Q2662372,1111,1313,,,,Minsk,Q2280,yes,27.561837,53.902246,,,missing in the hand-placed list
+Principality of Jersika,Q1687929,1111,1215,,,,Jersika,Q2025603,no (whole life),26.2025,56.254166666,,,missing in the hand-placed list
+Principality of Vitebsk,Q2621010,1111,1187,,,,Vitebsk,Q102217,no (whole life),30.166666666,55.183333333,,,missing in the hand-placed list
+Great Jin,Q5066,1126,1153,,,,Huining,Q877229,yes,126.974,45.501,,,missing in the hand-placed list
+Duchy of Silesia,Q568638,1139,1304,,,,Wrocław,Q1799,no (whole life),17.0325,51.11,,,missing in the hand-placed list
+County of Portugal,Q1139807,1139,1146,,,,Guimarães,Q170903,no (whole life),-8.290833333,41.445,,,missing in the hand-placed list
+Kingdom of Navarre,Q200262,1139,1428,,,,Pamplona,Q10282,no (whole life),-1.65,42.816666666,,,missing in the hand-placed list
+Duchy of Łęczyca,Q970940,1139,1146,,,,Łęczyca,Q325727,no (whole life),19.2,52.058333333,,,missing in the hand-placed list
+Kingdom of Sicily,Q188586,1139,1266,,,,Palermo,Q2656,yes,13.361261944,38.115658055,,,missing in the hand-placed list
+Duchy of Greater Poland,Q1515009,1139,1304,,,,Poznań,Q268,no (whole life),16.933611111,52.408333333,,,missing in the hand-placed list
+Duchy of Sandomierz,Q16933165,1139,1304,,,,Sandomierz,Q193177,no (whole life),21.75,50.683333333,,,missing in the hand-placed list
+Duchy of Masovia,Q2361927,1139,1351,,,,Płock,Q104725,no (whole life),19.7,52.55,,,missing in the hand-placed list
+Taifa of Tejada,Q2522604,1147,1151,,,,Paterna del Campo,Q1615103,no (whole life),-6.4025477,37.4188311,,,missing in the hand-placed list
+Taifa of Córdoba,Q2285679,1147,1249,,,,Córdoba,Q5818,no (whole life),-4.78,37.89,,,missing in the hand-placed list
+Principality of Halych,Q3403551,1147,1201,,,,Halych,Q146450,no (whole life),24.721666666,49.112777777,,,missing in the hand-placed list
+Kingdom of Africa,Q3932090,1152,1168,,,,Mahdia,Q466054,no (whole life),11.062222222,35.504722222,,,missing in the hand-placed list
+Nabhani Dynasty,Q11938308,1169,1176,,,,Bahla,Q26201348,no (whole life),,,,,missing in the hand-placed list
+Duchy of Wrocław,Q568638,1169,1201,,,,Wrocław,Q1799,no (whole life),17.0325,51.11,,,missing in the hand-placed list
+Kingdom of Powys Wenwynwyn,Q2670639,1169,1209,,,,Welshpool,Q1024911,no (whole life),-3.14725,52.659661111,,,missing in the hand-placed list
+Kingdom of Powys Fadog,Q2564694,1169,1215,,,,Castell Dinas Brân,Q1226281,no (whole life),-3.1595679,52.979222,,,missing in the hand-placed list
+Duchy of Opole,Q661980,1177,1304,,,,Opole,Q92212,no (whole life),17.924166666,50.666666666,,,missing in the hand-placed list
+Kingdom of Mann,Q459188,1177,1271,,,,Castletown,Q158530,no (whole life),-4.653888888,54.074166666,,,missing in the hand-placed list
+Kakatiya Dynasty,Q2086556,1177,1325,,,,Warangal,Q25563103,no (whole life),79.601111111,17.975555555,,,missing in the hand-placed list
+Banate of Bosnia,Q3627069,1188,1384,,,,Bobovac,Q33186,yes,18.238046127,44.136676979,,,missing in the hand-placed list
+Principality of Turov and Pinsk,Q671362,1188,1240,,,,Turov,Q265670,no (whole life),27.729722222,52.071666666,,,missing in the hand-placed list
+Kamakura Shogunate,Q736839,1188,1332,,,,Kamakura,Q10939227,no (whole life),139.551917,35.318806,,,missing in the hand-placed list
+Duchy of Kuyavia,Q11750543,1188,1205,,,,Inowrocław,Q378821,no (whole life),18.261111111,52.795833333,,,missing in the hand-placed list
+Chimu Empire,Q581741,1188,1481,,,,Chan Chan,Q277540,no (whole life),-79.075,-8.110555555,,,missing in the hand-placed list
+Kingdom of Bohemia,Q42585,1202,1528,,,,Prague,Q1085,no (whole life),14.421388888,50.0875,,,missing in the hand-placed list
+Principality of Galicia-Volhynia,Q239502,1202,1240,,,,Halych,Q146450,no (whole life),24.721666666,49.112777777,,,missing in the hand-placed list
+Sosso Empire,Q13099593,1202,1235,,,,Koulikoro,Q740974,no (whole life),-7.566666666,12.866666666,,,missing in the hand-placed list
+Kingdom of Bohemia,Q42585,1202,1528,,,,Prague,Q1085,no (whole life),14.421388888,50.0875,,,missing in the hand-placed list
+Latin Empire,Q178897,1206,1278,,,,Constantinople,Q16869,no (whole life),28.976018,41.01224,,,missing in the hand-placed list
+County of Armagnac,Q676745,1206,1496,,,,Auch,Q181725,no (whole life),0.588611111,43.645277777,,,missing in the hand-placed list
+County of Poitou,Q2991374,1206,1249,,,,Poitiers,Q6616,no (whole life),0.335277777,46.581111111,,,missing in the hand-placed list
+Principality of Achaea,Q332005,1206,1439,,,,Andravida,Q493019,no (whole life),21.26666667,37.90583333,,,missing in the hand-placed list
+Duchy of Athens,Q334714,1206,1311,,,,Athens,Q1524,yes,23.728055555,37.984166666,,,missing in the hand-placed list
+Empire of Trebizond,Q178913,1206,1462,,,,Trabzon,Q45301,no (whole life),39.7225,41.005,,,missing in the hand-placed list
+Kingdom of Thessalonica,Q325461,1206,1226,,,,Thessaloniki,Q17151,no (whole life),22.935555555,40.640277777,,,missing in the hand-placed list
+Delhi Sultanate,Q229411,1210,1210,,,,Lahore,Q11739,yes,74.343611111,31.549722222,,,missing in the hand-placed list
+Duchy of the Archipelago,Q777981,1210,1313,,,,Naxos,Q530644,no (whole life),25.37944444,37.10194444,,,missing in the hand-placed list
+Duchy of Kalisz,Q16570037,1210,1219,,,,Kalisz,Q52842,no (whole life),18.083,51.757,,,missing in the hand-placed list
+Pandya Empire,Q844910,1216,1325,,,,Madurai,Q228405,no (whole life),78.119394444,9.919661111,,,missing in the hand-placed list
+Singhasari,Q2060657,1227,1293,,,,Malang,Q11445,no (whole life),112.632727716,-7.96893041,,,missing in the hand-placed list
+Rasulid Dynasty,Q2132267,1236,1458,,,,Old City of Taiz,Q139829337,no (whole life),44.011961403,13.571911201,,,missing in the hand-placed list
+County of Foix,Q1481436,1236,1555,,,,Foix,Q184392,no (whole life),1.606944444,42.965277777,,,missing in the hand-placed list
+Empire of Thessalonica,Q623151,1236,1249,,,,Thessaloniki,Q17151,no (whole life),22.935555555,40.640277777,,,missing in the hand-placed list
+Hafsid Dynasty,Q752662,1236,1571,,,,Tunis,Q3572,no (whole life),10.18,36.800833333,,,missing in the hand-placed list
+Zayyanid dynasty,Q307697,1236,1555,,,,Tlemcen,Q185134,no (whole life),-1.316666666,34.882777777,,,missing in the hand-placed list
+Ceylon,Q918153,1236,1506,,,,Colombo,Q35381,no (whole life),79.860555555,6.926666666,,,missing in the hand-placed list
+Kingdom of Dambadeniya,Q3136869,1236,1293,,,,Dambadeniya,Q1021154,no (whole life),80.15,7.36667,,,missing in the hand-placed list
+County of Artois,Q778266,1241,1332,,,,Arras,Q131329,no (whole life),2.78,50.289166666,,,missing in the hand-placed list
+Emirate of Granada,Q238445,1241,1491,,,,Granada,Q8810,no (whole life),-3.6,37.175,,,missing in the hand-placed list
+Duchy of Głogów,Q684501,1250,1313,,,,Głogów,Q66013,no (whole life),16.080277777,51.658888888,,,missing in the hand-placed list
+County of Holland,Q762943,1260,1362,,,,The Hague,Q36600,no (whole life),4.31,52.08,,,missing in the hand-placed list
+Republic of Florence,Q148540,1260,1737,,,,Florence,Q2044,no (whole life),11.254166666,43.771388888,,,missing in the hand-placed list
+Margraviate of Brandenburg,Q148499,1260,1414,,,,Brandenburg an der Havel,Q3931,no (whole life),12.554083333,52.414138888,,,missing in the hand-placed list
+Duchy of Styria,Q580447,1260,1501,,,,Graz,Q13298,no (whole life),15.438611111,47.070833333,,,missing in the hand-placed list
+County of Savoy,Q1232887,1260,1539,,,,Chambéry,Q165090,no (whole life),5.920833333,45.566388888,,,missing in the hand-placed list
+Dauphiné,Q151999,1260,1351,,,,Grenoble,Q1289,no (whole life),5.726388888,45.186944444,,,missing in the hand-placed list
+Principality of Orange,Q2281221,1260,1571,,,,Orange,Q187796,no (whole life),4.808888888,44.1375,,,missing in the hand-placed list
+Duchy of Bavaria,Q47261,1505,1805,,,,Munich,Q1726,yes,11.575,48.1375,,,missing in the hand-placed list
+Comtat Venaissin,Q1122980,1274,1320,,,,Pernes-les-Fontaines,Q472574,yes,5.059166666,43.997777777,,,missing in the hand-placed list
+Kingdom of Majorca,Q836676,1279,1343,,,,Perpignan,Q6730,no (whole life),2.894722222,42.6975,,,missing in the hand-placed list
+Duchy of Jawor,Q561204,1279,1313,,,,Jawor,Q731805,no (whole life),16.183333333,51.05,,,missing in the hand-placed list
+Duchy of Legnica,Q570740,1279,1313,,,,Legnica,Q106274,no (whole life),16.1619,51.21006,,,missing in the hand-placed list
+Grand Duchy of Kraków,Q688918,1279,1293,,,,Kraków,Q31487,no (whole life),19.937222222,50.061388888,,,missing in the hand-placed list
+Kampili Kingdom,Q1446192,1285,1332,,,,Kammatadurga,Q6358830,no (whole life),76.375,15.40777778,,,missing in the hand-placed list
+Pskov Republic,Q317078,1285,1511,,,,Pskov,Q2214,no (whole life),28.333333333,57.816666666,,,missing in the hand-placed list
+Ifat Sultanate,Q157727,1285,1414,,,,Zeila,Q157800,no (whole life),43.473888888,11.353888888,,,missing in the hand-placed list
+Duchy of Racibórz,Q700117,1285,1304,,,,Racibórz,Q25302,no (whole life),18.219166666,50.091944444,,,missing in the hand-placed list
+Kingdom of Naples,Q173065,1285,1501,,,,Naples,Q2634,no (whole life),14.248611111,40.835833333,,,missing in the hand-placed list
+Duchy of Bytom,Q682001,1285,1304,,,,Bytom,Q102350,no (whole life),18.923,50.347,,,missing in the hand-placed list
+Malaya,Q1479726,1294,1351,,,,Kuala Lumpur,Q1865,no (whole life),101.695277777,3.147777777,,,missing in the hand-placed list
+Grand Principality of Moscow,Q170770,1294,1546,,,,Moscow,Q649,no (whole life),37.6175,55.750555555,,,missing in the hand-placed list
+Kingdom of Scotland,Q230791,1294,1452,,,,Scone,Q852883,yes,-3.40404,56.4179,,,missing in the hand-placed list
+Principality of Pinsk,Q671362,1294,1325,,,,Turov,Q265670,no (whole life),27.729722222,52.071666666,,,missing in the hand-placed list
+Principality of Vladimir-Suzdal,Q83546,1294,1486,,,,Rostov Veliky,Q193342,no (whole life),39.416666666,57.183333333,,,missing in the hand-placed list
+Hanthawaddy Kingdom,Q1572529,1294,1363,,,,Mottama,Q1950091,yes,97.602222222,16.53,,,missing in the hand-placed list
+Swiss Confederation,Q39,1848,2024,,,,Bern,Q70,yes,7.44743,46.94798,,,missing in the hand-placed list
+Lan Na Kingdom,Q1059707,1294,1563,,,,Chiang Saen,Q1709553,no (whole life),100.08348,20.27694,,,missing in the hand-placed list
+Principality of Beloozero,Q1967380,1294,1343,,,,Belozersk,Q104764,no (whole life),37.783333333,60.033333333,,,missing in the hand-placed list
+Galicia-Volhynia,Q239502,1294,1351,,,,Halych,Q146450,no (whole life),24.721666666,49.112777777,,,missing in the hand-placed list
+Principality of Turov,Q671362,1294,1325,,,,Turov,Q265670,no (whole life),27.729722222,52.071666666,,,missing in the hand-placed list
+Beylik of Aydin,Q717112,1305,1428,,,,Birgi,Q2220449,no (whole life),28.0654483,38.2545939,,,missing in the hand-placed list
+Beylik of Karasi,Q941887,1305,1343,,,,Balıkesir,Q199723,no (whole life),27.884166666,39.651111111,,,missing in the hand-placed list
+Beylik of Hamid,Q2410637,1305,1343,,,,Uluborlu,Q1012840,no (whole life),30.448333333,38.078888888,,,missing in the hand-placed list
+Beylik of Sinop,Q2096678,1305,1309,,,,Eflani,Q1296393,yes,32.95583333,41.42277778,,,missing in the hand-placed list
+Eshrefids,Q1386189,1305,1325,,,,Beyşehir,Q127389,no (whole life),31.726111111,37.676388888,,,missing in the hand-placed list
+Michoacán,Q79861,1305,1533,,,,Morelia,Q200252,no (whole life),-101.192222222,19.702777777,,,missing in the hand-placed list
+Beylik of Menteshe,Q1400572,1305,1414,,,,Menteşe district,Q6817536,no (whole life),28.3645937,37.2178776,,,missing in the hand-placed list
+Beylik of Isfendiyar,Q2096678,1305,1309,,,,Eflani,Q1296393,yes,32.95583333,41.42277778,,,missing in the hand-placed list
+Beylik of Karaman,Q1469100,1305,1467,,,,Konya,Q79857,no (whole life),32.5161,37.847054,,,missing in the hand-placed list
+Principality of Wallachia,Q171393,1314,1858,,,,Câmpulung,Q736296,no (whole life),25.05,45.275,,,missing in the hand-placed list
+Beylik of Saruhan,Q1968654,1314,1414,,,,Manisa,Q147089,no (whole life),27.426388888,38.611944444,,,missing in the hand-placed list
+Chüzan,Q55521,1314,1428,,,,Urasoe,Q695895,no (whole life),127.721861111,26.245694444,,,missing in the hand-placed list
+Hokuzan,Q55523,1314,1421,,,,Nakijin,Q1184661,no (whole life),127.972777777,26.6825,,,missing in the hand-placed list
+Jaffna kingdom,Q1311219,1314,1594,,,,Nallur,Q6960987,no (whole life),80.03333333,9.66666667,,,missing in the hand-placed list
+Sagaing Kingdom,Q3446223,1326,1374,,,,Sagaing,Q1018173,no (whole life),95.981666666,21.88,,,missing in the hand-placed list
+Beylik of Teke,Q373988,1326,1428,,,,Antalya Province,Q40249,no (whole life),30.933333333,37.181666666,,,missing in the hand-placed list
+Kenmu Restoration,Q826021,1333,1343,,,,Heian-kyō,Q751907,no (whole life),135.76666667,35.0,,,missing in the hand-placed list
+Free County of Burgundy,Q642314,1333,1384,,,,Dole,Q205586,no (whole life),5.489722222,47.092222222,,,missing in the hand-placed list
+Electorate of Trier,Q1794352,1333,1618,,,,Trier,Q3138,no (whole life),6.63935,49.75565,,,missing in the hand-placed list
+Kashmiri Sultanate,Q123027565,1344,1586,,,,Srinagar,Q170115,yes,74.806111111,34.091111111,,,missing in the hand-placed list
+Isle of Man,Q9676,1344,1401,,,,Douglas,Q18569,no (whole life),-4.4775,54.15,,,missing in the hand-placed list
+Injuids,Q1067513,1344,1362,,,,Shiraz,Q6397066,no (whole life),52.531111111,29.610277777,,,missing in the hand-placed list
+Chobanids,Q1089675,1344,1362,,,,Tabriz,Q80053,no (whole life),46.296111111,38.073888888,,,missing in the hand-placed list
+Sind-Samma Dynasty,Q27260,1344,1525,,,,Thatta,Q27212,no (whole life),67.924336111,24.746116666,,,missing in the hand-placed list
+Ashikaga Shogunate,Q1154406,1344,1571,,,,Heian-kyō,Q751907,no (whole life),135.76666667,35.0,,,missing in the hand-placed list
+Vijayanagara Empire,Q167639,1344,1571,,,,Vijayanagara,Q1611788,no (whole life),76.465,15.325,,,missing in the hand-placed list
+Beylik of Dulkadir,Q1264808,1344,1515,,,,Elbistan,Q117181,no (whole life),37.183333333,38.2,,,missing in the hand-placed list
+Ayutthaya Kingdom,Q841364,1352,1768,,,,Historic City of Ayutthaya,Q111905239,no (whole life),100.560555555,14.347777777,,,missing in the hand-placed list
+Bahmani Sultanate,Q374521,1352,1424,,,,Kalaburagi,Q37112,no (whole life),76.833333333,17.333333333,,,missing in the hand-placed list
+Electorate of Saxony,Q156199,1363,1547,,,,Lutherstadt Wittenberg,Q6837,yes,12.6484,51.8671,,,missing in the hand-placed list
+Despotate of Vidin,Q927154,1363,1401,,,,Vidin,Q178531,no (whole life),22.874058,43.98869,,,missing in the hand-placed list
+Despotate of Dobruja,Q542165,1363,1394,,,,Kavarna,Q405120,no (whole life),28.339218,43.435977,,,missing in the hand-placed list
+Tondo,Q1642472,1375,1571,,,,Tondo,Q1287698,no (whole life),120.967,14.617,,,missing in the hand-placed list
+Ava Kingdom,Q2500952,1375,1528,,,,Inwa,Q2199759,no (whole life),95.985,21.857777777,,,missing in the hand-placed list
+Northern Yuan,Q8959,1375,1439,,,,Xanadu,Q471765,no (whole life),116.185158888,42.358021111,,,missing in the hand-placed list
+County of Béarn,Q213763,1385,1452,,,,Pau,Q132671,no (whole life),-0.37,43.300833333,,,missing in the hand-placed list
+Margraviate of Moravia,Q2670751,1385,1414,,,,Olomouc,Q81137,yes,17.250833333,49.593888888,,,missing in the hand-placed list
+Bornu Empire,Q1139762,1385,1894,,,,Njimi,Q3342340,no (whole life),,,,,missing in the hand-placed list
+Republic of Ragusa,Q208169,1385,1808,,,,Dubrovnik,Q1722,no (whole life),18.108333333,42.640277777,,,missing in the hand-placed list
+Ramadanid Emirate,Q2261321,1385,1515,,,,Adana,Q38545,no (whole life),35.3252861,36.9863599,,,missing in the hand-placed list
+Jaunpur Sultanate,Q167134,1395,1481,,,,Jaunpur,Q1025475,no (whole life),82.686944444,25.753611111,,,missing in the hand-placed list
+Duchy of Milan,Q153529,1402,1539,,,,Milan,Q490,no (whole life),9.19,45.466944444,,,missing in the hand-placed list
+Sayyid Dynasty,Q1331421,1415,1452,,,,Delhi,Q1353,no (whole life),77.216666666,28.666666666,,,missing in the hand-placed list
+Makuria Kingdom,Q829356,1415,1518,,,,Old Dongola,Q433112,no (whole life),30.743888888,18.223055555,,,missing in the hand-placed list
+Electorate of Brandenburg,Q148499,1422,1618,,,,Brandenburg an der Havel,Q3931,no (whole life),12.554083333,52.414138888,,,missing in the hand-placed list
+Kingdom of Mrauk U,Q10791211,1429,1430,,,,Launggyet,Q6498493,yes,93.16666667,20.61666667,,,missing in the hand-placed list
+Ryukyu Kingdom,Q28025,1429,1520,,,,Shuri,Q608415,no (whole life),127.719422222,26.217005555,,,missing in the hand-placed list
+Khanate of Sibir,Q190513,1429,1587,,,,Isker,Q1815305,no (whole life),68.52048,58.14942,,,missing in the hand-placed list
+Duchy of Luxembourg,Q2719360,1429,1449,,,,Luxembourg,Q1842,no (whole life),6.13,49.611388888,,,missing in the hand-placed list
+Aztec Triple Alliance,Q2608489,1429,1520,,,,Tenochtitlan,Q13695,no (whole life),-99.13138889,19.435,,,missing in the hand-placed list
+Duchy of Lorraine,Q155019,1431,1768,,,,Nancy,Q40898,no (whole life),6.183611111,48.692777777,,,missing in the hand-placed list
+Kingdom of Kongo,Q796583,1440,1669,,,,M'banza-Kongo,Q500189,no (whole life),14.25,-6.266666666,,,missing in the hand-placed list
+Khanate of Kazan,Q186537,1440,1551,,,,Kazan,Q900,no (whole life),49.114444444,55.790833333,,,missing in the hand-placed list
+Crimean Khanate,Q160440,1450,1490,,,,Chufut-Kale,Q1017178,yes,33.92446667,44.74102778,,,missing in the hand-placed list
+Nogai Horde,Q631210,1450,1563,,,,Saray-Jük,Q2996387,no (whole life),51.73333333,47.5,,,missing in the hand-placed list
+Ambrosian Republic,Q746443,1450,1452,,,,Milan,Q490,no (whole life),9.19,45.466944444,,,missing in the hand-placed list
+Haudenosaunee,Q68518,1450,1782,,,,Onondaga,Q7094482,no (whole life),,,,,missing in the hand-placed list
+Ryazan,Q269109,1453,1520,,,,Staraya Ryazan,Q4439776,no (whole life),40.427714,54.397114,,,missing in the hand-placed list
+Qasim Khanate,Q836169,1453,1551,,,,Kasimov,Q145457,no (whole life),41.397222222,54.958333333,,,missing in the hand-placed list
+Lodi Dynasty,Q11709,1453,1528,,,,Delhi,Q1353,no (whole life),77.216666666,28.666666666,,,missing in the hand-placed list
+Sultanate of Sulu,Q422065,1459,1879,,,,Maimbung,Q156090,no (whole life),121.033333333,5.933333333,,,missing in the hand-placed list
+Tahirid Sultanate,Q373981,1459,1515,,,,Merv,Q193325,no (whole life),62.1925,37.662777777,,,missing in the hand-placed list
+Sultanate of Malacca,Q46652,1459,1861,,,,Malacca,Q61089,no (whole life),102.251111111,2.188888888,,,missing in the hand-placed list
+Kingdom of Imereti,Q1069959,1468,1810,,,,Kutaisi,Q172415,no (whole life),42.705555555,42.271666666,,,missing in the hand-placed list
+Principality of Abkhazia,Q1760473,1468,1829,,,,Sokhumi,Q40811,no (whole life),41.019166666,43.003611111,,,missing in the hand-placed list
+Samtskhe-Saatabago,Q2029317,1468,1506,,,,Akhaltsikhe,Q212546,no (whole life),42.986111,41.638889,,,missing in the hand-placed list
+Astrakhan Khanate,Q210163,1468,1768,,,,Xacitarxan,Q2477836,no (whole life),47.970277777,46.441111111,,,missing in the hand-placed list
+Principality of Mingrelia,Q2907860,1468,1810,,,,Zugdidi,Q185336,no (whole life),41.8725,42.508055555,,,missing in the hand-placed list
+Kingdom of Kakheti,Q1209822,1468,1762,,,,Gremi,Q1783374,no (whole life),45.67027778,42.01361111,,,missing in the hand-placed list
+Wattasid dynasty,Q970799,1468,1555,,,,Fez,Q80985,no (whole life),-5.003333333,34.043333333,,,missing in the hand-placed list
+Principality of Guria,Q2195101,1468,1829,,,,Ozurgeti,Q317145,no (whole life),42.005027777,41.923027777,,,missing in the hand-placed list
+Sultanate of Cirebon,Q2077648,1482,1676,,,,Cirebon,Q10395,no (whole life),108.5529678,-6.7396903,,,missing in the hand-placed list
+Ahmadnagar Sultanate,Q400998,1492,1652,,,,Ahilyanagar,Q223517,no (whole life),74.733333333,19.083333333,,,missing in the hand-placed list
+Berar Sultanate,Q818666,1492,1578,,,,Achalpur,Q490886,no (whole life),77.508611111,21.257222222,,,missing in the hand-placed list
+Bijapur Sultanate,Q83821,1492,1686,,,,Vijaypura District,Q83108,no (whole life),75.72,16.82,,,missing in the hand-placed list
+Eastern Chagatai Khanate,Q1191125,1492,1511,,,,Aksu,Q421648,no (whole life),80.25,41.166389,,,missing in the hand-placed list
+Bidar Sultanate,Q669317,1492,1618,,,,Bidar,Q461922,no (whole life),77.55,17.9,,,missing in the hand-placed list
+Sultanate of Gowa,Q1408641,1512,1669,,,,Sungguminasa,Q12518016,no (whole life),119.45149994,-5.20030022,,,missing in the hand-placed list
+Sultanate of Aceh,Q1061057,1516,1959,,,,Banda Aceh,Q5779,no (whole life),95.3175,5.55,,,missing in the hand-placed list
+Golconda Sultanate,Q1148042,1519,1591,,,,Golconda,Q4141623,yes,78.404169444,17.383336111,,,missing in the hand-placed list
+Eastern Moghulistan,Q1191125,1519,1686,,,,Aksu,Q421648,no (whole life),80.25,41.166389,,,missing in the hand-placed list
+Western Moghulistan,Q1191125,1519,1635,,,,Aksu,Q421648,no (whole life),80.25,41.166389,,,missing in the hand-placed list
+Sultanate of Maguindanao,Q248572,1521,1852,,,,Cotabato City,Q726993,no (whole life),124.25,7.216666666,,,missing in the hand-placed list
+Sultanate of Banjar,Q1660566,1526,1859,,,,Martapura,Q2358819,no (whole life),114.85,-3.416666666,,,missing in the hand-placed list
+Duchy of Prussia,Q153091,1526,1618,,,,Königsberg,Q4120832,no (whole life),20.509305555,54.711472222,,,missing in the hand-placed list
+Sultanate of Banten,Q734867,1529,1808,,,,Banten,Q2086056,no (whole life),106.159524018,-6.041222295,,,missing in the hand-placed list
+Sultanate of Johor,Q1150344,1529,1884,,,,Bintan Island,Q774859,no (whole life),104.490831,1.083331,,,missing in the hand-placed list
+Nayaks of Thanjavur,Q1588434,1534,1676,,,,Thanjavur,Q41496,no (whole life),79.137806,10.787,,,missing in the hand-placed list
+Sultanate of Harar,Q2365048,1547,1578,,,,Zeila,Q157800,no (whole life),43.473888888,11.353888888,,,missing in the hand-placed list
+Small Horde,Q631210,1564,1737,,,,Saray-Jük,Q2996387,no (whole life),51.73333333,47.5,,,missing in the hand-placed list
+Portuguese Colonies,Q200464,1815,1821,,,,Rio de Janeiro,Q8678,yes,-43.205555555,-22.911111111,,,missing in the hand-placed list
+Kingdom of Mysore,Q266923,1572,1610,,,,Mysore,Q10086,yes,76.653055555,12.308611111,,,missing in the hand-placed list
+Nguyễn lords,Q2301908,1572,1774,,,,Huế,Q36167,yes,107.576388888,16.456111111,,,missing in the hand-placed list
+Principality of Transylvania,Q655621,1572,1692,,,,Alba Iulia,Q174665,yes,23.572777777,46.076388888,,,missing in the hand-placed list
+Khoshut Khanate,Q10921634,1582,1695,,,,Lhasa,Q5869,no (whole life),91.1408186,29.6457567,,,missing in the hand-placed list
+Mataram Sultanate,Q402145,1588,1613,,,,Kotagede,Q657168,yes,110.395410835,-7.817864844,,,missing in the hand-placed list
+Tokugawa Shogunate,Q205662,1600,1869,,,,Edo,Q215646,no (whole life),139.774444444,35.683888888,,,missing in the hand-placed list
+Lan Na,Q1059707,1600,1761,,,,Chiang Saen,Q1709553,no (whole life),100.08348,20.27694,,,missing in the hand-placed list
+New France,Q170604,1609,1791,,,,Quebec City,Q2145,no (whole life),-71.224167,46.816111,,,missing in the hand-placed list
+Oyo Empire,Q849623,1609,1835,,,,Oyo-Ile,Q18342086,no (whole life),3.936055555,7.843611111,,,missing in the hand-placed list
+Sultanate of Darfur,Q1474791,1609,1876,,,,Al-Fashir,Q311204,no (whole life),25.349583333,13.626983333,,,missing in the hand-placed list
+Brandenburg-Prussia,Q157367,1619,1720,,,,Königsberg,Q4120832,no (whole life),20.509305555,54.711472222,,,missing in the hand-placed list
+Sultanate of Sukadana,Q3446232,1619,1833,,,,Sukadana,Q7635708,no (whole life),109.95,-1.25,,,missing in the hand-placed list
+Sultanate of Sambas,Q3109927,1619,1821,,,,Sambas,Q1895349,no (whole life),109.3,1.35,,,missing in the hand-placed list
+Later Jin Dynasty,Q1062546,1625,1644,,,,Shenyang,Q11720,yes,123.428055555,41.8025,,,missing in the hand-placed list
+New Netherland,Q382593,1622,1802,,,,New Amsterdam,Q223308,no (whole life),-74.012414,40.703652,,,missing in the hand-placed list
+Kingdom of Bhutan,Q917,1636,2024,,,,Thimphu,Q9270,no (whole life),89.63367,27.47135,,,missing in the hand-placed list
+Wadai Empire,Q1132786,1636,1910,,,,Abéché,Q242587,no (whole life),20.834722222,13.833055555,,,missing in the hand-placed list
+New Sweden,Q322187,1640,1658,,,,Fort Christina,Q2063470,no (whole life),-75.538461,39.737122,,,missing in the hand-placed list
+Catalonia,Q5705,1640,1641,,,,Barcelona,Q1492,no (whole life),2.176944444,41.3825,,,missing in the hand-placed list
+Principality of Monaco,Q235,1642,2024,,,,Monaco,Q235,no (whole life),7.42,43.731111111,,,missing in the hand-placed list
+Irish Catholic Confederation,Q1407718,1642,1652,,,,Kilkenny,Q109092,no (whole life),-7.251388888,52.650555555,,,missing in the hand-placed list
+Southern Ming,Q1198163,1645,1682,,,,Nanjing,Q16666,no (whole life),118.778888888,32.060833333,,,missing in the hand-placed list
+Dutch Gold Coast,Q770776,1653,1872,,,,Fort Nassau,Q504406,no (whole life),-1.2,5.133333,,,missing in the hand-placed list
+Danish Gold Coast,Q770833,1659,1852,,,,Osu,Q1752686,no (whole life),-0.175,5.55389,,,missing in the hand-placed list
+Morocco,Q1028,1670,2024,,,,Rabat,Q3551,no (whole life),-6.841388888,34.021111111,,,missing in the hand-placed list
+Sultanate of Jambi,Q1679856,1670,1904,,,,Jambi,Q7578,no (whole life),103.608227492,-1.628794452,,,missing in the hand-placed list
+French India,Q646374,1673,1847,,,,Pondicherry,Q639421,yes,79.83,11.93,,,missing in the hand-placed list
+Maratha Empire,Q83618,1677,1845,,,,Raigad Fort,Q3626515,no (whole life),73.445463,18.235352,,,missing in the hand-placed list
+Thanjavur Maratha Kingdom,Q3530610,1677,1799,,,,Thanjavur,Q41496,no (whole life),79.137806,10.787,,,missing in the hand-placed list
+Bali,Q3125978,1687,1907,,,,Singaraja,Q1013537,no (whole life),115.083333333,-8.116666666,,,missing in the hand-placed list
+Cambodia,Q424,1700,1802,,,,Phnom Penh,Q1850,no (whole life),104.921027777,11.569583333,,,missing in the hand-placed list
+Pro-Habsburg Spain,Q600093,1702,1708,,,,Madrid,Q2807,no (whole life),-3.703333333,40.416944444,,,missing in the hand-placed list
+Ashanti Empire,Q722071,1702,1897,,,,Kumasi,Q182059,no (whole life),-1.625,6.7,,,missing in the hand-placed list
+British Colonial Empire,Q8680,1706,1999,,,,London,Q84,no (whole life),-0.1275,51.507222222,,,missing in the hand-placed list
+Regency of Algiers,Q3045696,1706,1845,,,,Algiers,Q3561,no (whole life),3.058611111,36.776388888,,,missing in the hand-placed list
+Beylik of Tunis,Q4899891,1706,1884,,,,Tunis,Q3572,no (whole life),10.18,36.800833333,,,missing in the hand-placed list
+Electorate of Hanover,Q706018,1709,1802,,,,Hanover,Q1715,no (whole life),9.738611111,52.374444444,,,missing in the hand-placed list
+Khanate of Kokand,Q696241,1709,1876,,,,Qoʻqon,Q489890,no (whole life),70.9425,40.528611111,,,missing in the hand-placed list
+Carnatic Sultanate,Q3277580,1713,1768,,,,Arcot,Q589185,yes,79.33333333,12.9,,,missing in the hand-placed list
+Bamana Empire,Q762084,1713,1821,,,,Ségou,Q333476,no (whole life),-6.266666666,13.45,,,missing in the hand-placed list
+Principality of Liechtenstein,Q347,1721,1814,,,,Vaduz,Q1844,no (whole life),9.522222222,47.140555555,,,missing in the hand-placed list
+Hyderabad State,Q1240096,1727,1763,,,,Aurangabad,Q200713,yes,75.32,19.88,,,missing in the hand-placed list
+Greenland,Q223,1734,1940,,,,Nuuk,Q226,no (whole life),-51.733333333,64.175,,,missing in the hand-placed list
+Duchy of Courland,Q156038,1734,1793,,,,Jelgava,Q179830,no (whole life),23.724444444,56.652222222,,,missing in the hand-placed list
+Kingdom of Bulungan,Q3503548,1734,1747,,,,Bulungan,Q14404,no (whole life),117.16667,3.0,,,missing in the hand-placed list
+Konbaung Dynasty,Q1062422,1741,1819,,,,Amarapura,Q454949,no (whole life),96.09545,21.85302,,,missing in the hand-placed list
+Sultanate of Oman,Q842,1744,2024,,,,Muscat,Q3826,no (whole life),58.592222222,23.613888888,,,missing in the hand-placed list
+Surakarta Sunanate,Q2122499,1744,1829,,,,Surakarta,Q4803,no (whole life),110.816666666,-7.566666666,,,missing in the hand-placed list
+Corsican Republic,Q71234,1757,1768,,,,Corte,Q213555,no (whole life),9.150555555,42.305555555,,,missing in the hand-placed list
+Kuwait,Q817,1757,2024,,,,Kuwait City,Q35178,no (whole life),47.98,29.375,,,missing in the hand-placed list
+Bahrain,Q398,1757,1845,,,,Manama,Q3882,no (whole life),50.583333333,26.216666666,,,missing in the hand-placed list
+Kelantan,Q185944,1762,1904,,,,Kota Bharu,Q651131,no (whole life),102.25,6.133333333,,,missing in the hand-placed list
+Kingdom of Naples (Napoleonic),Q48779892,1762,1814,,,,Naples,Q2634,no (whole life),14.248611111,40.835833333,,,missing in the hand-placed list
+Sikh Confederacy,Q2578028,1762,1806,,,,Amritsar,Q48403,no (whole life),74.87704,31.626917,,,missing in the hand-placed list
+Thonburi Kingdom,Q1115291,1769,1782,,,,Thonburi Province,Q6580711,no (whole life),100.485833333,13.725,,,missing in the hand-placed list
+Pontianak Kadriyah Sultanate,Q3048747,1772,1827,,,,Pontianak,Q14168,no (whole life),109.366666666,-0.083333333,,,missing in the hand-placed list
+Tây Sơn dynasty,Q1034173,1775,1789,,,,Quy Nhon,Q36081,yes,109.231372222,13.769580555,,,missing in the hand-placed list
+Negeri Sembilan,Q213893,1775,1894,,,,Seremban,Q847610,no (whole life),101.938055555,2.729722222,,,missing in the hand-placed list
+Nepal,Q837,1775,2024,,,,Kathmandu,Q3037,no (whole life),85.32,27.71,,,missing in the hand-placed list
+Vermont Republic,Q1649602,1783,1790,,,,Windsor,Q1939361,no (whole life),-72.38481,43.48035,,,missing in the hand-placed list
+French Colony of Guiana,Q3769,1791,1791,,,,Cayenne,Q44401,no (whole life),-52.335,4.938611111,,,missing in the hand-placed list
+Kingdom of Hawaï'i,Q156418,1795,1796,,,,Q254861,Q254861,yes,-157.828611111,21.276666666,,,missing in the hand-placed list
+Nguyễn dynasty,Q6500483,1791,1884,,,,Huế,Q36167,no (whole life),107.576388888,16.456111111,,,missing in the hand-placed list
+Haiti,Q2006756,1792,1802,,,,Port-au-Prince,Q34261,no (whole life),-72.340277777,18.546944444,,,missing in the hand-placed list
+Merina Kingdom,Q1071439,1792,1897,,,,Antananarivo,Q3915,no (whole life),47.525,-18.91,,,missing in the hand-placed list
+British Cape Colony,Q370736,1796,1884,,,,Cape Town,Q5465,no (whole life),18.423888888,-33.925277777,,,missing in the hand-placed list
+Batavian Republic,Q188553,1796,1810,,,,The Hague,Q36600,no (whole life),4.31,52.08,,,missing in the hand-placed list
+Batavian Republic,Q188553,1796,1810,,,,The Hague,Q36600,no (whole life),4.31,52.08,,,missing in the hand-placed list
+British Ceylon,Q918153,1796,1814,,,,Colombo,Q35381,no (whole life),79.860555555,6.926666666,,,missing in the hand-placed list
+Ligurian Republic,Q659312,1797,1814,,,,Genoa,Q1449,no (whole life),8.933888888,44.407222222,,,missing in the hand-placed list
+Grand Duchy of Tuscany,Q154849,1797,1848,,,,Florence,Q2044,no (whole life),11.254166666,43.771388888,,,missing in the hand-placed list
+Cisalpine Republic,Q213353,1797,1799,,,,Milan,Q490,no (whole life),9.19,45.466944444,,,missing in the hand-placed list
+Republic of San Marino,Q238,1797,1799,,,,San Marino,Q1848,no (whole life),12.44845,43.932011111,,,missing in the hand-placed list
+Helvetic Republic,Q206696,1799,1799,,,,Lucerne,Q4191,yes,8.3059,47.0523,,,missing in the hand-placed list
+Revolutionary Roman Republic,Q175881,1799,1799,,,,Rome,Q220,no (whole life),12.482777777,41.893055555,,,missing in the hand-placed list
+Septinsular Republic,Q1077630,1800,1819,,,,Corfu,Q205832,no (whole life),19.921388888,39.623888888,,,missing in the hand-placed list
+Dutch East Indies,Q188161,1800,1949,,,,Batavia,Q1199713,no (whole life),106.813222,-6.134836,,,missing in the hand-placed list
+Electorate of Württemberg,Q2172530,1803,1805,,,,Stuttgart,Q1022,no (whole life),9.18,48.7775,,,missing in the hand-placed list
+Kingdom of Hanover,Q164079,1803,1865,,,,Hanover,Q1715,no (whole life),9.738611111,52.374444444,,,missing in the hand-placed list
+Electorate of Hesse,Q529605,1803,1867,,,,Kassel,Q2865,no (whole life),9.497916666,51.315777777,,,missing in the hand-placed list
+Electorate of Salzburg,Q646390,1803,1805,,,,Salzburg,Q34713,no (whole life),13.045,47.8,,,missing in the hand-placed list
+Kingdom of Etruria,Q223793,1803,1806,,,,Florence,Q2044,no (whole life),11.254166666,43.771388888,,,missing in the hand-placed list
+Electorate of Baden,Q637238,1803,1805,,,,Karlsruhe,Q1040,no (whole life),8.4,49.016666666,,,missing in the hand-placed list
+First French colonial empire,Q71084,1805,1814,,,,Paris,Q90,no (whole life),2.352222222,48.856666666,,,missing in the hand-placed list
+Duchy of Nassau,Q836680,1806,1816,,,,Weilburg,Q573599,yes,8.25,50.483333333,,,missing in the hand-placed list
+Saxe-Altenburg,Q158151,1806,1870,,,,Altenburg,Q15976,no (whole life),12.433333333,50.985,,,missing in the hand-placed list
+Grand Duchy of Baden,Q186320,1806,1870,,,,Karlsruhe,Q1040,no (whole life),8.4,49.016666666,,,missing in the hand-placed list
+Duchy of Oldenburg,Q697084,1806,1870,,,,Oldenburg,Q2936,no (whole life),8.213888888,53.143888888,,,missing in the hand-placed list
+Free City of Lübeck,Q950240,1806,1870,,,,Lübeck,Q2843,no (whole life),10.686388888,53.869722222,,,missing in the hand-placed list
+Principality of Regensberg,Q701969,1806,1813,,,,Regensburg,Q2978,no (whole life),12.083333333,49.016666666,,,missing in the hand-placed list
+Principality of Waldeck and Pyrmont,Q165763,1806,1870,,,,Bad Arolsen,Q498078,yes,9.016666666,51.377777777,,,missing in the hand-placed list
+Kingdom of Württemberg,Q159631,1806,1870,,,,Stuttgart,Q1022,no (whole life),9.18,48.7775,,,missing in the hand-placed list
+Principality of Lippe,Q14551680,1806,1870,,,,Detmold,Q3922,no (whole life),8.883333333,51.937777777,,,missing in the hand-placed list
+Kingdom of Bavaria,Q154195,1806,1870,,,,Munich,Q1726,no (whole life),11.575,48.1375,,,missing in the hand-placed list
+Grand Duchy of Würzburg,Q698089,1806,1814,,,,Würzburg,Q2999,no (whole life),9.929444444,49.794444444,,,missing in the hand-placed list
+Principality of Reuss-Gera,Q639100,1806,1870,,,,Gera,Q3750,no (whole life),12.08242,50.87818,,,missing in the hand-placed list
+Duchy of Mecklenburg,Q109252949,1806,1870,,,,Schwerin,Q1709,no (whole life),11.415,53.628888888,,,missing in the hand-placed list
+Grand Duchy of Hesse,Q20135,1806,1870,,,,Darmstadt,Q2973,no (whole life),8.65,49.866666666,,,missing in the hand-placed list
+Grand Duchy of Saxe-Weimar-Eisenach,Q155570,1806,1870,,,,Weimar,Q3955,no (whole life),11.329444444,50.981111111,,,missing in the hand-placed list
+Principality of Hohenzollern-Sigmaringen,Q157013,1806,1852,,,,Sigmaringen,Q82858,no (whole life),9.216666666,48.086944444,,,missing in the hand-placed list
+Duchy of Anhalt,Q16550783,1806,1870,,,,Dessau,Q487070,no (whole life),12.246111111,51.834166666,,,missing in the hand-placed list
+Kingdom of Saxony,Q153015,1806,1870,,,,Dresden,Q1731,no (whole life),13.7381437,51.0493286,,,missing in the hand-placed list
+Grand Duchy of Berg,Q249428,1806,1827,,,,Düsseldorf,Q1718,no (whole life),6.776666666,51.225555555,,,missing in the hand-placed list
+Duchy of Warsaw,Q152115,1809,1813,,,,Warsaw,Q270,no (whole life),21.011111111,52.23,,,missing in the hand-placed list
+Free City of Danzig,Q216173,1809,1939,,,,Gdańsk,Q1792,no (whole life),18.6540233,54.3482907,,,missing in the hand-placed list
+Kingdom of Westphalia,Q153943,1809,1813,,,,Kassel,Q2865,no (whole life),9.497916666,51.315777777,,,missing in the hand-placed list
+Confederation of the Rhine,Q154741,1809,1814,,,,Free City of Frankfurt,Q704300,no (whole life),8.68222222,50.11027778,,,missing in the hand-placed list
+Republic of Venezuela,Q717,1811,1814,,,,Caracas,Q1533,no (whole life),-66.914444444,10.506111111,,,missing in the hand-placed list
+Paraguay,Q733,1811,2024,,,,Asunción,Q2933,no (whole life),-57.634444444,-25.28,,,missing in the hand-placed list
+Republic of Chile,Q298,1812,2024,,,,Santiago,Q2887,no (whole life),-70.65,-33.4375,,,missing in the hand-placed list
+Federal League,Q2625228,1814,1819,,,,Montevideo,Q1335,no (whole life),-56.191311111,-34.905916666,,,missing in the hand-placed list
+Sovereign Principality of the United Netherlands,Q774783,1814,1814,,,,Amsterdam,Q727,no (whole life),4.883333333,52.366666666,,,missing in the hand-placed list
+Duchy of Brunswick,Q326029,1814,1870,,,,Brunswick,Q2773,no (whole life),10.521111111,52.269166666,,,missing in the hand-placed list
+Kingdom of Norway,Q20,1814,2024,,,,Oslo,Q585,no (whole life),10.738888888,59.913333333,,,missing in the hand-placed list
+Kingdom of Monaco,Q235,1815,1939,,,,Monaco,Q235,no (whole life),7.42,43.731111111,,,missing in the hand-placed list
+Free City of Krakow,Q501303,1815,1845,,,,Kraków,Q31487,no (whole life),19.937222222,50.061388888,,,missing in the hand-placed list
+Duchy of Parma and Piacenza,Q165040,1815,1859,,,,Parma,Q2683,no (whole life),10.328,44.801472222,,,missing in the hand-placed list
+Kingdom of the Two Sicilies,Q180393,1815,1860,,,,Naples,Q2634,no (whole life),14.248611111,40.835833333,,,missing in the hand-placed list
+Duchy of Modena and Reggio,Q252580,1815,1859,,,,Modena,Q279,no (whole life),10.92572,44.64582,,,missing in the hand-placed list
+Netherlands Antilles,Q25227,1815,2024,,,,Willemstad,Q132679,no (whole life),-68.935,12.108,,,missing in the hand-placed list
+Principality of Andorra,Q228,1815,2024,,,,Andorra la Vella,Q1863,no (whole life),1.522222222,42.507222222,,,missing in the hand-placed list
+Saxe-Meiningen,Q157710,1820,1870,,,,Meiningen,Q487278,no (whole life),10.416666666,50.55,,,missing in the hand-placed list
+Burma,Q836,1948,1989,,,,Yangon,Q37995,yes,96.16,16.795,,,missing in the hand-placed list
+Principality of Lichtenberg,Q547629,1820,1827,,,,Sankt Wendel,Q569676,no (whole life),7.166666666,49.466666666,,,missing in the hand-placed list
+Qatar Dynasty,Q846,1820,1904,,,,Doha,Q3861,no (whole life),51.529444444,25.286111111,,,missing in the hand-placed list
+First Mexican Empire,Q285658,1822,1823,,,,Mexico City,Q1489,no (whole life),-99.13589,19.353773,,,missing in the hand-placed list
+First Hellenic Republic,Q528546,1827,1940,,,,Nafplio,Q202337,yes,22.8,37.565833333,,,missing in the hand-placed list
+Republic of Peru,Q419,1822,2024,,,,Lima,Q2868,no (whole life),-77.0375,-12.06,,,missing in the hand-placed list
+Federated Republic of Mexico,Q1109279,1824,1865,,,,Mexico City,Q1489,no (whole life),-99.13589,19.353773,,,missing in the hand-placed list
+Emirate of Jabal Shammar,Q5362837,1825,1921,,,,Ha'il,Q675568,no (whole life),41.683333333,27.516666666,,,missing in the hand-placed list
+Caucasian Imamate,Q2088141,1828,1858,,,,Vedeno,Q2312752,no (whole life),46.10384,42.961601,,,missing in the hand-placed list
+Oriental Republic of Uruguay,Q77,1828,2024,,,,Montevideo,Q1335,no (whole life),-56.191311111,-34.905916666,,,missing in the hand-placed list
+French Algeria,Q218272,1830,1847,,,,Algiers,Q3561,no (whole life),3.058611111,36.776388888,,,missing in the hand-placed list
+Venezuela,Q717,1834,2024,,,,Caracas,Q1533,no (whole life),-66.914444444,10.506111111,,,missing in the hand-placed list
+Republic of Ecuador,Q736,1834,2024,,,,Quito,Q2900,no (whole life),-78.5125,-0.22,,,missing in the hand-placed list
+Argentine Confederation,Q832554,1834,1929,,,,Paraná,Q44213,no (whole life),-60.529722222,-31.733055555,,,missing in the hand-placed list
+Peru-Bolivian Confederation,Q899706,1836,1839,,,,Tacna,Q272795,no (whole life),-70.248333333,-18.055555555,,,missing in the hand-placed list
+Centralist Mexico,Q5062192,1836,1847,,,,Mexico City,Q1489,no (whole life),-99.13589,19.353773,,,missing in the hand-placed list
+Riograndense Republic,Q162192,1836,1845,,,,São Borja,Q385327,no (whole life),-56.003888888,-28.660833333,,,missing in the hand-placed list
+Republic of Texas,Q170588,1836,1836,,,,Washington-on-the-Brazos,Q540250,no (whole life),-96.153541666,30.323986111,,,missing in the hand-placed list
+Saxe-Coburg and Gotha,Q3462133,1836,1839,,,,Gotha,Q6986,no (whole life),10.718333333,50.948888888,,,missing in the hand-placed list
+Honduras,Q783,1840,2024,,,,Tegucigalpa,Q3238,no (whole life),-87.204705555,14.105783333,,,missing in the hand-placed list
+Republic of the Rio Grande,Q2014442,1840,1841,,,,Laredo,Q16868,no (whole life),-99.507222222,27.506111111,,,missing in the hand-placed list
+Republic of Costa Rica,Q800,1840,2024,,,,San José,Q3070,no (whole life),-84.079613888,9.932738888,,,missing in the hand-placed list
+Guatemala,Q774,1840,2024,,,,Guatemala City,Q1555,no (whole life),-90.513333333,14.641666666,,,missing in the hand-placed list
+Natalia Republic,Q1029847,1840,1910,,,,Pietermaritzburg,Q185591,no (whole life),30.3796,-29.6009,,,missing in the hand-placed list
+Ottoman Tripolitania,Q1529261,1840,1911,,,,Tripoli,Q3579,no (whole life),13.1875,32.8875,,,missing in the hand-placed list
+Republic of Nicaragua,Q811,1840,2024,,,,Managua,Q131546626,no (whole life),-86.273725,12.154680555,,,missing in the hand-placed list
+Republic of El Salvador,Q792,1840,2024,,,,San Salvador,Q3110,no (whole life),-89.191155555,13.697597222,,,missing in the hand-placed list
+Los Altos,Q738264,1840,1841,,,,Quetzaltenango,Q334577,no (whole life),-91.516666666,14.833333333,,,missing in the hand-placed list
+Kingdom of Sarawak,Q1658411,1842,1946,,,,Kuching,Q220445,no (whole life),110.343888888,1.5575,,,missing in the hand-placed list
+Kedah-Perlis District,Q213467,1842,1910,,,,Kangar,Q921155,no (whole life),100.2,6.433333333,,,missing in the hand-placed list
+Kashmir and Jammu,Q2571484,1846,1947,,,,Srinagar,Q170115,no (whole life),74.806111111,34.091111111,,,missing in the hand-placed list
+Dominican Republic,Q786,1846,2024,,,,Santo Domingo,Q34820,no (whole life),-69.936111111,18.4625,,,missing in the hand-placed list
+California Republic,Q17557,1846,1847,,,,Sonoma,Q11592,no (whole life),-122.457777777,38.291944444,,,missing in the hand-placed list
+Republic of Liberia,Q1014,1848,2024,,,,Monrovia,Q3748,no (whole life),-10.804722222,6.310555555,,,missing in the hand-placed list
+Duchy of Holstein,Q704288,1848,1852,,,,Glückstadt,Q377277,no (whole life),9.421944444,53.791666666,,,missing in the hand-placed list
+Republic of Baden,Q690821,1849,1852,,,,Karlsruhe,Q1040,no (whole life),8.4,49.016666666,,,missing in the hand-placed list
+Pahang Sultanate,Q30592233,1853,1889,,,,Pekan,Q3235637,no (whole life),103.416666666,3.5,,,missing in the hand-placed list
+Republic of Baja California,Q7314427,1853,1856,,,,La Paz,Q214215,no (whole life),-110.306666666,24.148611111,,,missing in the hand-placed list
+Montenegro,Q236,1853,2024,,,,Podgorica,Q23564,no (whole life),19.262777777,42.441388888,,,missing in the hand-placed list
+Taiping Heavenly Kingdom,Q3486676,1853,1864,,,,Nanjing,Q16666,no (whole life),118.778888888,32.060833333,,,missing in the hand-placed list
+Mosquito Kingdom,Q1165546,1853,1859,,,,Bluefields,Q115471966,yes,-83.764911111,12.013125,,,missing in the hand-placed list
+State of Buenos Aires,Q6553448,1853,1860,,,,Buenos Aires,Q1486,no (whole life),-58.381944444,-34.599722222,,,missing in the hand-placed list
+Majeerteen Sultanate,Q2257830,1856,1889,,,,Ras Hafun,Q3237966,no (whole life),51.274904655,10.419294052,,,missing in the hand-placed list
+Free Orange State,Q218023,1856,1899,,,,Bloemfontein,Q37701,no (whole life),26.216666666,-29.1,,,missing in the hand-placed list
+New Caledonia,Q33788,1856,1859,,,,Nouméa,Q9733,no (whole life),166.45,-22.266666666,,,missing in the hand-placed list
+People's Republic of Zanzibar,Q157535,1856,1889,,,,Zanzibar City,Q2222874,no (whole life),39.2,-6.166666666,,,missing in the hand-placed list
+United Principalities of Moldavia and Wallachia,Q958291,1859,1881,,,,Bucharest,Q19660,yes,26.097777777,44.413361111,,,missing in the hand-placed list
+British Raj,Q129286,1859,1911,,,,Kolkata,Q1348,yes,88.37,22.5675,,,missing in the hand-placed list
+French Indochina,Q185682,1887,1902,,,,Saigon,Q105076326,yes,106.65,10.8,,,missing in the hand-placed list
+Confederate States of America,Q81931,1861,1861,,,,Montgomery,Q29364,yes,-86.3,32.3675,,,missing in the hand-placed list
+Second Mexican Empire,Q371334,1865,1867,,,,Mexico City,Q1489,no (whole life),-99.13589,19.353773,,,missing in the hand-placed list
+Mexico,Q5062192,1868,2024,,,,Mexico City,Q1489,no (whole life),-99.13589,19.353773,,,missing in the hand-placed list
+Kingdom of Fiji,Q17515160,1871,1876,,,,Levuka,Q26692,no (whole life),178.840127777,-17.684013888,,,missing in the hand-placed list
+British Gold Coast,Q503623,1877,1960,,,,Accra,Q3761,yes,-0.1969,5.55602,,,missing in the hand-placed list
+Sultanate of Hobyo,Q862404,1880,1894,,,,Hobyow,Q1016908,no (whole life),48.525555555,5.351388888,,,missing in the hand-placed list
+Principality of Bulgaria,Q815731,1880,1944,,,,Sofia,Q472,yes,23.321726,42.697886,,,missing in the hand-placed list
+Nieuwe Republiek,Q552157,1885,1889,,,,Vryheid,Q1023254,no (whole life),30.791388888,-27.769444444,,,missing in the hand-placed list
+Swaziland,Q1050,1885,1907,,,,Lobamba,Q101418,no (whole life),31.206411,-26.44648,,,missing in the hand-placed list
+New Hebrides,Q752431,1890,1982,,,,Port Vila,Q37806,no (whole life),168.316667,-17.73333,,,missing in the hand-placed list
+Luxembourg,Q2719360,1890,2024,,,,Luxembourg,Q1842,no (whole life),6.13,49.611388888,,,missing in the hand-placed list
+Brazilian Republic,Q155,1890,1960,,,,Rio de Janeiro,Q8678,yes,-43.205555555,-22.911111111,,,missing in the hand-placed list
+Republic of Hawai'i,Q1057542,1895,1897,,,,Honolulu,Q18094,no (whole life),-157.857222222,21.304722222,,,missing in the hand-placed list
+Cretan State,Q72785,1898,1907,,,,Chania,Q182299,no (whole life),24.016666666,35.516666666,,,missing in the hand-placed list
+Republic of Cuba,Q241,1905,1959,,,,Havana,Q1563,no (whole life),-82.358888888,23.136666666,,,missing in the hand-placed list
+Republic of Panama,Q804,1905,2024,,,,Panama City,Q3306,no (whole life),-79.534722222,8.971111111,,,missing in the hand-placed list
+Tangier International Zone,Q3497642,1912,1957,,,,Tangier,Q126148,no (whole life),-5.8044679,35.7694908,,,missing in the hand-placed list
+Republic of China,Q148,1949,2024,,,,Beijing,Q956,yes,116.407526,39.90403,,,missing in the hand-placed list
+Great Mongol State,Q7313,1912,1925,,,,Khanbaliq,Q101186473,no (whole life),116.4,39.933333333,,,missing in the hand-placed list
+Albania,Q222,1912,1945,,,,Tirana,Q19689,no (whole life),19.818055555,41.328333333,,,missing in the hand-placed list
+Qatar,Q846,1913,1915,,,,Doha,Q3861,no (whole life),51.529444444,25.286111111,,,missing in the hand-placed list
+Imamate of Oman,Q2342282,1913,1919,,,,Nizwa,Q1915327,no (whole life),57.533333333,22.933333333,,,missing in the hand-placed list
+Kingdom of Hejaz,Q956357,1916,1925,,,,Mecca,Q5806,no (whole life),39.826111111,21.4225,,,missing in the hand-placed list
+Empire of China,Q175379,1916,1916,,,,Beijing,Q956,no (whole life),116.407526,39.90403,,,missing in the hand-placed list
+Russian Republic,Q139319,1917,1919,,,,Saint Petersburg,Q656,no (whole life),30.316666666,59.95,,,missing in the hand-placed list
+Azerbaijan Democratic Republic,Q227,1918,1919,,,,Baku,Q9248,no (whole life),49.835183333,40.366655555,,,missing in the hand-placed list
+Armenia,Q399,1918,1919,,,,Yerevan,Q1953,no (whole life),44.514444444,40.181388888,,,missing in the hand-placed list
+Serbia,Q1311990,1918,1918,,,,Stari Ras,Q917814,no (whole life),20.415669,43.128342,,,missing in the hand-placed list
+Kingdom of Iceland,Q62567,1918,1939,,,,Reykjavík,Q1764,no (whole life),-21.935,64.1475,,,missing in the hand-placed list
+Kingdom of Lithuania,Q1656775,1919,1939,,,,Kernavė,Q215315,no (whole life),24.85,54.883333333,,,missing in the hand-placed list
+Ukrainian People's Republic,Q1508143,1919,1919,,,,Kyiv,Q1899,no (whole life),30.523611111,50.45,,,missing in the hand-placed list
+Estonia,Q191,1919,1939,,,,Tallinn,Q1770,no (whole life),24.745,59.437222222,,,missing in the hand-placed list
+Republic of Austria,Q40,1919,1937,,,,Vienna,Q1741,no (whole life),16.3725,48.208333333,,,missing in the hand-placed list
+Republic of Latvia,Q211,1920,2024,,,,Riga,Q1773,no (whole life),24.106944444,56.9475,,,missing in the hand-placed list
+Kingdom of Egypt,Q124943,1922,1952,,,,Cairo,Q85,no (whole life),31.235833333,30.044444444,,,missing in the hand-placed list
+Republic of the Rif,Q37102,1922,1925,,,,Ajdir,Q412703,no (whole life),-3.915209,35.193229,,,missing in the hand-placed list
+Irish Free State,Q31747,1922,1937,,,,Dublin,Q1761,no (whole life),-6.260277777,53.349722222,,,missing in the hand-placed list
+Provisional Priamurye Government,Q1381504,1922,1923,,,,Vladivostok,Q959,no (whole life),131.885277777,43.115,,,missing in the hand-placed list
+Republic of Turkey,Q43,1924,2024,,,,Ankara,Q3640,yes,32.83869,39.93576,,,missing in the hand-placed list
+Pahlavi Dynasty,Q207991,1924,1978,,,,Tehran,Q3616,no (whole life),51.389722222,35.688888888,,,missing in the hand-placed list
+Kingdom of Afghanistan,Q1138904,1926,1972,,,,Kabul,Q5838,no (whole life),69.165833333,34.532777777,,,missing in the hand-placed list
+Mongolian People's Republic,Q212056,1926,1991,,,,Ulaanbaatar,Q23430,no (whole life),106.905515,47.921357,,,missing in the hand-placed list
+Kingdom of Hejaz and Nejd,Q1756546,1926,1935,,,,Riyadh,Q3692,no (whole life),46.715,24.638333333,,,missing in the hand-placed list
+Argentine Republic,Q414,1930,2024,,,,Buenos Aires,Q1486,no (whole life),-58.381944444,-34.599722222,,,missing in the hand-placed list
+Canada,Q16,1932,2024,,,,Ottawa,Q1930,yes,-75.695,45.424722222,,,missing in the hand-placed list
+Kingdom of Thailand,Q869,1932,2024,,,,Bangkok,Q1861,yes,100.516666666,13.75,,,missing in the hand-placed list
+Kingdom of Iraq,Q149805,1932,1957,,,,Baghdad,Q1530,no (whole life),44.366111111,33.315277777,,,missing in the hand-placed list
+Kingdom of Saudi Arabia,Q851,1936,2024,,,,Riyadh,Q3692,yes,46.715,24.638333333,,,missing in the hand-placed list
+Republic of Haiti,Q790,1936,2024,,,,Port-au-Prince,Q34261,no (whole life),-72.340277777,18.546944444,,,missing in the hand-placed list
+Independent State of Croatia,Q153128,1941,1944,,,,Zagreb,Q1435,no (whole life),15.977222222,45.813055555,,,missing in the hand-placed list
+Lebanon,Q139708,1944,2024,,,,Damascus,Q3766,yes,36.292,33.513,,,missing in the hand-placed list
+Kingdom of Greece,Q209065,1945,1966,,,,Athens,Q1524,yes,23.728055555,37.984166666,,,missing in the hand-placed list
+People's Socialist Republic of Albania,Q467864,1946,1990,,,,Tirana,Q19689,no (whole life),19.818055555,41.328333333,,,missing in the hand-placed list
+Republic of Italy,Q38,1946,2024,,,,Rome,Q220,yes,12.482777777,41.893055555,,,missing in the hand-placed list
+Papua New Guinea,Q691,1946,2024,,,,Port Moresby,Q36526,no (whole life),147.149444444,-9.478888888,,,missing in the hand-placed list
+Republic of Iceland,Q189,1946,2024,,,,Reykjavík,Q1764,no (whole life),-21.935,64.1475,,,missing in the hand-placed list
+Second Syrian Republic,Q146885,1946,1957,,,,Damascus,Q3766,no (whole life),36.292,33.513,,,missing in the hand-placed list
+Kingdom of Bulgaria,Q147909,1947,1947,,,,Sofia,Q472,no (whole life),23.321726,42.697886,,,missing in the hand-placed list
+Republic of the Philippines,Q928,1947,2024,,,,Manila,Q1461,no (whole life),120.977222222,14.595833333,,,missing in the hand-placed list
+Hungary,Q28513,1947,2024,,,,Vienna,Q1741,no (whole life),16.3725,48.208333333,,,missing in the hand-placed list
+New Zealand,Q664,1948,2024,,,,Wellington,Q23661,yes,174.777222222,-41.288888888,,,missing in the hand-placed list
+People's Republic of Bulgaria,Q121932,1948,1990,,,,Sofia,Q472,no (whole life),23.321726,42.697886,,,missing in the hand-placed list
+Democratic People's Republic of Korea,Q423,1948,2024,,,,Pyongyang,Q18808,no (whole life),125.7475,39.016666666,,,missing in the hand-placed list
+Republic of Korea,Q423,1948,2024,,,,Pyongyang,Q18808,no (whole life),125.7475,39.016666666,,,missing in the hand-placed list
+Sri Lanka,Q854,1948,2024,,,,Colombo,Q35381,no (whole life),79.860555555,6.926666666,,,missing in the hand-placed list
+Socialist Republic of Romania,Q842794,1948,1989,,,,Bucharest,Q19660,no (whole life),26.097777777,44.413361111,,,missing in the hand-placed list
+German Democratic Republic,Q16957,1949,1990,,,,East Berlin,Q56037,no (whole life),13.404444444,52.518611111,,,missing in the hand-placed list
+Federal Republic of Germany,Q713750,1950,1990,,,,Bonn,Q586,no (whole life),7.102222222,50.735277777,,,missing in the hand-placed list
+Hungarian People's Republic,Q16410,1950,1989,,,,Budapest,Q1781,no (whole life),19.040833333,47.498333333,,,missing in the hand-placed list
+Republic of Poland,Q36,1953,2024,,,,Warsaw,Q270,yes,21.011111111,52.23,,,missing in the hand-placed list
+Japan,Q188712,1953,2024,,,,Tokyo,Q1490,yes,139.691666666,35.689444444,,,missing in the hand-placed list
+Republic of Egypt,Q79,1953,1957,,,,Cairo,Q85,no (whole life),31.235833333,30.044444444,,,missing in the hand-placed list
+Kingdom of Libya,Q31454,1953,1968,,,,Tripoli,Q3579,no (whole life),13.1875,32.8875,,,missing in the hand-placed list
+Republic of Vietnam,Q172640,1956,1975,,,,Hanoi,Q1858,no (whole life),105.84117,21.0245,,,missing in the hand-placed list
+Kingdom of Laos,Q870055,1956,1975,,,,Luang Prabang,Q190165,no (whole life),102.134722222,19.89,,,missing in the hand-placed list
+Republic of Tunisia,Q948,1956,2024,,,,Tunis,Q3572,no (whole life),10.18,36.800833333,,,missing in the hand-placed list
+Kingdom of Cambodia,Q424,1956,2024,,,,Phnom Penh,Q1850,no (whole life),104.921027777,11.569583333,,,missing in the hand-placed list
+Democratic Republic of Vietnam,Q172640,1956,1975,,,,Hanoi,Q1858,no (whole life),105.84117,21.0245,,,missing in the hand-placed list
+Ghana,Q117,1958,2024,,,,Accra,Q3761,no (whole life),-0.1969,5.55602,,,missing in the hand-placed list
+Arab Federation,Q146713,1958,1959,,,,Baghdad,Q1530,no (whole life),44.366111111,33.315277777,,,missing in the hand-placed list
+Federation of Malaya,Q1479726,1958,1962,,,,Kuala Lumpur,Q1865,no (whole life),101.695277777,3.147777777,,,missing in the hand-placed list
+Madagascar,Q1019,1960,2024,,,,Antananarivo,Q3915,no (whole life),47.525,-18.91,,,missing in the hand-placed list
+Guinea,Q983,1968,2024,,,,Malabo,Q3818,yes,8.7737,3.752063888,,,missing in the hand-placed list
+Togo,Q945,1960,2024,,,,Lomé,Q3792,no (whole life),1.215833333,6.13,,,missing in the hand-placed list
+Democratic Republic of the Congo,Q974,1960,2024,,,,Kinshasa,Q3838,no (whole life),15.311944444,-4.321944444,,,missing in the hand-placed list
+Communist Cuba,Q241,1960,2024,,,,Havana,Q1563,no (whole life),-82.358888888,23.136666666,,,missing in the hand-placed list
+Republic of Cameroon,Q1009,1960,2024,,,,Yaoundé,Q3808,no (whole life),11.518055555,3.857777777,,,missing in the hand-placed list
+Republic of the Congo,Q974,1961,2024,,,,Kinshasa,Q3838,no (whole life),15.311944444,-4.321944444,,,missing in the hand-placed list
+Gabon,Q1000,1961,2024,,,,Libreville,Q3825,no (whole life),9.440277777,0.407777777,,,missing in the hand-placed list
+Republic of Syria,Q858,1961,1962,,,,Damascus,Q3766,no (whole life),36.292,33.513,,,missing in the hand-placed list
+Tanzania,Q924,1961,1996,,,,Dar es Salaam,Q1960,yes,39.280277777,-6.816111111,,,missing in the hand-placed list
+State of Kuwait,Q817,1961,1989,,,,Kuwait City,Q35178,no (whole life),47.98,29.375,,,missing in the hand-placed list
+Sierra Leone,Q1044,1961,2024,,,,Freetown,Q3780,no (whole life),-13.235555555,8.487222222,,,missing in the hand-placed list
+British East Africa,Q876185,1961,1972,,,,Mombasa,Q225641,no (whole life),39.666666666,-4.05,,,missing in the hand-placed list
+Central African Republic,Q929,1961,2024,,,,Bangui,Q3832,no (whole life),18.562833333,4.37325,,,missing in the hand-placed list
+Republic of Côte d'Ivoire,Q1008,1961,1983,,,,Abidjan,Q1515,yes,-4.026666666,5.336388888,,,missing in the hand-placed list
+Republic of Senegal,Q1041,1961,2024,,,,Dakar,Q3718,no (whole life),-17.432,14.672555555,,,missing in the hand-placed list
+Republic of Chad,Q657,1961,2024,,,,N'Djamena,Q3659,no (whole life),15.05,12.11,,,missing in the hand-placed list
+Republic of Benin,Q962,1961,2024,,,,Porto-Novo,Q3799,no (whole life),2.616666666,6.483333333,,,missing in the hand-placed list
+Federal Republic of Nigeria,Q1033,1961,1991,,,,Lagos,Q8673,yes,3.393611111,6.456111111,,,missing in the hand-placed list
+Mauritania,Q1025,1961,2024,,,,Nouakchott,Q3688,no (whole life),-15.9785,18.08581,,,missing in the hand-placed list
+Burkina Faso,Q965,1961,2024,,,,Ouagadougou,Q3777,no (whole life),-1.5275,12.368611111,,,missing in the hand-placed list
+Republic of the Niger,Q1032,1961,2024,,,,Niamey,Q3674,no (whole life),2.1175,13.515,,,missing in the hand-placed list
+Republic of Kenya,Q114,1963,2024,,,,Nairobi,Q3870,no (whole life),36.817222222,-1.286388888,,,missing in the hand-placed list
+Republic of Rwanda,Q1037,1963,2024,,,,Kigali,Q3859,no (whole life),30.115,-1.9525,,,missing in the hand-placed list
+Jamaica,Q766,1963,2024,,,,Kingston,Q34692,no (whole life),-76.793055555,17.971388888,,,missing in the hand-placed list
+Republic of Trinidad and Tobago,Q754,1963,2024,,,,Port of Spain,Q39178,no (whole life),-61.516666666,10.666666666,,,missing in the hand-placed list
+People's Democratic Republic of Algeria,Q262,1963,2024,,,,Algiers,Q3561,no (whole life),3.058611111,36.776388888,,,missing in the hand-placed list
+Ba'athist Syria,Q858,1963,1966,,,,Damascus,Q3766,no (whole life),36.292,33.513,,,missing in the hand-placed list
+Malaysia,Q833,1963,2024,,,,Kuala Lumpur,Q1865,no (whole life),101.695277777,3.147777777,,,missing in the hand-placed list
+Republic of Uganda,Q1036,1963,2024,,,,Kampala,Q3894,no (whole life),32.581111111,0.313611111,,,missing in the hand-placed list
+Republic of Burundi,Q967,1963,2019,,,,Bujumbura,Q3854,yes,29.361111111,-3.3825,,,missing in the hand-placed list
+Sultanate of Zanzibar,Q157904,1963,1966,,,,Zanzibar City,Q2222874,no (whole life),39.2,-6.166666666,,,missing in the hand-placed list
+Malawi,Q1020,1967,1975,,,,Zomba,Q219117,yes,35.318801,-15.385957,,,missing in the hand-placed list
+Lesotho,Q1013,1967,2024,,,,Maseru,Q3909,no (whole life),27.48,-29.31,,,missing in the hand-placed list
+Guyana,Q734,1967,2024,,,,Georgetown,Q10717,no (whole life),-58.150833333,6.805833333,,,missing in the hand-placed list
+Zambia,Q953,1967,2024,,,,Lusaka,Q3881,no (whole life),28.283333333,-15.416666666,,,missing in the hand-placed list
+Republic of The Gambia,Q1005,1967,2024,,,,Banjul,Q3726,no (whole life),-16.5775,13.453055555,,,missing in the hand-placed list
+Barbados,Q244,1967,2024,,,,Bridgetown,Q36168,no (whole life),-59.616666666,13.0975,,,missing in the hand-placed list
+Rhodesia,Q217169,1967,1978,,,,Harare,Q3921,no (whole life),31.052222222,-17.829166666,,,missing in the hand-placed list
+Malta,Q233,1967,2024,,,,Valletta,Q23800,no (whole life),14.5125,35.897777777,,,missing in the hand-placed list
+Greek junta,Q504081,1967,1975,,,,Athens,Q1524,no (whole life),23.728055555,37.984166666,,,missing in the hand-placed list
+Republic of Singapore,Q334,1967,2024,,,,Singapore,Q334,no (whole life),103.8,1.3,,,missing in the hand-placed list
+Saint Kitts,Q204989,1967,2024,,,,Basseterre,Q41295,no (whole life),-62.734166666,17.298333333,,,missing in the hand-placed list
+Antigua and Barbuda,Q781,1967,2024,,,,Q36262,Q36262,no (whole life),-61.844722222,17.121111111,,,missing in the hand-placed list
+Republic of Botswana,Q963,1967,2024,,,,Gaborone,Q3919,no (whole life),25.908611111,-24.656944444,,,missing in the hand-placed list
+Mauritius,Q1027,1969,2024,,,,Port Louis,Q3929,no (whole life),57.498888888,-20.161944444,,,missing in the hand-placed list
+People's Democratic Republic of Yemen,Q199841,1969,1989,,,,Aden,Q131694,no (whole life),45.033333333,12.8,,,missing in the hand-placed list
+Saint Vincent,Q757,1969,2024,,,,Kingstown,Q41474,no (whole life),-61.22742,13.15527,,,missing in the hand-placed list
+Eswatini,Q1050,1969,2024,,,,Lobamba,Q101418,no (whole life),31.206411,-26.44648,,,missing in the hand-placed list
+Commonwealth of The Bahamas,Q778,1973,2024,,,,Nassau,Q2467,no (whole life),-77.338611111,25.078055555,,,missing in the hand-placed list
+Republic of Guinea-Bissau,Q1007,1973,2024,,,,Bissau,Q3739,no (whole life),-15.583333333,11.86,,,missing in the hand-placed list
+Arab Republic of Egypt,Q79,1973,2024,,,,Cairo,Q85,no (whole life),31.235833333,30.044444444,,,missing in the hand-placed list
+Kingdom of Bahrain,Q398,1973,2024,,,,Manama,Q3882,no (whole life),50.583333333,26.216666666,,,missing in the hand-placed list
+Syria,Q41137,1973,2024,,,,Dur-Sharrukin,Q253208,yes,43.22931,36.50953,,,missing in the hand-placed list
+Republic of Fiji,Q712,1973,2024,,,,Suva,Q38807,no (whole life),178.433333333,-18.133333333,,,missing in the hand-placed list
+Republic of Afghanistan,Q1415128,1973,1978,,,,Kabul,Q5838,no (whole life),69.165833333,34.532777777,,,missing in the hand-placed list
+People's Republic of Bangladesh,Q902,1973,2024,,,,Dhaka,Q1354,no (whole life),90.394444444,23.728888888,,,missing in the hand-placed list
+State of Qatar,Q846,1973,2024,,,,Doha,Q3861,no (whole life),51.529444444,25.286111111,,,missing in the hand-placed list
+United Arab Emirates,Q878,1973,2024,,,,Abu Dhabi,Q1519,no (whole life),54.396944444,24.451111111,,,missing in the hand-placed list
+Zaire,Q6500954,1973,1995,,,,Kinshasa,Q3838,no (whole life),15.311944444,-4.321944444,,,missing in the hand-placed list
+Seychelles,Q1042,1976,2024,,,,Victoria,Q3940,no (whole life),55.454444444,-4.623611111,,,missing in the hand-placed list
+Turkish Republic of Northern Cyprus,Q23681,1976,2024,,,,North Nicosia,Q2762100,no (whole life),33.363611111,35.19,,,missing in the hand-placed list
+Socialist Republic of Vietnam,Q881,1976,2024,,,,Hanoi,Q1858,no (whole life),105.84117,21.0245,,,missing in the hand-placed list
+Third Hellenic Republic,Q17765809,1976,2024,,,,Athens,Q1524,no (whole life),23.728055555,37.984166666,,,missing in the hand-placed list
+People's Republic of Angola,Q916,1976,2024,,,,Luanda,Q3897,no (whole life),13.234444444,-8.838333333,,,missing in the hand-placed list
+Mozambique,Q1029,1976,2024,,,,Maputo,Q3889,no (whole life),32.573333333,-25.968888888,,,missing in the hand-placed list
+Grenada,Q769,1976,2024,,,,St. George's,Q41547,no (whole life),-61.753055555,12.0525,,,missing in the hand-placed list
+Republic of Suriname,Q730,1976,2024,,,,Paramaribo,Q3001,no (whole life),-55.166666666,5.866666666,,,missing in the hand-placed list
+São Tomé and Príncipe,Q1039,1976,2024,,,,São Tomé,Q3932,no (whole life),6.728333333,0.3375,,,missing in the hand-placed list
+Communist Laos,Q819,1976,2024,,,,Vientiane,Q9326,no (whole life),102.63,17.98,,,missing in the hand-placed list
+Portugal,Q45,1976,2024,,,,Lisbon,Q597,yes,-9.139016,38.708042,,,missing in the hand-placed list
+People's Republic of Kampuchea,Q867778,1979,1995,,,,Phnom Penh,Q1850,no (whole life),104.921027777,11.569583333,,,missing in the hand-placed list
+Commonwealth of Dominica,Q784,1979,2024,,,,Roseau,Q36281,no (whole life),-61.383333333,15.3,,,missing in the hand-placed list
+Zimbabwe Rhodesia,Q890120,1979,1982,,,,Harare,Q3921,no (whole life),31.052222222,-17.829166666,,,missing in the hand-placed list
+Saint Lucia,Q760,1979,2024,,,,Castries,Q41699,no (whole life),-60.989444444,14.010833333,,,missing in the hand-placed list
+Islamic Republic of Iran,Q794,1979,2024,,,,Tehran,Q3616,no (whole life),51.389722222,35.688888888,,,missing in the hand-placed list
+Solomon Islands,Q685,1979,2024,,,,Honiara,Q40921,no (whole life),159.95,-9.433333,,,missing in the hand-placed list
+Afghanistan,Q889,1979,2024,,,,Kabul,Q5838,no (whole life),69.165833333,34.532777777,,,missing in the hand-placed list
+Republic of Djibouti,Q977,1979,2024,,,,Djibouti,Q3604,no (whole life),43.148055555,11.595,,,missing in the hand-placed list
+Republic of Zimbabwe,Q954,1983,2024,,,,Harare,Q3921,no (whole life),31.052222222,-17.829166666,,,missing in the hand-placed list
+Vanuatu,Q686,1983,2024,,,,Port Vila,Q37806,no (whole life),168.316667,-17.73333,,,missing in the hand-placed list
+Belize,Q242,1983,2024,,,,Belmopan,Q3043,no (whole life),-88.7675,17.25,,,missing in the hand-placed list
+Republic of Brazil,Q155,1987,2024,,,,Brasília,Q2844,yes,-47.882777777,-15.793888888,,,missing in the hand-placed list
+Republic of Yemen,Q199841,1990,2024,,,,Aden,Q131694,no (whole life),45.033333333,12.8,,,missing in the hand-placed list
+Republic of Lithuania,Q37,1990,2024,,,,Vilnius,Q216,yes,25.28,54.687222222,,,missing in the hand-placed list
+Namibia,Q1030,1990,2024,,,,Windhoek,Q3935,no (whole life),17.083611111,-22.57,,,missing in the hand-placed list
+Union of Myanmar,Q836,2005,2024,,,,Naypyidaw,Q37400,yes,96.115,19.7475,,,missing in the hand-placed list
+Federated Republic of Germany,Q183,1991,1999,,,,Bonn,Q586,yes,7.102222222,50.735277777,,,missing in the hand-placed list
+Republic of Albania,Q467864,1991,2024,,,,Tirana,Q19689,no (whole life),19.818055555,41.328333333,,,missing in the hand-placed list
+Republic of Bulgaria,Q121932,1991,2024,,,,Sofia,Q472,no (whole life),23.321726,42.697886,,,missing in the hand-placed list
+Republic of Tajikistan,Q863,1992,2024,,,,Dushanbe,Q9365,no (whole life),68.786388888,38.573055555,,,missing in the hand-placed list
+Kazakhstan,Q232,1992,1997,,,,Almaty,Q35493,yes,76.915,43.24,,,missing in the hand-placed list
+Republic of Croatia,Q224,1992,2024,,,,Zagreb,Q1435,no (whole life),15.977222222,45.813055555,,,missing in the hand-placed list
+Chechen Republic,Q5187,1992,2005,,,,Grozny,Q5196,no (whole life),45.698611111,43.3125,,,missing in the hand-placed list
+Republic of Armenia,Q399,1992,2024,,,,Yerevan,Q1953,no (whole life),44.514444444,40.181388888,,,missing in the hand-placed list
+Republic of Slovenia,Q215,1992,2024,,,,Ljubljana,Q437,no (whole life),14.506111111,46.051388888,,,missing in the hand-placed list
+Mongolia,Q711,1992,2024,,,,Ulaanbaatar,Q23430,no (whole life),106.905515,47.921357,,,missing in the hand-placed list
+Republic of Belarus,Q184,1992,2024,,,,Minsk,Q2280,no (whole life),27.561837,53.902246,,,missing in the hand-placed list
+Kyrgyzstan,Q813,1992,2024,,,,Bishkek,Q9361,no (whole life),74.566666666,42.866666666,,,missing in the hand-placed list
+Slovakia,Q33946,1992,2024,,,,Prague,Q1085,no (whole life),14.421388888,50.0875,,,missing in the hand-placed list
+Republic of Azerbaijan,Q227,1992,2024,,,,Baku,Q9248,no (whole life),49.835183333,40.366655555,,,missing in the hand-placed list
+Bosnia and Herzegovina,Q225,1992,2024,,,,Sarajevo,Q11194,no (whole life),18.413055555,43.856388888,,,missing in the hand-placed list
+Czech Republic,Q213,1992,2024,,,,Prague,Q1085,no (whole life),14.421388888,50.0875,,,missing in the hand-placed list
+Former Yugoslav Republic of Macedonia,Q221,1992,2024,,,,Skopje,Q384,no (whole life),21.431666666,41.996111111,,,missing in the hand-placed list
+State of Eritrea,Q986,1992,2024,,,,Asmara,Q3642,no (whole life),38.916666666,15.333333333,,,missing in the hand-placed list
+Republic of Uzbekistan,Q265,1992,2024,,,,Tashkent,Q269,no (whole life),69.279722222,41.311111111,,,missing in the hand-placed list
+Russian Federation,Q159,1992,2024,,,,Moscow,Q649,yes,37.6175,55.750555555,,,missing in the hand-placed list
+Republic of Estonia,Q191,1992,2024,,,,Tallinn,Q1770,no (whole life),24.745,59.437222222,,,missing in the hand-placed list
+Republic of Moldova,Q217,1992,2024,,,,Chișinău,Q21197,no (whole life),28.835277777,47.022777777,,,missing in the hand-placed list
+Russian Federation,Q159,1992,2024,,,,Moscow,Q649,yes,37.6175,55.750555555,,,missing in the hand-placed list
+Turkmenistan,Q874,1992,2024,,,,Ashgabat,Q23438,no (whole life),58.383333333,37.95,,,missing in the hand-placed list
+Palau,Q695,1996,2006,,,,Koror,Q527748,yes,134.48042,7.34333,,,missing in the hand-placed list
+Kosovo,Q1246,2000,2024,,,,Pristina,Q25270,no (whole life),21.166666666,42.666666666,,,missing in the hand-placed list
+Republic of Serbia,Q403,2006,2024,,,,Belgrade,Q3711,no (whole life),20.456944444,44.817777777,,,missing in the hand-placed list
+East Timor,Q574,2006,2024,,,,Dili,Q9310,yes,125.578333333,-8.553611111,,,missing in the hand-placed list
+State of Libya,Q1016,2014,2024,,,,Tripoli,Q3579,no (whole life),13.1875,32.8875,,,missing in the hand-placed list
+South Sudan,Q958,2014,2024,,,,Juba,Q1947,no (whole life),31.5825,4.853888888,,,missing in the hand-placed list
+Republic of Iraq,Q796,2014,2024,,,,Baghdad,Q1530,no (whole life),44.366111111,33.315277777,,,missing in the hand-placed list

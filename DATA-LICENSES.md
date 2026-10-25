@@ -14,7 +14,7 @@ Used: country totals (`popc_c.txt`, base scenario) and population grids (`popc_<
 Changes: matched to Natural Earth countries; summed inside Cliopatria shapes; aggregated to 0.5° cells and divided by land area for the density layer.
 
 ## Coastlines and today's borders: Natural Earth
-Natural Earth, 1:50m Admin 0 – Countries. https://www.naturalearthdata.com — Public domain.
+Natural Earth, 1:50m Admin 0 – Countries, and 1:50m Populated Places (v5.1.2, for search only). https://www.naturalearthdata.com — Public domain.
 
 ## World Atlas TopoJSON
 Mike Bostock, *world-atlas* 2.0.2 (derived from Natural Earth). https://github.com/topojson/world-atlas — ISC licence. Used for ISO numeric country codes.
