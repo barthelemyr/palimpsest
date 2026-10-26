@@ -175,7 +175,11 @@ button.kitem:hover { background: #f3f1ea; } .kitem.on, button.kitem.on:hover { b
 .strip .sg { position: absolute; top: 0; bottom: 0; border: 0; padding: 0; cursor: pointer; box-shadow: inset -1px 0 0 #fff; }
 .strip .sg:hover { filter: brightness(.93); }
 .strip .sg.on { box-shadow: inset 0 0 0 2.5px var(--ink); z-index: 1; }
-.strip .now { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); pointer-events: none; z-index: 2; }
+.stripw { position: relative; }
+.stripw.hasnow { padding-top: 19px; }
+.nowm { position: absolute; top: 15px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--ink); box-shadow: 0 0 0 1.5px #fff; border-radius: 1px; pointer-events: none; z-index: 3; }
+.nowm b { position: absolute; bottom: 100%; left: 1px; transform: translateX(-50%); margin-bottom: 1px; padding: 0 5px; border-radius: 4px; background: var(--ink); color: #fff; font-size: 10.5px; font-weight: 700; line-height: 15px; white-space: nowrap; }
+.nowm.l b { transform: translateX(-3px); } .nowm.r b { transform: translateX(calc(-100% + 3px)); }
 .ticks2 { position: relative; height: 14px; font-size: 10.5px; color: var(--ink-2); margin-top: 3px; }
 .ticks2 span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
 .ticks2 span:first-child { transform: none; } .ticks2 span:last-child { transform: translateX(-100%); }
@@ -224,7 +228,8 @@ body.has-focus .bar .sub { display: none; }
 @keyframes lensin { from { opacity: 0; } to { opacity: 1; } }
 .lensin { animation: lensin .3s ease-out; }
 @media (prefers-reduced-motion: reduce) { .lensin { animation: none; } }
-@media (max-width: 760px) { .bar .fchip { display: none !important; } #fchip2:not([hidden]) { display: inline-flex; max-width: 64vw; height: 34px; box-shadow: 0 2px 8px rgba(29,29,27,.10); } }
+@media (max-width: 760px) { #fchip2 .fl em { display: none; }   /* the year is in the time bar below: the name gets the room */
+  .bar .fchip { display: none !important; } #fchip2:not([hidden]) { display: inline-flex; max-width: 64vw; height: 34px; box-shadow: 0 2px 8px rgba(29,29,27,.10); } }
 .acts { position: sticky; bottom: -28px; margin: 18px -20px -28px; padding: 10px 20px 14px; background: linear-gradient(rgba(255,255,255,.85), #fff 30%); display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--hair); }
 .act { border: 1px solid var(--ink); background: #fff; border-radius: 999px; padding: 7px 12px; font-size: 13.5px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
 .act.pri { background: var(--ink); color: #fff; }
@@ -1048,9 +1053,9 @@ function render() {
   ctx.font = `700 ${small ? 9 : 10.5}px ${WIDE}`; ctx.fillStyle = "#55534e"; ctx.textBaseline = "middle";
   const EZ = small ? 18 : 22;
   ERAS.forEach(([n, a, b]) => { const y1 = ty + Yw(a) * s, y2 = ty + Yw(b) * s, on = eraSel === n, hov = eraHover === n;
-    if (on || hov) { ctx.fillStyle = on ? "#1d1d1b" : "#ebe7dd"; ctx.fillRect(0, Math.max(top, y1 + 1), EZ, Math.max(0, Math.min(H, y2 - 1) - Math.max(top, y1 + 1))); }
-    ctx.fillStyle = on ? "#fff" : "#1d1d1b"; ctx.fillRect(small ? 3 : 5, y1 + 2, on ? 2.5 : 1.5, Math.max(0, y2 - y1 - 4));
-    const tw = ctx.measureText(n).width; if (y2 - y1 > tw + 12) { ctx.save(); ctx.translate(small ? 10 : 13, (Math.max(top, y1) + Math.min(H, y2)) / 2 < y1 + tw / 2 + 6 ? y1 + tw / 2 + 6 : Math.min((Math.max(top, y1) + Math.min(H, y2)) / 2, y2 - tw / 2 - 6)); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = on ? "#fff" : hov ? INK : "#55534e"; ctx.fillText(n, 0, 0); ctx.restore(); } });
+    if (on || hov) { ctx.fillStyle = on ? "#e6e0d1" : "#efebe2"; ctx.fillRect(0, Math.max(top, y1 + 1), EZ, Math.max(0, Math.min(H, y2 - 1) - Math.max(top, y1 + 1))); }
+    ctx.fillStyle = "#1d1d1b"; ctx.fillRect(small ? 3 : 5, y1 + 2, on ? 3 : 1.5, Math.max(0, y2 - y1 - 4));
+    const tw = ctx.measureText(n).width; if (y2 - y1 > tw + 12) { ctx.save(); ctx.translate(small ? 10 : 13, (Math.max(top, y1) + Math.min(H, y2)) / 2 < y1 + tw / 2 + 6 ? y1 + tw / 2 + 6 : Math.min((Math.max(top, y1) + Math.min(H, y2)) / 2, y2 - tw / 2 - 6)); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = on || hov ? INK : "#55534e"; ctx.fillText(n, 0, 0); ctx.restore(); } });
   const dy = ty + Yw(ERAS[0][1]) * s, dt = ty + TOP * s;
   if (dy - dt > 40) { ctx.save(); ctx.translate(small ? 10 : 13, (dt + dy) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = "#8a867c"; ctx.fillText("Deep past", 0, 0); ctx.restore(); }
   ctx.font = `500 ${small ? 8.5 : 10}px ${NARROW}`; ctx.fillStyle = "#55534e"; ctx.textAlign = "right"; let last = -1e9;
@@ -1073,11 +1078,16 @@ function render() {
     ctx.fillStyle = INK; ctx.fillRect(left, HDR, W - left, CONTH);
     ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(VIEWS[VIEW].name.toUpperCase(), (left + W) / 2, HDR + CONTH / 2 + 1);
     ctx.fillStyle = "#cfcbc2"; ctx.textAlign = "left"; ctx.fillText("‹ ALL CONTINENTS", left + 8, HDR + CONTH / 2 + 1);
-  } else runs.forEach((r) => { const x1 = Math.max(left, tx + r.x1), x2 = Math.min(W, tx + r.x2); if (x2 - x1 < 8) return;
-    const hov = contHoverTL === r.c; if (hov) { ctx.fillStyle = "#ebe7dd"; ctx.fillRect(x1, HDR, x2 - x1, CONTH); }
-    ctx.fillStyle = "#e4e1d8"; ctx.fillRect(tx + r.x1, HDR + 3, 1, CONTH - 5);
-    const lab = r.c.toUpperCase(); const w = ctx.measureText(lab).width; if (w + 8 > x2 - x1) return;
-    ctx.fillStyle = hov ? INK : "#8a867c"; ctx.textAlign = "center"; ctx.fillText(lab, (x1 + x2) / 2, HDR + CONTH / 2 + 1); });
+  } else {
+    // labels: a continent split by one narrow run of another (Egypt, in Africa, between Turkey and Iraq) gets one label over both parts
+    const labs = []; runs.forEach((r, k) => { const g = labs[labs.length - 2], mid = labs[labs.length - 1];
+      if (g && mid && g.c === r.c && mid.c !== r.c && mid.x2 - mid.x1 < Math.min(g.x2 - g.x1, r.x2 - r.x1)) { g.x2 = r.x2; mid.skip = true; mid.x1 = mid.x2; } else labs.push({ c: r.c, x1: r.x1, x2: r.x2 }); });
+    runs.forEach((r) => { const x1 = Math.max(left, tx + r.x1), x2 = Math.min(W, tx + r.x2); if (x2 - x1 < 1) return;
+      if (contHoverTL === r.c) { ctx.fillStyle = "#ebe7dd"; ctx.fillRect(x1, HDR, x2 - x1, CONTH); }
+      ctx.fillStyle = "#e4e1d8"; ctx.fillRect(tx + r.x1, HDR + 3, 1, CONTH - 5); });
+    labs.forEach((r) => { if (r.skip) return; const x1 = Math.max(left, tx + r.x1), x2 = Math.min(W, tx + r.x2); if (x2 - x1 < 8) return;
+      const lab = r.c.toUpperCase(); const w = ctx.measureText(lab).width; if (w + 8 > x2 - x1) return;
+      ctx.fillStyle = contHoverTL === r.c ? INK : "#8a867c"; ctx.textAlign = "center"; ctx.fillText(lab, (x1 + x2) / 2, HDR + CONTH / 2 + 1); }); }
   if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
   const fy = HDR + CONTH, fh = fl - CONTH;
   SHOWN.forEach((t) => { const sx = tx + t._x, sw = t._w; if (sw < 14 || sx + sw < left || sx > W) return;
@@ -1088,6 +1098,10 @@ function render() {
     else drawFlag(ctx, t._flags[0], sx + sw / 2 - w / 2, yy, h);
   });
   ctx.restore();
+  // the corner above the axis: the time axis is not to scale
+  { ctx.save(); ctx.font = `600 ${W < 700 ? 8 : 9}px ${NARROW}`; ctx.fillStyle = "#8a867c"; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    const L = W < 700 ? ["Not to", "scale"] : ["Time not", "to scale"], y0 = HDR + (FLAGS() - (L.length - 1) * 11) / 2;
+    L.forEach((t, k) => ctx.fillText(t, 6, y0 + k * 11)); ctx.restore(); }
 }
 
 
@@ -1132,6 +1146,7 @@ cv.addEventListener("pointermove", (e) => {
     const inFlags = e.clientY >= HDR + CONTH && e.clientY < top && e.clientX >= AX();
     if (inFlags) { const wx = e.clientX - tx, ft = SHOWN.find((c) => c._wt > 0.02 && wx >= c._x && wx < c._x + c._w); cv.style.cursor = ft ? "pointer" : "";
       if (ft) showTip(e, ft.n, `${ft.c} · ${ft.p.length} periods · tap for its story`); else hideTip(); hoverYear = null; draw(); return; }
+    if (e.clientX < AX() && e.clientY >= HDR && e.clientY < HDR + FLAGS()) { showTip(e, "The time axis is not to scale", "Recent centuries get far more room than ancient ones: 1800 to today takes more height than the 2,200 years from 3400 to 1200 BCE, and the deep past is squeezed at the top. Read the years on the axis, not the distances."); hoverYear = null; draw(); return; }
     if (inBand) { const cs = VIEWS[VIEW].cont; showTip(e, cs ? VIEWS[VIEW].name : bc || "", cs ? "Tap to show all continents again" : bc ? `Tap to show only ${bc}` : ""); hoverYear = null; draw(); return; }
     if (er) { showTip(e, er[0], eraSel === er[0] ? "Tap to see all of time again" : "Tap to zoom to this era"); hoverYear = null; draw(); return; }
     if (e.clientY < top || e.clientX < AX()) { hoverYear = e.clientX < AX() && e.clientY > top ? yearAtW((e.clientY - ty) / s) : null;
@@ -1167,7 +1182,7 @@ addEventListener("keydown", (e) => { if (mode !== "poster" || e.target.closest("
   else if (e.key === "]") geoStep(1); else if (e.key === "[") geoStep(-1); });
 function tap(px, py, type) {
   const top = HDR + FLAGS();
-  if (py >= HDR && py < HDR + CONTH && px >= AX()) { const c = bandAt(px); if (c || VIEWS[VIEW].cont) pickContinent(VIEWS[VIEW].cont ? null : c); return; }
+  if (py >= HDR && py < HDR + CONTH && px >= AX()) { const c = bandAt(px); if (c || VIEWS[VIEW].cont) { hideTip(); contHoverTL = null; pickContinent(VIEWS[VIEW].cont ? null : c); } return; }
   if (py >= HDR && py < top) { const wx = px - tx, t = SHOWN.find((c) => c._wt > 0.02 && wx >= c._x && wx < c._x + c._w); if (t) showTrack(t); return; }
   if (px < (W < 700 ? 18 : 22) && py > top) { const er = eraAt(py); if (er) { pickEra(er); return; } }
   if (px < AX() && py > top) { showYear(yearAtW((py - ty) / s)); return; }
@@ -1251,9 +1266,10 @@ const prov = (k, txt) => `<span class="badge ${PROV[k][0]}" title="${esc(PROV[k]
 // time strip: a horizontal timeline on the poster's own time scale
 function stripHTML(segs, { s0, hi, now, attr, label }) {
   const a = Yw(Math.max(s0, -12000)), b = Yw(END), X = (y) => Math.max(0, Math.min(100, (Yw(Math.max(y, -12000)) - a) / (b - a) * 100));
-  let h = `<div class="viz"><div class="vh"><span>${esc(label)}</span><span>${esc(fmt(Math.max(s0, -12000)))} → today</span></div><div class="strip">`;
+  let h = `<div class="viz"><div class="vh"><span>${esc(label)}</span><span>${esc(fmt(Math.max(s0, -12000)))} → today</span></div><div class="stripw${now != null ? " hasnow" : ""}"><div class="strip">`;
   segs.forEach((g) => { const l = X(g.s), w = Math.max(0.6, X(g.e) - l); h += `<button class="sg${g === hi || g.key === hi ? " on" : ""}" ${attr(g)} style="left:${l}%;width:${w}%;background:${g.c}" title="${esc(g.n)}, ${esc(span(g.s, g.e))}" aria-label="${esc(g.n)}"></button>`; });
-  if (now != null) h += `<i class="now" style="left:${X(now)}%"></i>`;
+  h += `</div>`;
+  if (now != null) { const x = X(now); h += `<i class="nowm${x < 10 ? " l" : x > 90 ? " r" : ""}" style="left:${x}%"><b>${esc(fmt(now))}</b></i>`; }   // the year shown, above the strip
   const ticks = []; [s0, -1000, 1, 1000, 1500, 1900].forEach((y, k) => { if (k && (y <= s0 || X(y) > 86)) return; if (ticks.length && X(y) - X(ticks[ticks.length - 1]) < (ticks.length === 1 ? 20 : 11)) return; ticks.push(y); });
   h += `</div><div class="ticks2">${ticks.map((y) => `<span style="left:${X(y)}%">${y === 1 ? "1 CE" : y < 0 ? `${(-y).toLocaleString("en")} BCE` : y}</span>`).join("")}<span style="left:100%">today</span></div></div>`;
   return h;
@@ -2931,7 +2947,11 @@ const SCAP = { y: 1, p: 3, c: 4, s: 6, t: 5, v: 3 };
 const SORDER = ["y", "p", "c", "s", "t", "v"];
 const PIN = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.6" fill="#fff"/></svg>';
 // common short names and abbreviations for formal state names (whole-name match), so "USSR" finds the Union of Soviet Socialist Republics
-const AKA_RAW = { "Union of Soviet Socialist Republics": ["USSR", "Soviet Union", "URSS", "Union soviétique"], "United States of America": ["USA", "United States"],
+const AKA_RAW = { "Former Yugoslav Republic of Macedonia": ["FYROM", "Macedonia", "Macédoine du Nord"], "Eswatini": ["Swaziland"], "Union of Myanmar": ["Burma", "Birmanie"],
+  "Sri Lanka": ["Ceylon", "Ceylan"], "Kingdom of Thailand": ["Siam"], "Burkina Faso": ["Upper Volta", "Haute-Volta"], "Republic of Benin": ["Dahomey"],
+  "Republic of Côte d'Ivoire": ["Ivory Coast"], "Republic of Cabo Verde": ["Cape Verde", "Cap-Vert"], "Kingdom of Cambodia": ["Kampuchea"], "Czech Republic": ["Czechia", "Tchéquie"],
+  "Republic of Botswana": ["Bechuanaland"], "Lesotho": ["Basutoland"], "Malawi": ["Nyasaland"], "Ghana": ["Gold Coast"], "Tanzania": ["Tanganyika"],
+  "Union of Soviet Socialist Republics": ["USSR", "Soviet Union", "URSS", "Union soviétique"], "United States of America": ["USA", "United States"],
   "Kingdom of Great Britain": ["UK", "Britain", "Great Britain"], "Nazi Germany": ["Third Reich", "Troisième Reich"], "German Empire": ["Second Reich", "Kaiserreich", "Empire allemand"],
   "People's Republic of China": ["PRC", "Communist China"], "Republic of China": ["ROC"], "German Democratic Republic": ["East Germany", "GDR", "DDR", "RDA", "Allemagne de l'Est"],
   "Federal Republic of Germany": ["West Germany", "FRG", "RFA", "Allemagne de l'Ouest"], "Democratic Republic of the Congo": ["DRC", "RDC"], "United Arab Emirates": ["UAE", "Émirats arabes unis"],
@@ -3099,6 +3119,7 @@ function sameSubj(a, b) {
 function substNote() {
   const F = FOCUS, P = PANEL_F; PANEL_F = null;
   if (!F || !P || sheet.hidden || sameSubj(F, P)) return;
+  if (F.k === "empire" && P.k === "state" && body.querySelector(`.bridge [data-pemp="${F.emp}"]`)) return;   // the panel already links the two
   const old = body.querySelector(".subst"); if (old) old.remove();
   const S = esc(focusLabel(F)), N = esc(focusLabel(P)), Y = esc(fmt(mYear)), v = curLens();
   let msg;
