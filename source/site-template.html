@@ -836,13 +836,13 @@ function resize() {
   geoLabel();
 }
 // time fit: the whole time range fills the height
-function fit(anim) {
-  if (eraSel) setEra(null, true);
-  const ns = timeFit(), availW = W - AX() - 8;
+function fit(anim) {   // a chosen period stays chosen: a new continent or level of detail is framed on it (the chip's × or Settings clears it)
+  const era = eraSel && ERAS.find((x) => x[0] === eraSel);
+  const ns = era ? Math.max(minS, Math.min(maxS, (H - HDR - FLAGS() - 22) / (Yw(era[2]) - Yw(era[1])))) : timeFit(), availW = W - AX() - 8;
   let ntx = AX() + 4;
   if (WORLD_W > availW + 1) { const focus = SHOWN.find((t) => t.id === "italy" && t._wt > 0.5) || SHOWN[Math.floor(SHOWN.length / 2)];
     ntx = AX() + availW / 2 - (focus._x + focus._w / 2); }
-  setCam(ns, ntx, HDR + FLAGS() + 6 - TOP * 0.35 * ns, anim); fitS = ns;
+  setCam(ns, ntx, era ? HDR + FLAGS() + 10 - Yw(era[1]) * ns : HDR + FLAGS() + 6 - TOP * 0.35 * ns, anim); fitS = ns;
 }
 function clampCam() {
   s = Math.max(minS, Math.min(maxS, s));
@@ -1283,7 +1283,7 @@ function sparkHTML(pts, { y0, y1, now, color, label, unit, log, line, peak, pop 
 const linksHTML = (e) => { const l = []; if (e.wp) l.push(`<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(e.wp.replace(/ /g, "_"))}" target="_blank" rel="noopener">Wikipedia</a>`);
   if (e.wd) l.push(`<a href="https://www.wikidata.org/wiki/${encodeURIComponent(e.wd)}" target="_blank" rel="noopener">Wikidata ${esc(e.wd)}</a>`); return l.length ? `<p>${l.join(" · ")}</p>` : ""; };
 // matching a poster column with a country of the network
-const trackNC = (t) => { if (typeof NC === "undefined") return null; const k = normQ(t.n.split(/,| and | \(/)[0]); return NC.find((c, i) => NKEY[i] === k) || null; };
+const trackNC = (t) => { if (typeof NC === "undefined") return null; const k = normQ(t.n.split(/,| and | \(/)[0]); return NC.find((c, i) => NKEY[i] === k) || NC.find((c, i) => NKEY_D[i] === k) || null; };
 function trackSegs(t) {
   const main = (t._pieces || []).filter((q) => q._lane === 0);
   const src = main.length ? main.map((q) => ({ s: q._s, e: q._e, c: q._fill, n: q.n, p: q._src, key: q._src })) : [...t.p].filter((p) => !p.par).sort((a, b) => a.s - b.s).map((p) => ({ s: p.s, e: endOf(p), c: p._fill || "#ddd5c3", n: p.n, p, key: p }));
@@ -1452,6 +1452,14 @@ function ensureShown(t) { if (!SHOWN.includes(t)) { if (VIEWS[VIEW].cont && mCon
 const MD = JSON.parse(document.getElementById("mapdata").textContent);
 let ENTS = [], RECS = [], COLORS = [], GBOX = [], ARC_XY = null, ARC_OFF = null, ARC_LEN = null, GEO = [], LANDP = null, mapReady = false;
 let lastPolityTap = null;   // the state and point of the last click on the map
+// Names of today. Cliopatria names each state by its formal regime ("Third Hellenic Republic") and keeps one name for its whole life,
+// sometimes an outdated one ("Former Yugoslav Republic of Macedonia" after 2019). States that still exist are shown by today's short name;
+// the panel gives Cliopatria's name below (and why, when it is outdated). Links and search keep working with Cliopatria's names.
+const TODAY_NAME = {"Kingdom of Sweden": "Sweden", "Swiss Confederation": "Switzerland", "Sultanate of Brunei": "Brunei", "Kingdom of Spain": "Spain", "Kingdom of Bhutan": "Bhutan", "Principality of Monaco": "Monaco", "Kingdom of Great Britain": "United Kingdom", "Sultanate of Oman": "Oman", "United States of America": "United States", "Republic of Chile": "Chile", "Kingdom of Norway": "Norway", "Principality of Andorra": "Andorra", "Republic of Peru": "Peru", "Oriental Republic of Uruguay": "Uruguay", "Kingdom of Belgium": "Belgium", "Republic of Ecuador": "Ecuador", "Republic of Costa Rica": "Costa Rica", "Republic of Nicaragua": "Nicaragua", "Republic of El Salvador": "El Salvador", "Republic of Liberia": "Liberia", "Republic of Colombia": "Colombia", "Commonwealth of Australia": "Australia", "Republic of Panama": "Panama", "Republic of Finland": "Finland", "Republic of Latvia": "Latvia", "Republic of Turkey": "Turkey", "Argentine Republic": "Argentina", "Kingdom of Thailand": "Thailand", "Kingdom of Saudi Arabia": "Saudi Arabia", "Republic of Haiti": "Haiti", "Éire": "Ireland", "Republic of Italy": "Italy", "Republic of Indonesia": "Indonesia", "Republic of Iceland": "Iceland", "Second Republic of Austria": "Austria", "Republic of India": "India", "Republic of the Philippines": "Philippines", "Islamic Republic of Pakistan": "Pakistan", "Kingdom of Jordan": "Jordan", "Democratic People's Republic of Korea": "North Korea", "Republic of Korea": "South Korea", "State of Israel": "Israel", "People's Republic of China": "China", "Republic of Poland": "Poland", "Republic of Tunisia": "Tunisia", "Kingdom of Cambodia": "Cambodia", "Republic of Sudan": "Sudan", "French Fifth Republic": "France", "Mali Federation": "Mali", "Federal Republic of Somalia": "Somalia", "Democratic Republic of the Congo": "DR Congo", "Communist Cuba": "Cuba", "Republic of Cameroon": "Cameroon", "Republic of the Congo": "Congo", "Republic of Côte d'Ivoire": "Côte d'Ivoire", "Republic of Senegal": "Senegal", "Republic of Chad": "Chad", "Republic of Cyprus": "Cyprus", "Republic of Benin": "Benin", "Federal Republic of Nigeria": "Nigeria", "Republic of the Niger": "Niger", "Republic of Kenya": "Kenya", "Republic of Rwanda": "Rwanda", "Republic of Trinidad and Tobago": "Trinidad and Tobago", "People's Democratic Republic of Algeria": "Algeria", "Republic of Uganda": "Uganda", "Republic of Burundi": "Burundi", "Republic of The Gambia": "The Gambia", "Republic of Singapore": "Singapore", "Saint Kitts": "Saint Kitts and Nevis", "Republic of Botswana": "Botswana", "Saint Vincent": "Saint Vincent and the Grenadines", "Commonwealth of The Bahamas": "The Bahamas", "Republic of Guinea-Bissau": "Guinea-Bissau", "Arab Republic of Egypt": "Egypt", "Kingdom of Bahrain": "Bahrain", "Republic of Fiji": "Fiji", "People's Republic of Bangladesh": "Bangladesh", "State of Qatar": "Qatar", "Socialist Republic of Vietnam": "Vietnam", "Third Hellenic Republic": "Greece", "People's Republic of Angola": "Angola", "Republic of Cabo Verde": "Cabo Verde", "Republic of Suriname": "Suriname", "Communist Laos": "Laos", "Commonwealth of Dominica": "Dominica", "Islamic Republic of Iran": "Iran", "Republic of Djibouti": "Djibouti", "Republic of Zimbabwe": "Zimbabwe", "Republic of Brazil": "Brazil", "Republic of Yemen": "Yemen", "Republic of Lithuania": "Lithuania", "Union of Myanmar": "Myanmar", "Federated Republic of Germany": "Germany", "Republic of Albania": "Albania", "Republic of Bulgaria": "Bulgaria", "Republic of Tajikistan": "Tajikistan", "Republic of Croatia": "Croatia", "Republic of Armenia": "Armenia", "Republic of Slovenia": "Slovenia", "Republic of Belarus": "Belarus", "Republic of Azerbaijan": "Azerbaijan", "Czech Republic": "Czechia", "Former Yugoslav Republic of Macedonia": "North Macedonia", "State of Eritrea": "Eritrea", "Republic of Uzbekistan": "Uzbekistan", "Russian Federation": "Russia", "Republic of Estonia": "Estonia", "Republic of Moldova": "Moldova", "Republic of Serbia": "Serbia", "East Timor": "Timor-Leste", "State of Libya": "Libya", "Republic of Iraq": "Iraq"};
+const NAME_NOTE = {"Former Yugoslav Republic of Macedonia": "the provisional name used at the United Nations from 1993; the country has been North Macedonia since the Prespa agreement of 2019", "Kingdom of Great Britain": "the name of 1707–1800; since 1801 the United Kingdom (of Great Britain and Ireland, then of Great Britain and Northern Ireland, 1922)", "Mali Federation": "the short-lived federation of Mali and Senegal (1959–1960); after Senegal left in August 1960, the Republic of Mali", "People's Republic of Angola": "the name until 1992; the Republic of Angola since", "Union of Myanmar": "the name until 2010; the Republic of the Union of Myanmar since", "Communist Cuba": "a label of Cliopatria; officially the Republic of Cuba", "Communist Laos": "a label of Cliopatria; officially the Lao People's Democratic Republic", "Republic of Turkey": "officially the Republic of Türkiye since 2022", "Saint Kitts": "with Nevis since independence in 1983", "Saint Vincent": "with the Grenadines since independence in 1979", "Éire": "the Irish name; Ireland in English"};
+// Natural Earth's short labels (world-atlas 2.0.2, before 2019) spelled out
+const NE_NAME = {"Macedonia": "North Macedonia", "Bosnia and Herz.": "Bosnia and Herzegovina", "Dominican Rep.": "Dominican Republic", "Central African Rep.": "Central African Republic", "Eq. Guinea": "Equatorial Guinea", "S. Sudan": "South Sudan", "W. Sahara": "Western Sahara", "N. Cyprus": "Northern Cyprus", "Solomon Is.": "Solomon Islands", "Falkland Is.": "Falkland Islands", "Faeroe Is.": "Faroe Islands", "Fr. Polynesia": "French Polynesia", "Fr. S. Antarctic Lands": "French Southern Lands", "S. Geo. and the Is.": "South Georgia", "eSwatini": "Eswatini", "Antigua and Barb.": "Antigua and Barbuda", "St. Vin. and Gren.": "Saint Vincent and the Grenadines", "St. Kitts and Nevis": "Saint Kitts and Nevis", "U.S. Virgin Is.": "U.S. Virgin Islands", "British Virgin Is.": "British Virgin Islands", "Cayman Is.": "Cayman Islands", "Turks and Caicos Is.": "Turks and Caicos Islands", "Marshall Is.": "Marshall Islands", "N. Mariana Is.": "Northern Mariana Islands", "Cook Is.": "Cook Islands", "Pitcairn Is.": "Pitcairn Islands", "Br. Indian Ocean Ter.": "British Indian Ocean Territory", "Indian Ocean Ter.": "Australian Indian Ocean Territories", "Heard I. and McDonald Is.": "Heard and McDonald Islands", "Ashmore and Cartier Is.": "Ashmore and Cartier Islands", "Wallis and Futuna Is.": "Wallis and Futuna", "St. Pierre and Miquelon": "Saint Pierre and Miquelon", "São Tomé and Principe": "São Tomé and Príncipe", "Dem. Rep. Congo": "DR Congo", "Gambia": "The Gambia", "Bahamas": "The Bahamas"};
+const neName = (n) => NE_NAME[n] || n;
 const TD = JSON.parse(document.getElementById("todaydata").textContent); let TODAY = null, todayOn = false, peopleOn = false, peopleVis = [], todayHit = [];
 var peopleSel = null;   // the people or unmapped state whose panel is open
 const periodToEnt = {}, empToEnt = {};
@@ -1490,6 +1498,7 @@ const mapLoad = (async () => {
     ENTS = meta.ents; COLORS = meta.colors; GCOL = meta.gcol || {}; GBOX = meta.gbox.map((b) => b.map((v) => v * inv));
     RECS = meta.recs.map((q, i) => ({ i, e: q[0], f: q[1], t: q[2], g: q[3], c: q[4], lx: q[5], ly: q[6], lr: q[7], area: q[8], top: q[9], mem: q[10], comp: q[11], triv: q[12] }));
     applyErrata(); empColours();
+    ENTS.forEach((e) => { const d = TODAY_NAME[e.n]; if (d && e.t >= 2024) { e.n0 = e.n; e.n = d; } });
     const maxA = new Float64Array(ENTS.length); RECS.forEach((q) => { maxA[q.e] = Math.max(maxA[q.e], q.area); });
     ENTS.forEach((e, i) => { e.maxA = maxA[i]; e.key = normQ(e.n); e.akeys = (e.al || []).map(normQ);
       (e.pp || []).forEach((pid) => { periodToEnt[pid] = i; }); if (e.emp && empToEnt[e.emp] == null) empToEnt[e.emp] = i; });
@@ -1664,7 +1673,7 @@ function drawLabels(uvis, vis, sel) {
   if (todayOn) {   // today's country names: small spaced italics, only where they fit
     TD.labels.forEach(([n, lx, ly, lr, area]) => {
       const x = mtx + lx * ms, y = mty + ly * ms; if (x < 0 || x > W || y < top || y > bottom) return;
-      const Rw = Math.max(lr, 0.3 * Math.sqrt(area)) * ms, t = n.toUpperCase();
+      const Rw = Math.max(lr, 0.3 * Math.sqrt(area)) * ms, t = neName(n).toUpperCase();
       const fs = Math.round(Math.min(12.5, lr * ms * 0.9, (2.4 * Rw) / (t.length * 0.62)) * 2) / 2; if (fs < 8.5) return;
       mctx.font = `italic 600 ${fs}px ${NARROW}`; if (LS_OK) mctx.letterSpacing = `${(fs * 0.08).toFixed(1)}px`;
       const w = mctx.measureText(t).width, bb = [x - w / 2 - 2, y - fs * 0.6, x + w / 2 + 2, y + fs * 0.6];
@@ -1812,7 +1821,7 @@ function showPolity(ei, keepCam) { setFocus({ k: "state", e: ei });
   const e = ENTS[ei], r = recOf(ei);
   const kind = e.k === 1 ? "Empire, realm or union" : r && r.top >= 0 ? `Member of the <button class="lk" data-ent="${r.top}">${esc(ENTS[r.top].n)}</button>` : "State or polity";
   let h = head({ kick: kind, title: e.n, color: r ? r.gc || COLORS[r.c] : null, wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), r ? badge(`on the map in ${fmt(mYear)}`, "dark") : badge(`not on the map in ${fmt(mYear)}`)] });
-  const br = bridgeHTML(ei); h += br;
+  const br = bridgeHTML(ei); h += formalHTML(e) + br;
   if (lastPolityTap && lastPolityTap.e === ei) h += todayHere(lastPolityTap.pt);   // opened by a click on the map
   const cp = typeof capOf === "function" && ND.cap[ei] ? capOf(ei, mYear) : null;
   const ups = r ? r.mem.filter((m) => ENTS[m].k === 1 && ENTS[m].n !== e.n) : [];
@@ -2144,6 +2153,8 @@ const GEOFIX = [[[297, 299, 300, 374], 661, 673, 674]];
 const ncv = $("netcv"), nctx = ncv.getContext("2d");
 const NC = ND.countries.map(([n, ax, ay, area, segs], i) => ({ i, n, ax, ay, area, segs, x: ax, y: ay, vx: 0, vy: 0, r: 9 + 0.085 * Math.sqrt(area), mem: [], prim: -1 }));
 const NKEY = NC.map((c) => normQ(c.n));
+NC.forEach((c) => { const d = neName(c.n); if (d !== c.n) { c.n0 = c.n; c.n = d; } });
+const NKEY_D = NC.map((c) => normQ(c.n));   // the spelled-out names, for the Timeline's columns ("North Macedonia")
 // ---------------------------------------------------------------- How many people: HYDE 3.3 population of today's countries (modelled estimates, base scenario)
 const HY = JSON.parse(document.getElementById("hydedata").textContent);
 function popAt(arr, y) {   // between two HYDE dates, grow at a steady rate (log-linear)
@@ -2469,7 +2480,7 @@ function showGroup(g, keep) { setFocus({ k: "state", e: g });
   nSel = { g }; nDraw();
   const e = ENTS[g], hb = nHubs.get(g), peak = UNION.filter((u) => u[2] === g).sort((a, b) => b[1] - a[1])[0], cp = capOf(g, mYear);
   let h = head({ kick: e.k === 1 ? "Empire, realm or union" : "State", title: e.n, color: gcolN(g), wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), prov("computed", "Links computed")] });
-  const br = bridgeHTML(g); h += br;
+  const br = bridgeHTML(g); h += formalHTML(e) + br;
   h += facts([["Dates", esc(span(e.f, e.t)) + (br ? "" : otherDates("state", ENTS.indexOf(e)))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))], cp ? ["Capital", `${esc(cp.city)} <span class="dim">★ curated</span>`] : null,
     hb ? [`Today's countries it covered in ${fmt(mYear)}`, String(hb.n)] : null, peak ? ["Widest reach", `${peak[1]} of today's countries, ${esc(fmt(peak[0]))}`] : null, statePopFact(g)]);
   const step = Math.max(5, Math.round((e.t - e.f) / 70)), pts = []; for (let y = e.f; y <= e.t; y += step) pts.push([y, countAt(g, y)]);
@@ -2706,8 +2717,8 @@ function loadHash() {
     if (ft) { restoreFocus(ft); return; }
     const name = p.slice(2).find((x) => x && !["today", "people", "dens", "pop"].includes(x) && !x.startsWith("c-") && !/^e-\d$/.test(x));   // links made before 20 October 2026
     if (!name) { clearFocus(); return; }
-    mapLoad.then(() => { if (net) { const c = NC.find((q) => q.n === name); if (c) showCountry(c.i); else { const g = ENTS.findIndex((e) => e.n === name); if (g >= 0 && nHubs.has(g)) showGroup(g); } }
-      else { const i = ENTS.findIndex((e) => e.n === name); if (i >= 0) focusEnt(i, mYear); } restoreUntil = performance.now() + 700; }); }
+    mapLoad.then(() => { if (net) { const c = NC.find((q) => q.n === name || q.n0 === name); if (c) showCountry(c.i); else { const g = ENTS.findIndex((e) => e.n === name || e.n0 === name); if (g >= 0 && nHubs.has(g)) showGroup(g); } }
+      else { const i = ENTS.findIndex((e) => e.n === name || e.n0 === name); if (i >= 0) focusEnt(i, mYear); } restoreUntil = performance.now() + 700; }); }
 }
 
 // ---------------------------------------------------------------- start
@@ -2954,7 +2965,7 @@ function searchIndex() {
   D.emp.forEach((em) => { const ei = empToEnt[em.id]; if (ei != null) entOfEmp.add(ei);
     E.push({ g: "s", label: em.n, sub: `${em.sl} – ${em.e == null ? "today" : em.el} · empire`, keys: sKeys([[em.n], ...(ei != null ? [[ENTS[ei].n]] : [])]), w: 50 + ((em.e ?? 2024) - em.s) / 100, F: { k: "empire", emp: em.id }, icon: `<i class="sdot" style="background:${EMP_COLOR[em.id] || "#9a958a"}"></i>` }); });
   if (mapReady) ENTS.forEach((e, i) => { if (e.k === 2 || entOfEmp.has(i) || /^Allegiance of /.test(e.n)) return;
-    E.push({ g: "s", label: e.n, sub: `${fmt(e.f)} – ${e.t >= 2024 ? "today" : fmt(e.t)}${e.k === 1 ? " · empire or union" : ""}`, keys: sKeys([[e.n], ...(e.al || []).map((a) => [a, a])]),
+    E.push({ g: "s", label: e.n, sub: `${fmt(e.f)} – ${e.t >= 2024 ? "today" : fmt(e.t)}${e.k === 1 ? " · empire or union" : ""}`, keys: sKeys([[e.n], ...(e.n0 ? [[e.n0]] : []), ...(e.al || []).map((a) => [a, neName(a)]), ...(e.n === "Turkey" ? [["Türkiye"], ["Turkiye"]] : [])]),
       w: Math.log10(1 + (e.maxA || 0)), F: { k: "state", e: i }, icon: `<i class="sdot" style="background:${(ND.gcol && ND.gcol[i]) || (e.emp && EMP_COLOR[e.emp]) || "#b9b3a6"}"></i>` }); });
   // periods: one entry per name (the longest), and none when an empire or state already carries that name
   const taken = new Set(E.filter((x) => x.g === "s" || x.g === "c").flatMap((x) => x.keys.map((k) => k[0]))), byName = new Map();   // a period named like a country or a state is found through it
@@ -3135,7 +3146,7 @@ function focusTok(F = FOCUS) {
   if (!F) return ""; const E = encodeURIComponent;
   switch (F.k) {
     case "period": return "s-p." + E(F.p); case "track": return "s-t." + E(F.t); case "empire": return "s-e." + E(F.emp);
-    case "state": return ENTS[F.e] ? "s-s." + E(ENTS[F.e].n) : ""; case "country": return NC[F.c] ? "s-c." + E(NC[F.c].n) : "";
+    case "state": return ENTS[F.e] ? "s-s." + E(ENTS[F.e].n0 || ENTS[F.e].n) : ""; case "country": return NC[F.c] ? "s-c." + E(NC[F.c].n0 || NC[F.c].n) : "";
     case "place": { const [lo, la] = invEE(F.pt[0], F.pt[1]); return `s-l.${lo.toFixed(3)},${la.toFixed(3)},${E(F.name || "")}`; }
     case "year": return F.ach ? "s-a." + E(F.ach) : "s-y." + F.y;
   }
@@ -3145,8 +3156,8 @@ function decodeTok(t) {
   const k = t[2], v = t.slice(4);
   switch (k) {
     case "p": return byId[v] ? { k: "period", p: v } : null; case "t": return trackById[v] ? { k: "track", t: v } : null; case "e": return empById[v] ? { k: "empire", emp: v } : null;
-    case "s": { const i = ENTS.findIndex((e) => e.n === v); return i >= 0 ? { k: "state", e: i } : null; }
-    case "c": { const c = NC.find((n) => n.n === v); return c ? { k: "country", c: c.i } : null; }
+    case "s": { let i = ENTS.findIndex((e) => e.n0 === v); if (i < 0) i = ENTS.findIndex((e) => e.n === v); return i >= 0 ? { k: "state", e: i } : null; }
+    case "c": { const c = NC.find((n) => n.n0 === v) || NC.find((n) => n.n === v); return c ? { k: "country", c: c.i } : null; }
     case "l": { const a = v.split(","), lo = +a[0], la = +a[1]; return isFinite(lo) && isFinite(la) ? { k: "place", pt: EE(lo, la), name: a.slice(2).join(",") } : null; }
     case "y": { const y = parseInt(v, 10); return isNaN(y) ? null : { k: "year", y }; }
     case "a": { const a = D.ach.find((x) => x.i === v); return a ? { k: "year", y: a.y, ach: a.i } : null; }
@@ -3392,7 +3403,7 @@ function todayCountryAt(wx, wy) {   // {n: Natural Earth name, c: the country in
   const k = row * TG.w + col; let lo = 0, hi = TG_END.length - 1;
   while (lo < hi) { const m = (lo + hi) >> 1; if (TG_END[m] > k) hi = m; else lo = m + 1; }
   const v = TG_VAL[lo]; if (!v) return null; const n = TG.names[v - 1], key = normQ(n);
-  return { n, c: NC.find((q, i) => NKEY[i] === key) || null }; }
+  return { n: neName(n), c: NC.find((q, i) => NKEY[i] === key) || null }; }
 function timelineTwin(ei) {   // the Timeline entry a mapped state stands for: an empire, or a single period with another name
   const e = ENTS[ei]; if (!e) return null;
   let emp = e.emp && empById[e.emp] ? e.emp : null;
@@ -3400,13 +3411,16 @@ function timelineTwin(ei) {   // the Timeline entry a mapped state stands for: a
   if (emp) { const em = empById[emp]; return { n: em.n, s: em.s, e: em.e, btn: `data-pemp="${emp}"`, same: em.n === e.n }; }
   if (e.pp && e.pp.length === 1 && byId[e.pp[0]]) { const p = byId[e.pp[0]]; return { n: p.n, s: p.s, e: p.e, col: p._t.n.split(",")[0], btn: `data-poster="${p.i}"`, same: p.n === e.n }; }
   return null; }
+function formalHTML(e) {   // "Cliopatria's name: Third Hellenic Republic", for states shown by today's name
+  if (!e.n0) return ""; const nt = NAME_NOTE[e.n0];
+  return `<p class="bridge">Cliopatria's name: <b>${esc(e.n0)}</b>${nt ? `, ${esc(nt)}` : ""}.</p>`; }
 function bridgeHTML(ei) {   // "On the Timeline: Frankish Realm (481–843)", when the two views name or date it differently
   const t = timelineTwin(ei); if (!t || t.same) return "";
   return `<p class="bridge">On the Timeline: <button class="lk" ${t.btn}>${esc(t.n)}</button> (${esc(span(t.s, t.e))}${t.col ? `, ${esc(t.col)}` : ""}). The borders map follows Cliopatria, which names and dates it its own way.</p>`; }
 function todayHere(pt) {   // "Here today: France", for a point the reader clicked
   const t = pt ? todayCountryAt(pt[0], pt[1]) : null; if (!t) return "";
   return `<p class="heretoday">Here today: ${t.c ? `<button class="lk" data-ncountry="${t.c.i}">${esc(t.n)}</button>` : `<b>${esc(t.n)}</b>`}</p>`; }
-function todayLink(a) { const key = normQ(a), c = NC.find((q, i) => NKEY[i] === key); return c ? `<button class="lk" data-ncountry="${c.i}">${esc(a)}</button>` : esc(a); }
+function todayLink(a) { const key = normQ(a), c = NC.find((q, i) => NKEY[i] === key); return c ? `<button class="lk" data-ncountry="${c.i}">${esc(c.n)}</button>` : esc(neName(a)); }
 function sparkFmt(pop, unit) { return pop ? (v) => `≈ ${fmtPop(v)}` : (v) => `${Math.round(v).toLocaleString("en")}${unit ? " " + unit : ""}`; }
 function sparkShort(v, pop, unit) { const s = v >= 1e9 ? `${+(v / 1e9).toFixed(1)}B` : v >= 1e6 ? `${+(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${+(v / 1e3).toFixed(0)}k` : `${Math.round(v)}`; return pop ? s : unit && !/countr/.test(unit) ? `${s} ${unit}` : s; }
 function sparkAt(pts, y, line, log) {   // the value at a year: along the line (log-linear on a log chart), or the step in force
