@@ -205,14 +205,18 @@ h4.sh { font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transfo
 .cbtn { border: 1px solid var(--hair); background: #fff; border-radius: 999px; padding: 4px 10px; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
 .cbtn:hover { border-color: var(--ink); }
 .cbtn i { width: 10px; height: 10px; border-radius: 3px; }
-.lensh { width: 100%; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #8a867c; margin-bottom: -2px; }
+.lensh { display: none; }
 .lens { display: flex; gap: 5px; width: 100%; }
 .lens .lb { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; border: 1px solid var(--hair); background: #fff; border-radius: 10px; padding: 6px 2px 5px; font-size: 11.5px; font-weight: 700; cursor: pointer; color: var(--ink); }
-.lens .lb svg { width: 18px; height: 18px; }
+.lens .lb svg { width: 16px; height: 16px; }
+.lens .lb { flex-direction: row; justify-content: center; gap: 6px; padding: 6px 4px; font-size: 12.5px; }
+.yl { border: 0; background: none; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; cursor: pointer; }
+.yl:hover { color: var(--ink); }
 .lens .lb.on { background: var(--ink); color: #fff; border-color: var(--ink); cursor: default; }
 .lens .lb:disabled { opacity: .32; cursor: default; }
 .lens .lb:not(.on):not(:disabled):hover { border-color: var(--ink); }
-.acts .ex { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+.acts .ex { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+.acts .act { padding: 6px 11px; font-size: 13px; }
 .fchip { display: inline-flex; align-items: center; min-width: 0; max-width: min(440px, 38vw); height: 32px; border: 1px solid var(--hair); background: #fff; border-radius: 999px; padding: 0 4px 0 10px; gap: 6px; font-size: 13px; font-weight: 700; }
 .fchip[hidden] { display: none !important; }
 .fchip .fl { border: 0; background: none; display: inline-flex; align-items: center; gap: 6px; min-width: 0; cursor: pointer; font: inherit; padding: 0; color: inherit; }
@@ -230,7 +234,7 @@ body.has-focus .bar .sub { display: none; }
 @media (prefers-reduced-motion: reduce) { .lensin { animation: none; } }
 @media (max-width: 760px) { #fchip2 .fl em { display: none; }   /* the year is in the time bar below: the name gets the room */
   .bar .fchip { display: none !important; } #fchip2:not([hidden]) { display: inline-flex; max-width: 64vw; height: 34px; box-shadow: 0 2px 8px rgba(29,29,27,.10); } }
-.acts { position: sticky; bottom: -28px; margin: 18px -20px -28px; padding: 10px 20px 14px; background: linear-gradient(rgba(255,255,255,.85), #fff 30%); display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--hair); }
+.acts { position: sticky; bottom: -28px; margin: 18px -20px -28px; padding: 8px 20px 10px; background: linear-gradient(rgba(255,255,255,.85), #fff 30%); display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--hair); }
 .act { border: 1px solid var(--ink); background: #fff; border-radius: 999px; padding: 7px 12px; font-size: 13.5px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
 .act.pri { background: var(--ink); color: #fff; }
 .act svg { width: 15px; height: 15px; }
@@ -449,6 +453,18 @@ body.map-mode .toast { top: calc(var(--hdr) + 58px); }
 
 /* the panel folds to its title bar; the zoom buttons stay clear of it */
 .smin { display: grid; place-items: center; }
+.swide { display: none; place-items: center; }
+.swide .w-in { display: none; } body.sheet-wide .swide .w-in { display: inline; } body.sheet-wide .swide .w-out { display: none; }
+@media (min-width: 1400px) {
+  .swide { display: grid; }
+  body.sheet-wide .sheet { width: 760px; }
+  body.sheet-wide.sheet-open .dleg { right: 782px; }
+  body.sheet-wide .sheet-body { padding: 2px 26px 28px; }
+  body.sheet-wide .sheet .colw { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 30px; align-items: start; }
+  body.sheet-wide .sheet .colw > div > :first-child { margin-top: 0; }
+  body.sheet-wide .acts { margin: 18px -26px -28px; padding: 8px 26px 10px; }
+  body.sheet-wide .acts { flex-wrap: nowrap; } body.sheet-wide .acts .lens { width: auto; flex: 0 0 360px; } body.sheet-wide .acts .ex { width: auto; flex: 1; justify-content: flex-end; }
+}
 .smin svg { transition: transform .15s; }
 .sttl { display: none; flex: 1; min-width: 0; border: 0; background: none; padding: 6px 4px; text-align: left; cursor: pointer; color: var(--ink); font: inherit; font-size: 15px; font-weight: 800; }
 .sttl span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -565,7 +581,7 @@ body.map-mode .toast { top: calc(var(--hdr) + 58px); }
 <div class="tip" id="tip"></div>
 <aside class="sheet" id="sheet" hidden aria-live="polite">
   <div class="grab" id="grab" aria-hidden="true"></div>
-  <div class="sheet-head"><button class="back" id="back" hidden aria-label="Back"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>Back</button><button class="sttl" id="sttl" type="button" title="Expand the panel"><span></span></button><span class="sp"></span><button class="x smin" id="smin" type="button" aria-expanded="true" aria-label="Fold the panel" title="Fold"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><button class="x" id="close" aria-label="Close">×</button></div>
+  <div class="sheet-head"><button class="back" id="back" hidden aria-label="Back"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>Back</button><button class="sttl" id="sttl" type="button" title="Expand the panel"><span></span></button><span class="sp"></span><button class="x swide" id="swide" type="button" aria-pressed="false" aria-label="Wider panel" title="Wider panel"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="w-out" d="M9 6l-6 6 6 6M15 6l6 6-6 6"/><path class="w-in" d="M3 6l6 6-6 6M21 6l-6 6 6 6"/></svg></button><button class="x smin" id="smin" type="button" aria-expanded="true" aria-label="Fold the panel" title="Fold"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><button class="x" id="close" aria-label="Close">×</button></div>
   <div class="sheet-body" id="body"></div>
 </aside>
 <script type="application/json" id="data">__DATA__</script>
@@ -1229,7 +1245,29 @@ const TYPE = { state: "State", dynasty: "Dynasty", regime: "Regime", confederati
   colonial_administration: "Colonial rule", occupation: "Occupation", culture: "Culture", archaeological_period: "Archaeological period", peoples: "Peoples", historical_period: "Era" };
 const REL = { phase: "a stage of it", contemporary_polity: "a separate state at the same time", interruption: "interrupted it" };
 let sheetStack = [], navBack = false;
-function openSheet(html, kind) { if (coreOn && kind !== "core" && kind !== "coreintro") { coreOn = false; coreSel = -1; coreUI(); mDraw(); } if (kind !== "people" && kind !== "period" && typeof peopleSel !== "undefined") peopleSel = null; document.body.classList.add("sheet-open"); body.innerHTML = html; if (kind) body.dataset.kind = kind; sheet.hidden = false; body.scrollTop = 0; backVis(); if (sheetMin && !applying && performance.now() > restoreUntil) sheetMin = false; sheet.classList.toggle("min", sheetMin); document.body.classList.toggle("sheet-min", sheetMin); sheetTitleSync(); foldUI(); draw(); }
+let sheetWide = false; try { sheetWide = localStorage.getItem("palimpsest.wide") === "1"; } catch (err) { /* no storage */ }
+const wideOn = () => sheetWide && W >= 1400;
+const PW = () => (wideOn() ? 760 : 420);   // the room the panel takes on the right, on laptops
+function wideLayout() {   // two columns when the panel is wide: what it is (facts, charts, sources) on the left, the lists (sections) on the right
+  const b = body, old = b.querySelector(":scope > .colw");
+  if (old) { const kids = [...old.querySelectorAll(":scope > div > *")].sort((x, y) => x._o - y._o); kids.forEach((k) => b.insertBefore(k, old)); old.remove(); }
+  if (!wideOn()) return;
+  const kids = [...b.children]; kids.forEach((k, i) => { k._o = i; });
+  const isList = (k) => k.matches("details.sec") && !/^Sources/.test((k.querySelector("summary") || {}).textContent || "");
+  const right = kids.filter(isList); if (!right.length) return;
+  const left = kids.filter((k) => !isList(k) && !k.matches(".acts, .subst"));
+  const w = document.createElement("div"); w.className = "colw"; const A = document.createElement("div"), B = document.createElement("div"); w.append(A, B);
+  const acts = b.querySelector(":scope > .acts"); b.insertBefore(w, acts || null);
+  left.forEach((k) => A.appendChild(k)); right.forEach((k) => B.appendChild(k)); }
+function setWide(on) { sheetWide = on; try { localStorage.setItem("palimpsest.wide", on ? "1" : "0"); } catch (err) { /* no storage */ }
+  document.body.classList.toggle("sheet-wide", on); const b = $("swide"); b.setAttribute("aria-pressed", String(on)); b.title = on ? "Narrower panel" : "Wider panel"; b.setAttribute("aria-label", b.title);
+  wideLayout(); revealSel(); }
+function revealSel() {   // keep what the panel is about visible beside it
+  if (sheet.hidden || W < 760) return;
+  if (mode === "map" && typeof mSelE !== "undefined" && mSelE >= 0 && mapReady) { const r = recOf(mSelE); if (r) { const x = mtx + r.lx * ms; if (x > W - PW() - 30) mSetCam(ms, mtx + ((W - PW()) / 2 - x), mty, true); } }
+  else if (mode === "net" && typeof nSel !== "undefined" && nSel) { const n = nSel.g != null ? nodeOfGroup(nSel.g) : nSel.c || null; if (n) nReveal(n); }
+  else if (mode === "poster") { clampCam(); draw(); } }
+function openSheet(html, kind) { if (coreOn && kind !== "core" && kind !== "coreintro") { coreOn = false; coreSel = -1; coreUI(); mDraw(); } if (kind !== "people" && kind !== "period" && typeof peopleSel !== "undefined") peopleSel = null; document.body.classList.add("sheet-open"); body.innerHTML = html; wideLayout(); if (kind) body.dataset.kind = kind; sheet.hidden = false; body.scrollTop = 0; backVis(); if (sheetMin && !applying && performance.now() > restoreUntil) sheetMin = false; sheet.classList.toggle("min", sheetMin); document.body.classList.toggle("sheet-min", sheetMin); sheetTitleSync(); foldUI(); draw(); }
 // every panel call is remembered so Back can return to the previous one
 function nav(fn) { return function (...args) {
   let ent = null;
@@ -1384,7 +1422,7 @@ function showEmpire(eid) { yearSel = null; selTrack = null; setFocus({ k: "empir
     const vis = e.tr.map((tid) => trackById[tid]).filter((t) => SHOWN.includes(t) && t._wt > 0.02).sort((a, b) => a._x - b._x);
     if (vis.length) { const k = Math.max(1, Math.ceil(vis.length * 0.6)); let span = Infinity;
       for (let i = 0; i + k - 1 < vis.length; i++) span = Math.min(span, vis[i + k - 1]._x + vis[i + k - 1]._w - vis[i]._x);
-      const f = Math.min(4, (W - 420 - AX() - 16) * 0.9 / span); if (f > 1.15) setGeo(Math.min(MAXGZ, gz + Math.log2(f)), undefined, false); } }
+      const f = Math.min(4, (W - PW() - AX() - 16) * 0.9 / span); if (f > 1.15) setGeo(Math.min(MAXGZ, gz + Math.log2(f)), undefined, false); } }
   hiEmp = eid; const sel = $("empsel"); if (sel) sel.value = eid;
   let h = head({ kick: "Highlighted on the timeline", title: e.n, color: EMP_COLOR[eid], wiki: wikiPill(e.n.replace(/ \(.*\)$/, "")), badges: [prov("editorial", "Editorial")] });
   h += facts([["Dates", `${esc(e.sl)} – ${e.e == null ? "today" : esc(e.el)}` + otherDates("empire", eid)], ["Lasted", esc(lasted(e.s, e.e))], ["Reached", `${e.tr.length} of the timeline's columns`, true]]);
@@ -1394,7 +1432,7 @@ function showEmpire(eid) { yearSel = null; selTrack = null; setFocus({ k: "empir
   h += acts([act(`data-act="clearemp"`, "Clear highlight"), empToEnt[eid] != null ? act(`data-tomap="${empToEnt[eid]}:${Math.max(-3400, ENTS[empToEnt[eid]].py)}"`, "Map", "map", true) : ""]);
   openSheet(h, "empire");
   const ts = e.tr.map((tid) => trackById[tid]).filter((t) => SHOWN.includes(t) && t._wt > 0.02); if (!ts.length) return;
-  const viewW = W > 760 ? W - 420 : W, fit = viewW - AX() - 16, so = [...ts].sort((a, b) => a._x - b._x); let x1 = so[0]._x, x2 = so[0]._x + so[0]._w, bestN = 0;
+  const viewW = W > 760 ? W - PW() : W, fit = viewW - AX() - 16, so = [...ts].sort((a, b) => a._x - b._x); let x1 = so[0]._x, x2 = so[0]._x + so[0]._w, bestN = 0;
   so.forEach((a, i) => { let j = i; while (j + 1 < so.length && so[j + 1]._x + so[j + 1]._w - a._x <= fit) j++; if (j - i + 1 > bestN) { bestN = j - i + 1; x1 = a._x; x2 = so[j]._x + so[j]._w; } });
   const ns = Math.max(minS, Math.min(maxS, (H - HDR - FLAGS() - (W > 760 ? 80 : H * 0.62)) / Math.max(20, Yw(e.e == null ? END : e.e) - Yw(e.s))));
   setCam(ns, WORLD_W > W - AX() - 8 ? AX() + (viewW - AX()) / 2 - (x1 + x2) / 2 : tx, HDR + FLAGS() + 30 - Yw(e.s) * ns, true);
@@ -1841,7 +1879,9 @@ function showPolity(ei, keepCam) { setFocus({ k: "state", e: ei });
   if (lastPolityTap && lastPolityTap.e === ei) h += todayHere(lastPolityTap.pt);   // opened by a click on the map
   const cp = typeof capOf === "function" && ND.cap[ei] ? capOf(ei, mYear) : null;
   const ups = r ? r.mem.filter((m) => ENTS[m].k === 1 && ENTS[m].n !== e.n) : [];
-  h += facts([["Dates", esc(span(e.f, e.t)) + (br ? "" : otherDates("state", ENTS.indexOf(e)))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))],
+  const yl = (y, t) => `<button class="yl" data-goto="${ei}:${y}" title="Show it in ${esc(fmt(y))}">${esc(t || fmt(y))}</button>`;
+  const datesH = `${yl(e.f)} – ${e.t >= 2024 ? yl(e.t, "today") : yl(e.t)}${e.py !== e.f && e.py !== e.t ? `<br><span class="dim">largest in ${yl(e.py)}</span>` : ""}`;
+  h += facts([["Dates", datesH + (br ? "" : otherDates("state", ENTS.indexOf(e)))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))],
     r ? [`Territory in ${fmt(mYear)}`, `${Math.round(r.area).toLocaleString("en")} km²`] : null, cp ? ["Capital", `${esc(cp.city)} <span class="dim">★ curated</span>`] : null,
     ups.length ? ["Part of", ups.map(entBtn).join("<br>"), true] : null, e.al && e.al.length ? ["Today", e.al.slice(0, 5).map(todayLink).join(", "), true] : null, r ? statePopFact(ei) : null]);
   const rs = RECS.filter((q) => q.e === ei).sort((a, b) => a.f - b.f);
@@ -1862,7 +1902,7 @@ function showPolity(ei, keepCam) { setFocus({ k: "state", e: ei });
   }
   const succ = succSect(ei, "map"); h += succ;
   h += sect("Sources", null, `<div class="src ok srcs"><p>Borders and dates: <a href="${esc(MD.src.url)}" target="_blank" rel="noopener">Cliopatria</a> v${esc(MD.src.version)}, Seshat Global History Databank, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</p>${succ ? `<p>Before and after: Wikidata, <a href="https://www.wikidata.org/wiki/Wikidata:Licensing" target="_blank" rel="noopener">CC0</a>.</p>` : ""}${errataNote(ei)}${linksHTML(e)}<p class="dim">A map shows one interpretation; many borders and dates were contested.</p></div>`, false);
-  h += acts([act(`data-goto="${ei}:${e.f}"`, `Start ${fmt(e.f)}`), e.py !== e.f && e.py !== e.t ? act(`data-goto="${ei}:${e.py}"`, `Largest ${fmt(e.py)}`) : "", act(`data-goto="${ei}:${e.t}"`, e.t >= 2024 ? "Today" : `End ${fmt(e.t)}`),
+  h += acts([
     ND.gcol[ei] ? act(`data-tonet="g:${ei}:${mYear}"`, "Network", "net", true) : ""]);
   openSheet(h, "polity");
   if (!keepCam && r && W < 760) { const ny = HDR + (H * 0.38 - HDR) / 2, b = mainBox(r.g), cy = (b[1] + b[3]) / 2; mSetCam(ms, mtx, mty + (ny - (mty + cy * ms)), true); }
@@ -1877,7 +1917,7 @@ function focusEnt(i, year) {
   if (y !== mYear) setYear(y);
   const r = recOf(i); if (!r) { showPolity(i, true); return; }
   const b = mainBox(r.g), phone = W < 760;
-  const availW = phone ? W - 24 : W - (sheet.hidden ? 0 : 420) - 48, availH = phone ? H * 0.38 - HDR - 16 : H - HDR - ctlH() - 48;
+  const availW = phone ? W - 24 : W - (sheet.hidden ? 0 : PW()) - 48, availH = phone ? H * 0.38 - HDR - 16 : H - HDR - ctlH() - 48;
   const cx0 = phone ? W / 2 : 24 + availW / 2, cy0 = HDR + 8 + availH / 2;
   const base = mBase(), ns = Math.max(base * 0.8, Math.min(base * 40, Math.min(availW / Math.max(160, b[2] - b[0]), availH / Math.max(110, b[3] - b[1])) * 0.8));
   showPolity(i, true);
@@ -1945,7 +1985,7 @@ function coreAt(pt, name) { setFocus({ k: "place", pt, name: name || "" });
   if (!mapReady) { mapLoad.then(() => coreAt(pt, name)); return; }
   corePt = pt; coreName = name || ""; coreD = computeCore(pt); coreSel = -1; mSelE = -1;
   // frame the spot: zoom in if needed and keep it clear of the panel
-  const base = mBase(), ns = Math.max(ms, base * (W < 760 ? 5 : 4)), cx = W < 760 ? W / 2 : (W - 420) / 2, cy = W < 760 ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2;
+  const base = mBase(), ns = Math.max(ms, base * (W < 760 ? 5 : 4)), cx = W < 760 ? W / 2 : (W - PW()) / 2, cy = W < 760 ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2;
   const sx = mtx + pt[0] * ms, sy = mty + pt[1] * ms;
   if (ns > ms * 1.05 || sx < 40 || sx > (W < 760 ? W - 40 : W - 440) || sy < HDR + 60 || sy > (W < 760 ? H * 0.38 : H - ctlH() - 40)) mSetCam(ns, cx - pt[0] * ns, cy - pt[1] * ns, true);
   showCore(); mDraw(); saveHash();
@@ -2464,7 +2504,7 @@ function netSource() {
 function nReveal(n) {   // keep the selected circle visible above the bottom sheet on phones, beside the drawer on desktop
   const x = ntx + n.x * nms, y = nty + n.y * nms;
   if (W < 760) { const ty = HDR + (H * 0.38 - HDR) / 2; if (Math.abs(y - ty) > 30 || x < 20 || x > W - 20) nSetCam(nms, ntx + (W / 2 - x), nty + (ty - y), true); }
-  else if (x > W - 420) nSetCam(nms, ntx + ((W - 400) / 2 - x), nty, true);
+  else if (x > W - PW()) nSetCam(nms, ntx + ((W - PW() + 20) / 2 - x), nty, true);
 }
 function countryStory(c) {   // merge consecutive spans with the same main state
   const out = [];
@@ -2498,13 +2538,13 @@ function showGroup(g, keep) { setFocus({ k: "state", e: g });
   let h = head({ kick: e.k === 1 ? "Empire, realm or union" : "State", title: e.n, color: gcolN(g), wiki: e.wp ? wikiPill(e.wp, true) : wikiPill(e.n), badges: [prov("source", "Source: Cliopatria"), prov("computed", "Links computed")] });
   const br = bridgeHTML(g); h += formalHTML(e) + br;
   h += facts([["Dates", esc(span(e.f, e.t)) + (br ? "" : otherDates("state", ENTS.indexOf(e)))], ["Lasted", esc(lasted(e.f, e.t >= 2024 ? null : e.t))], cp ? ["Capital", `${esc(cp.city)} <span class="dim">★ curated</span>`] : null,
-    hb ? [`Today's countries it covered in ${fmt(mYear)}`, String(hb.n)] : null, peak ? ["Widest reach", `${peak[1]} of today's countries, ${esc(fmt(peak[0]))}`] : null, statePopFact(g)]);
+    hb ? [`Today's countries it covered in ${fmt(mYear)}`, String(hb.n)] : null, peak ? ["Widest reach", `${peak[1]} of today's countries, <button class="yl" data-nyear="${peak[0]}">${esc(fmt(peak[0]))}</button>`] : null, statePopFact(g)]);
   const step = Math.max(5, Math.round((e.t - e.f) / 70)), pts = []; for (let y = e.f; y <= e.t; y += step) pts.push([y, countAt(g, y)]);
   h += sparkHTML(pts, { y0: e.f, y1: e.t, now: mYear, color: gcolN(g), label: "Today's countries it covered · tap to jump", unit: "countries" });
   if (hb) h += sect(`Today's countries it covered in ${fmt(mYear)}`, hb.n, `<div class="chipl">${hb.members.slice().sort((a, b) => b.area - a.area).map((m) => `<button class="cbtn" data-ncountry="${m.i}">${esc(m.n)}</button>`).join("")}</div>`);
   h += succSect(g, "net");
   h += sect("Sources", null, netSource() + linksHTML(e), false);
-  h += acts([act(`data-tomap="${g}:${mYear}"`, "Map", "map", true), e.emp ? act(`data-pemp="${e.emp}"`, "Poster", "poster") : "", peak ? act(`data-nyear="${peak[0]}"`, "Widest reach") : ""]);
+  h += acts([act(`data-tomap="${g}:${mYear}"`, "Map", "map", true), e.emp ? act(`data-pemp="${e.emp}"`, "Poster", "poster") : ""]);
   openSheet(h, "ngroup"); saveHash(); if (hb && !keep) nReveal(hb);
 }
 body.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b || mode !== "net") return;
@@ -2763,7 +2803,7 @@ const freshYear = () => lensFrom === "poster" && !(FOCUS && FOCUS._y != null);
 function subjYear(ei, fresh) {   // the year to show a mapped state at (fresh: see freshYear, captured before any wait for the map)
   const en = ENTS[ei]; if (!fresh && mYear >= en.f && mYear <= en.t) return mYear;
   return Math.max(en.f, Math.min(en.t, en.py)); }
-function frameAt(x, y) { const ns = Math.max(ms, mBase() * 3.5), phone = W < 760, cx = phone ? W / 2 : (W - 420) / 2, cy = phone ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2; mSetCam(ns, cx - x * ns, cy - y * ns, true); }
+function frameAt(x, y) { const ns = Math.max(ms, mBase() * 3.5), phone = W < 760, cx = phone ? W / 2 : (W - PW()) / 2, cy = phone ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2; mSetCam(ns, cx - x * ns, cy - y * ns, true); }
 function showPeopleOnMap(q) { if (!peopleOn) setPeople(true); frameAt(q.x, q.y); showPeople(q); mDraw(); }
 function withApply(fn) { const was = applying; if (!was) PANEL_F = null; applying = true; try { fn(); } finally { applying = was; if (!was) substNote(); } }
 const entForPeriod = (top) => periodToEnt[top.i] ?? (top.af ? top.af.map((a) => empToEnt[a[0]]).find((x) => x != null) : null) ?? null;
@@ -2850,10 +2890,10 @@ function applyFocus(v) {
           else { const c = trackNC(p._t), g = c ? memAt(c, mYear)[0] : null; if (c) frameAt(c.ax, c.ay); if (g != null) { mSelE = g; mDraw(); } showPeriod(p); } }); }
       else if (F.k === "track" || F.k === "country") { const c = F.k === "track" ? trackNC(trackById[F.t]) : NC[F.c];
         later(() => { if (!c) return; const g = memAt(c, mYear)[0];   // frame the country itself, and open the state that held it
-          const ns = Math.max(ms, mBase() * 3.5), cx = W < 760 ? W / 2 : (W - 420) / 2, cy = W < 760 ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2;
+          const ns = Math.max(ms, mBase() * 3.5), cx = W < 760 ? W / 2 : (W - PW()) / 2, cy = W < 760 ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2;
           mSetCam(ns, cx - c.ax * ns, cy - c.ay * ns, true); showCountry(c.i, true); }); }
       else if (F.k === "place") later(() => { corePt = F.pt; const L = computeCore(F.pt).leaves, hit = L.find((x) => x.s <= mYear && mYear <= x.t), r = hit ? { e: hit.e } : null;
-        const ns = Math.max(ms, mBase() * 3.5), cx = W < 760 ? W / 2 : (W - 420) / 2, cy = W < 760 ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2;
+        const ns = Math.max(ms, mBase() * 3.5), cx = W < 760 ? W / 2 : (W - PW()) / 2, cy = W < 760 ? HDR + (H * 0.38 - HDR) / 2 + 20 : (HDR + H - ctlH()) / 2;
         mSetCam(ns, cx - F.pt[0] * ns, cy - F.pt[1] * ns, true); if (r) showPolity(r.e, true); mDraw(); });
       else if (F.k === "year") setYear(F.y);
     } else if (v === "net") {
@@ -3334,6 +3374,9 @@ function sheetTitleSync() { const h = body.querySelector("h2"), s = $("sttl").fi
 function foldUI() { const b = $("smin"); if (!b) return; b.setAttribute("aria-expanded", String(!sheetMin)); b.setAttribute("aria-label", sheetMin ? "Expand the panel" : "Fold the panel"); b.title = sheetMin ? "Expand" : "Fold"; }
 function setMin(on) { sheetMin = on; if (sheet.hidden) return; sheet.classList.toggle("min", on); if (on) sheet.classList.remove("full"); document.body.classList.toggle("sheet-min", on); sheetTitleSync(); foldUI(); draw(); }
 $("smin").onclick = () => setMin(!sheetMin);
+$("swide").onclick = () => setWide(!sheetWide);
+document.body.classList.toggle("sheet-wide", sheetWide); $("swide").setAttribute("aria-pressed", String(sheetWide));
+addEventListener("resize", () => { if (!sheet.hidden) wideLayout(); });
 $("sttl").onclick = () => setMin(false);
 { const uc = userClose; userClose = function () { uc(); sheetMin = false; }; $("close").onclick = userClose; }
 
@@ -3341,7 +3384,7 @@ $("sttl").onclick = () => setMin(false);
 // ---------------------------------------------------------------- Map and Network share one camera (same projection): switching keeps the zoom and the place
 let camKeep = false;
 function camArea() {   // the part of the screen not under a panel or the time bar
-  const side = !sheet.hidden && W >= 760 && !sheetMin ? 420 : 0, low = W < 760 && !sheet.hidden && !sheetMin ? H * 0.5 : H - ctlH();
+  const side = !sheet.hidden && W >= 760 && !sheetMin ? PW() : 0, low = W < 760 && !sheet.hidden && !sheetMin ? H * 0.5 : H - ctlH();
   return { x0: 30, x1: W - side - 30, y0: HDR + 20, y1: low - 20, cx: (W - side) / 2, cy: (HDR + low) / 2 };
 }
 function camKept(ns, x, y, s0, tx0, ty0, set, a) {   // during a switch: keep the scale; move only if the target is out of sight
